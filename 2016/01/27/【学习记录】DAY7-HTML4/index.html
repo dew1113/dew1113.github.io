@@ -1,0 +1,741 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】  
+区别：
+
+&amp;lt;ol&amp;gt;有序列表表示有一定逻辑顺序的列表项（1234标记）
+&amp;lt;ul&amp;gt;无序列表用于表示同等级类目的列表项（小黑点标记）
+&amp;lt;dl&amp;gt;自定义列表用于表示层级关系的列表dt与dd是层级关系；三者可以互相嵌套。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY7-HTML4">
+<meta property="og:url" content="http://chenlu.win/2016/01/27/【学习记录】DAY7-HTML4/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】  
+区别：
+
+&amp;lt;ol&amp;gt;有序列表表示有一定逻辑顺序的列表项（1234标记）
+&amp;lt;ul&amp;gt;无序列表用于表示同等级类目的列表项（小黑点标记）
+&amp;lt;dl&amp;gt;自定义列表用于表示层级关系的列表dt与dd是层级关系；三者可以互相嵌套。">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/14f0a646-8d19-4ee3-bb82-6b02eb975335.PNG">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/e9e7d0b3-6a12-453d-8e5c-5a64ea92fccc.PNG">
+<meta property="og:updated_time" content="2016-04-12T07:04:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY7-HTML4">
+<meta name="twitter:description" content="【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】  
+区别：
+
+&amp;lt;ol&amp;gt;有序列表表示有一定逻辑顺序的列表项（1234标记）
+&amp;lt;ul&amp;gt;无序列表用于表示同等级类目的列表项（小黑点标记）
+&amp;lt;dl&amp;gt;自定义列表用于表示层级关系的列表dt与dd是层级关系；三者可以互相嵌套。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY7-HTML4 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY7-HTML4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-27T21:20:30+08:00" content="2016-01-27">
+              2016-01-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/27/【学习记录】DAY7-HTML4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/【学习记录】DAY7-HTML4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="u30101-_u6709_u5E8F_u5217_u8868_u3001_u65E0_u5E8F_u5217_u8868_u3001_u81EA_u5B9A_u4E49_u5217_u8868_u5982_u4F55_u4F7F_u7528_uFF1F_u5199_u4E2A_u7B80_u5355_u7684_u4F8B_u5B50_u3002_u4E09_u8005_u5728_u8BED_u4E49_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4F7F_u7528_u573A_u666F_u662F_u4EC0_u4E48_uFF1F__u80FD_u5426_u5D4C_u5957_uFF1F_u3011"><a href="#u30101-_u6709_u5E8F_u5217_u8868_u3001_u65E0_u5E8F_u5217_u8868_u3001_u81EA_u5B9A_u4E49_u5217_u8868_u5982_u4F55_u4F7F_u7528_uFF1F_u5199_u4E2A_u7B80_u5355_u7684_u4F8B_u5B50_u3002_u4E09_u8005_u5728_u8BED_u4E49_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4F7F_u7528_u573A_u666F_u662F_u4EC0_u4E48_uFF1F__u80FD_u5426_u5D4C_u5957_uFF1F_u3011" class="headerlink" title="【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】"></a>【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】</h3><p> <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/14f0a646-8d19-4ee3-bb82-6b02eb975335.PNG" alt="0_1457574106362_lisub.PNG"><br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/e9e7d0b3-6a12-453d-8e5c-5a64ea92fccc.PNG" alt="0_1457574114735_sub2.PNG"> </p>
+<p>区别：</p>
+<ul>
+<li><code>&lt;ol&gt;</code>有序列表表示有一定逻辑顺序的列表项（1234标记）</li>
+<li><code>&lt;ul&gt;</code>无序列表用于表示同等级类目的列表项（小黑点标记）</li>
+<li><code>&lt;dl&gt;</code>自定义列表用于表示层级关系的列表dt与dd是层级关系；<br>三者可以互相嵌套。 <a id="more"></a>
+<h3 id="u30102-_u5982_u4F55_u53BB_u9664_u5217_u8868_u524D_u9762_u7684_u70B9_u6216_u8005_u6570_u5B57_uFF1F_u3011"><a href="#u30102-_u5982_u4F55_u53BB_u9664_u5217_u8868_u524D_u9762_u7684_u70B9_u6216_u8005_u6570_u5B57_uFF1F_u3011" class="headerlink" title="【2.如何去除列表前面的点或者数字？】"></a>【2.如何去除列表前面的点或者数字？】</h3>使用<code>list-style:none</code></li>
+</ul>
+<h3 id="u30103-class__u548C_id__u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4EC0_u4E48_u65F6_u5019_u7528_class__u4EC0_u4E48_u65F6_u5019_u7528_id_uFF1F_u3011"><a href="#u30103-class__u548C_id__u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4EC0_u4E48_u65F6_u5019_u7528_class__u4EC0_u4E48_u65F6_u5019_u7528_id_uFF1F_u3011" class="headerlink" title="【3.class 和 id 有什么区别？什么时候用 class 什么时候用 id？】"></a>【3.class 和 id 有什么区别？什么时候用 class 什么时候用 id？】</h3><p><code>class</code>是类选择器，可以重复使用，而id选择器只能使用一次。<br>大多数情况使用<code>class</code>。因为id选择器只能使用一次。推荐在大范围的时候用ID（例如<code>head</code>和<code>footer</code>）ID中分类小的部分用<code>class</code>,这样就能更好的布局了<br>另外id的优先级高于<code>class</code>选择器。</p>
+<h3 id="u30104-_u5757_u7EA7_u5143_u7D20_u3001_u884C_u5185_u5143_u7D20_u662F_u4EC0_u4E48_uFF1F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5206_u522B_u5BF9_u5E94_u54EA_u4E9B_u5E38_u7528_u6807_u7B7E_uFF1F_u3011"><a href="#u30104-_u5757_u7EA7_u5143_u7D20_u3001_u884C_u5185_u5143_u7D20_u662F_u4EC0_u4E48_uFF1F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5206_u522B_u5BF9_u5E94_u54EA_u4E9B_u5E38_u7528_u6807_u7B7E_uFF1F_u3011" class="headerlink" title="【4.块级元素、行内元素是什么？有什么区别？分别对应哪些常用标签？】"></a>【4.块级元素、行内元素是什么？有什么区别？分别对应哪些常用标签？】</h3><p><em>块级元素</em>：占据一整行，宽度始终与浏览器宽度一样，与内容无关；高度，行高以及外边距和内边距都可控制；可以容纳内联元素和其他块元素。<br>常用的块级元素标签：<code>div、p、h1...h6、table、tr、ul、li、dl、dt、form</code><br><em>行内元素</em>：和其他元素都在一行上；，手动设置宽高是无效的。不过左右margin,padding可改变，上下<code>margin/padding</code>不占据空间，但是加边框还是看得到的；宽度只与内容有关；行内元素只能容纳文本或者其他行内元素。<br>常用的行内元素标签：<code>a、span、img、input、button、em、textarea</code></p>
+<h3 id="u30105-display_3A_block_u3001display_3A_inline_u3001display_3A_inline-block_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><a href="#u30105-display_3A_block_u3001display_3A_inline_u3001display_3A_inline-block_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011" class="headerlink" title="【5.display: block、display: inline、display: inline-block分别有什么作用？】"></a>【5.<code>display: block、display: inline、display: inline-block</code>分别有什么作用？】</h3><p><code>display: block</code>表示该元素显示为一个块级元素,单独占一行<br><code>display: inline</code>表示该元素显示为内联元素，不换行<br><code>display: inline-block</code>表示内联块元素，可以像行内元素一样水平排列又可以使用块元素的属性。</p>
+<h3 id="u30106-_u4E0B_u9762_u4EE3_u7801_u7684_u4F5C_u7528_u3011"><a href="#u30106-_u4E0B_u9762_u4EE3_u7801_u7684_u4F5C_u7528_u3011" class="headerlink" title="【6.下面代码的作用】"></a>【6.下面代码的作用】</h3><p>作用于页面布局。将页面分为头部、内容、页脚三部分。内容还分一个大块和一个侧边栏。</p>
+<h3 id="u30107-_u5982_u4F55_u7406_u89E3_HTML_CSS__u8BED_u4E49_u5316_3F_u3011"><a href="#u30107-_u5982_u4F55_u7406_u89E3_HTML_CSS__u8BED_u4E49_u5316_3F_u3011" class="headerlink" title="【7.如何理解 HTML CSS 语义化?】"></a>【7.如何理解 HTML CSS 语义化?】</h3><p>HTML CSS 语义化就是选择合适的标签、使用合理的代码结构，便于开发者阅读，同时让浏览器的爬虫和机器很好地解析。</p>
+<h3 id="u30108-form_u8868_u5355_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u6709_u54EA_u4E9B_u5E38_u7528_u7684input_u6807_u7B7E_uFF0C_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><a href="#u30108-form_u8868_u5355_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u6709_u54EA_u4E9B_u5E38_u7528_u7684input_u6807_u7B7E_uFF0C_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011" class="headerlink" title="【8.form表单有什么作用？有哪些常用的input标签，分别有什么作用？】"></a>【8.<code>form</code>表单有什么作用？有哪些常用的<code>input</code>标签，分别有什么作用？】</h3><p><code>form</code>表单的作用是：网页将表单里的数据收集起来，提交给后台服务器处理，然后再反馈到页面，实现用户与页面交互的功能。<br>常用的<code>input</code>标签：</p>
+<ul>
+<li><code>type=“text”:</code> 用于输入文本。<code>placeholder</code>属性（可选）展示的是输入框里的提示， <code>maxlength</code>（可选）限制最大输入长度</li>
+<li><code>type=“password”:</code> 用于输入密码，输入的内容显示为星号</li>
+<li><code>type=“radio”</code>: 单选圆圈按钮。注意：name要相同才能实现单选，value要有值</li>
+<li><code>type=“checkbox”</code>: 复选框。加checked属性会默认选上</li>
+<li><code>type=“textarea”</code>: 文本域，用于输入多行文本</li>
+<li><code>type=“hidden”</code>: 隐藏域，用户看不到，用于暂存数据。或者安全性校验</li>
+</ul>
+<h3 id="u30109-post__u548C_get__u65B9_u5F0F_u7684_u533A_u522B_uFF1F_u3011"><a href="#u30109-post__u548C_get__u65B9_u5F0F_u7684_u533A_u522B_uFF1F_u3011" class="headerlink" title="【9.post 和 get 方式的区别？】"></a>【9.post 和 get 方式的区别？】</h3><p><code>post</code>和<code>get</code>都是用来与后台之间传输数据。区别在于</p>
+<ul>
+<li><p>数据提交方式不同，get把提交的数据url可以看到，post看不到</p>
+</li>
+<li><p>get一般用于提交少量数据，post用于提交大量数据 </p>
+</li>
+<li><p>get最多提交1k数据，浏览器的限制。post理论上无限制，受服务器限制 </p>
+</li>
+<li><p>get提交的数据在浏览器历史记录中，安全性不好</p>
+</li>
+<li><p>默认提交方式是get</p>
+</li>
+</ul>
+<h3 id="u301010-_u5728input_u91CC_uFF0Cname_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><a href="#u301010-_u5728input_u91CC_uFF0Cname_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011" class="headerlink" title="【10.在input里，name有什么作用？】"></a>【10.在<code>input</code>里，<code>name</code>有什么作用？】</h3><p>就是一个记号。可以通过<code>document.getElementsByName(&quot; &quot;)</code>来取到所有具有同一个名字的节点。接下来就可以进行操作了。<br>同一个id在每个文档里只能赋给一个节点，而name可以被多个节点使用。</p>
+<h3 id="u301011-_26lt_3Bbutton_26gt_3B_u63D0_u4EA4_26lt_3B/button_26gt_3B_u3001_26lt_3Ba_class_3D_u201Cbtn_u201D_href_3D_26quot_3B_23_26quot_3B_26gt_3B_u63D0_u4EA4_26lt_3B/a_26gt_3B_u3001_26lt_3Binput_type_3D_u201Csubmit_u201D_value_3D_u201C_u63D0_u4EA4_u201D_26gt_3B_u4E09_u8005_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011"><a href="#u301011-_26lt_3Bbutton_26gt_3B_u63D0_u4EA4_26lt_3B/button_26gt_3B_u3001_26lt_3Ba_class_3D_u201Cbtn_u201D_href_3D_26quot_3B_23_26quot_3B_26gt_3B_u63D0_u4EA4_26lt_3B/a_26gt_3B_u3001_26lt_3Binput_type_3D_u201Csubmit_u201D_value_3D_u201C_u63D0_u4EA4_u201D_26gt_3B_u4E09_u8005_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011" class="headerlink" title="【11.&lt;button&gt;提交&lt;/button&gt;、&lt;a class=“btn” href=&quot;#&quot;&gt;提交&lt;/a&gt;、&lt;input type=“submit” value=“提交”&gt;三者有什么区别？】"></a>【11.<code>&lt;button&gt;提交&lt;/button&gt;</code>、<code>&lt;a class=“btn” href=&quot;#&quot;&gt;提交&lt;/a&gt;</code>、<code>&lt;input type=“submit” value=“提交”&gt;</code>三者有什么区别？】</h3><ul>
+<li><code>&lt;button&gt;提交&lt;/button&gt;</code>只是一个按钮,可以通过例如：<br><code>&lt;button type=“submit” value=“Submit”&gt;Submit&lt;/button&gt;</code><br><code>&lt;button type=“submit” value=“reset”&gt;reset&lt;/button&gt;</code><br>为其设置事件，如果不设置，只是一个单纯的按钮.</li>
+<li><code>&lt;a class=“btn” href=&quot;#&quot;&gt;提交&lt;/a&gt;</code>是一个a标签,点击会跳转到当前页面,鼠标会变成手指形状。</li>
+<li><code>&lt;input type=“submit” value=“提交”&gt;</code>提交表单数据</li>
+</ul>
+<h3 id="u301012-radio_u5982_u4F55_u5206_u7EC4_3F_u3011"><a href="#u301012-radio_u5982_u4F55_u5206_u7EC4_3F_u3011" class="headerlink" title="【12.radio如何分组?】"></a>【12.radio如何分组?】</h3><p>name属性值相同的为一组。</p>
+<h3 id="u301013-placeholder__u5C5E_u6027_u6709_u4EC0_u4E48_u4F5C_u7528_3F_u3011"><a href="#u301013-placeholder__u5C5E_u6027_u6709_u4EC0_u4E48_u4F5C_u7528_3F_u3011" class="headerlink" title="【13.placeholder 属性有什么作用?】"></a>【13.placeholder 属性有什么作用?】</h3><p>占位符。在用户没有输入时，在区域内的一段提示性文字，填写时消失。</p>
+<h3 id="u301014-type_3Dhidden_u9690_u85CF_u57DF_u6709_u4EC0_u4E48_u4F5C_u7528_3F__u4E3E_u4F8B_u8BF4_u660E_u3011"><a href="#u301014-type_3Dhidden_u9690_u85CF_u57DF_u6709_u4EC0_u4E48_u4F5C_u7528_3F__u4E3E_u4F8B_u8BF4_u660E_u3011" class="headerlink" title="【14.type=hidden隐藏域有什么作用? 举例说明】"></a>【14.type=hidden隐藏域有什么作用? 举例说明】</h3><p><code>&lt;input type=“hidden” name=“word” value=“1234”&gt;</code><br>隐藏域中可以存储表单数据，但是对访问者不可见。<br>提交表单时，隐藏域中的内容也会被提交给服务器进行处理。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/26/【学习记录】DAY6-HTML3/" rel="next" title="【学习记录】DAY6-HTML3">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY6-HTML3
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/30/【学习记录】DAY8-CSS选择器/" rel="prev" title="【学习记录】DAY8-CSS选择器">
+                【学习记录】DAY8-CSS选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/27/【学习记录】DAY7-HTML4/"
+           data-title="【学习记录】DAY7-HTML4" data-url="http://chenlu.win/2016/01/27/【学习记录】DAY7-HTML4/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u30101-_u6709_u5E8F_u5217_u8868_u3001_u65E0_u5E8F_u5217_u8868_u3001_u81EA_u5B9A_u4E49_u5217_u8868_u5982_u4F55_u4F7F_u7528_uFF1F_u5199_u4E2A_u7B80_u5355_u7684_u4F8B_u5B50_u3002_u4E09_u8005_u5728_u8BED_u4E49_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4F7F_u7528_u573A_u666F_u662F_u4EC0_u4E48_uFF1F__u80FD_u5426_u5D4C_u5957_uFF1F_u3011"><span class="nav-number">1.</span> <span class="nav-text">【1.有序列表、无序列表、自定义列表如何使用？写个简单的例子。三者在语义上有什么区别？使用场景是什么？ 能否嵌套？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30102-_u5982_u4F55_u53BB_u9664_u5217_u8868_u524D_u9762_u7684_u70B9_u6216_u8005_u6570_u5B57_uFF1F_u3011"><span class="nav-number">2.</span> <span class="nav-text">【2.如何去除列表前面的点或者数字？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30103-class__u548C_id__u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u4EC0_u4E48_u65F6_u5019_u7528_class__u4EC0_u4E48_u65F6_u5019_u7528_id_uFF1F_u3011"><span class="nav-number">3.</span> <span class="nav-text">【3.class 和 id 有什么区别？什么时候用 class 什么时候用 id？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30104-_u5757_u7EA7_u5143_u7D20_u3001_u884C_u5185_u5143_u7D20_u662F_u4EC0_u4E48_uFF1F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5206_u522B_u5BF9_u5E94_u54EA_u4E9B_u5E38_u7528_u6807_u7B7E_uFF1F_u3011"><span class="nav-number">4.</span> <span class="nav-text">【4.块级元素、行内元素是什么？有什么区别？分别对应哪些常用标签？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30105-display_3A_block_u3001display_3A_inline_u3001display_3A_inline-block_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><span class="nav-number">5.</span> <span class="nav-text">【5.display: block、display: inline、display: inline-block分别有什么作用？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30106-_u4E0B_u9762_u4EE3_u7801_u7684_u4F5C_u7528_u3011"><span class="nav-number">6.</span> <span class="nav-text">【6.下面代码的作用】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30107-_u5982_u4F55_u7406_u89E3_HTML_CSS__u8BED_u4E49_u5316_3F_u3011"><span class="nav-number">7.</span> <span class="nav-text">【7.如何理解 HTML CSS 语义化?】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30108-form_u8868_u5355_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u6709_u54EA_u4E9B_u5E38_u7528_u7684input_u6807_u7B7E_uFF0C_u5206_u522B_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><span class="nav-number">8.</span> <span class="nav-text">【8.form表单有什么作用？有哪些常用的input标签，分别有什么作用？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30109-post__u548C_get__u65B9_u5F0F_u7684_u533A_u522B_uFF1F_u3011"><span class="nav-number">9.</span> <span class="nav-text">【9.post 和 get 方式的区别？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u301010-_u5728input_u91CC_uFF0Cname_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u3011"><span class="nav-number">10.</span> <span class="nav-text">【10.在input里，name有什么作用？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u301011-_26lt_3Bbutton_26gt_3B_u63D0_u4EA4_26lt_3B/button_26gt_3B_u3001_26lt_3Ba_class_3D_u201Cbtn_u201D_href_3D_26quot_3B_23_26quot_3B_26gt_3B_u63D0_u4EA4_26lt_3B/a_26gt_3B_u3001_26lt_3Binput_type_3D_u201Csubmit_u201D_value_3D_u201C_u63D0_u4EA4_u201D_26gt_3B_u4E09_u8005_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011"><span class="nav-number">11.</span> <span class="nav-text">【11.<button>提交</button>、<a class=“btn” href="#">提交</a>、<input type=“submit” value=“提交”>三者有什么区别？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u301012-radio_u5982_u4F55_u5206_u7EC4_3F_u3011"><span class="nav-number">12.</span> <span class="nav-text">【12.radio如何分组?】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u301013-placeholder__u5C5E_u6027_u6709_u4EC0_u4E48_u4F5C_u7528_3F_u3011"><span class="nav-number">13.</span> <span class="nav-text">【13.placeholder 属性有什么作用?】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u301014-type_3Dhidden_u9690_u85CF_u57DF_u6709_u4EC0_u4E48_u4F5C_u7528_3F__u4E3E_u4F8B_u8BF4_u660E_u3011"><span class="nav-number">14.</span> <span class="nav-text">【14.type=hidden隐藏域有什么作用? 举例说明】</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

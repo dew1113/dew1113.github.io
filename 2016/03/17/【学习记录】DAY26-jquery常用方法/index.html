@@ -1,0 +1,757 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="问答1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？$(document).ready()和window.onload在表单上看都是页面加载时我们去执行一个函数或者动作，但在具体细节上还是有区别的。
+
+执行时间window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行；$(docume">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY26-Jquery常用方法-ajax">
+<meta property="og:url" content="http://chenlu.win/2016/03/17/【学习记录】DAY26-jquery常用方法/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="问答1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？$(document).ready()和window.onload在表单上看都是页面加载时我们去执行一个函数或者动作，但在具体细节上还是有区别的。
+
+执行时间window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行；$(docume">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/4.gif">
+<meta property="og:updated_time" content="2016-05-28T09:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY26-Jquery常用方法-ajax">
+<meta name="twitter:description" content="问答1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？$(document).ready()和window.onload在表单上看都是页面加载时我们去执行一个函数或者动作，但在具体细节上还是有区别的。
+
+执行时间window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行；$(docume">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY26-Jquery常用方法-ajax | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY26-Jquery常用方法-ajax
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-17T13:16:37+08:00" content="2016-03-17">
+              2016-03-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/【学习记录】DAY26-jquery常用方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/17/【学习记录】DAY26-jquery常用方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="u95EE_u7B54"><a href="#u95EE_u7B54" class="headerlink" title="问答"></a>问答</h1><h3 id="1-Jquery__u4E2D_uFF0C__24_28document_29-ready_28_29_u662F_u4EC0_u4E48_u610F_u601D_uFF1F_u548Cwindow-onload__u7684_u533A_u522B_uFF1F__u8FD8_u6709_u5176_u4ED6_u4EC0_u4E48_u5199_u6CD5_u6216_u8005_u66FF_u4EE3_u65B9_u6CD5_uFF1F"><a href="#1-Jquery__u4E2D_uFF0C__24_28document_29-ready_28_29_u662F_u4EC0_u4E48_u610F_u601D_uFF1F_u548Cwindow-onload__u7684_u533A_u522B_uFF1F__u8FD8_u6709_u5176_u4ED6_u4EC0_u4E48_u5199_u6CD5_u6216_u8005_u66FF_u4EE3_u65B9_u6CD5_uFF1F" class="headerlink" title="1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？"></a>1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？</h3><p>$(document).ready()和window.onload在表单上看都是页面加载时我们去执行一个函数或者动作，但在具体细节上还是有区别的。</p>
+<ol>
+<li><p>执行时间<br>window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行；<br>$(document).ready()是在DOM结构绘制完毕后执行的，不必等到加载完毕</p>
+</li>
+<li><p>编写个数不同<br>window.onload不能同时编写多个，如果有多个，只执行一个；<br>$(document).ready()可以同时编写多个，并且都可以得到执行。</p>
+</li>
+<li><p>简化写法<br>window.onload没有简写；<br>$(document).ready(function(){})可以简写成$(function(){})</p>
+<a id="more"></a>
+<h3 id="2-_24node-html_28_29_u548C_24node-text_28_29_u7684_u533A_u522B_3F"><a href="#2-_24node-html_28_29_u548C_24node-text_28_29_u7684_u533A_u522B_3F" class="headerlink" title="2.$node.html()和$node.text()的区别?"></a>2.$node.html()和$node.text()的区别?</h3></li>
+</ol>
+<p>$node.html()取得第一个匹配元素的html内容，这个函数不能用于XML文档。但可以用于XHTML文档。</p>
+<p>$node.text()取得所有匹配元素的内容。结果是由所有匹配元素包含的文本内容组合起来的文本。这个方法对HTML和XML文档都有效。</p>
+<h3 id="3-_24-extend__u7684_u4F5C_u7528_u548C_u7528_u6CD5_3F"><a href="#3-_24-extend__u7684_u4F5C_u7528_u548C_u7528_u6CD5_3F" class="headerlink" title="3.$.extend 的作用和用法?"></a>3.$.extend 的作用和用法?</h3><ul>
+<li><p>合并src1,src2到dest中：<br>$.extend(dest,src1,src2…)的作用是，将src1和src2…的值合并到dest中，并返回dest的值</p>
+</li>
+<li><p>合并src1，src2,但是不修改dest的结构：<br>$.extend({},src1,src2…)<br>例如:</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;name:<span class="string">'aaa'</span>,age:<span class="number">22</span>;&#125;;</span><br><span class="line"><span class="keyword">var</span> b=&#123;name:<span class="string">"bbb"</span>,like:<span class="string">"run"</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">combine</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> now=$.extend(&#123;&#125;,a,b);</span><br><span class="line">    <span class="built_in">console</span>.log(now);</span><br><span class="line">&#125;</span><br><span class="line">combine(a,b);             <span class="comment">//Object &#123;name: "bbb", age: 22, like: "run"&#125;</span></span><br><span class="line">相当于 如果后者参数和前者相同时，后者会覆盖前者。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>深拷贝.<br>$.extend(deep,{},src1,src2…)当deep为true时，在合并时会把src中的嵌套子对象也进行合并，即深拷贝.例如：</li>
+</ul>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="literal">result</span>=$.extend( <span class="literal">true</span>,  &#123;&#125;,  </span><br><span class="line">    &#123; name: <span class="string">"John"</span>, location: &#123;city: <span class="string">"Boston"</span>,county:<span class="string">"USA"</span>&#125; &#125;,  </span><br><span class="line">    &#123; last: <span class="string">"Resig"</span>, location: &#123;state: <span class="string">"MA"</span>,county:<span class="string">"China"</span>&#125; &#125; ); </span><br><span class="line">    </span><br><span class="line">//  我们可以看出src1中嵌套子对象location:&#123;city:<span class="string">"Boston"</span>&#125;,src2中也嵌套子对象location:&#123;state:<span class="string">"MA"</span>&#125;,第一个深度拷贝参数为<span class="literal">true</span>，那么合并后的结果就是： </span><br><span class="line">   </span><br><span class="line"><span class="literal">result</span>=&#123;name:<span class="string">"John"</span>,last:<span class="string">"Resig"</span>,</span><br><span class="line">        location:&#123;city:<span class="string">"Boston"</span>,state:<span class="string">"MA"</span>,county:<span class="string">"China"</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>浅拷贝<br>$.extend(deep,{},src1,src2…)当deep为false时，即浅拷贝：</li>
+</ul>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="literal">result</span>=$.extend( <span class="literal">false</span>, &#123;&#125;,  </span><br><span class="line">&#123; name: <span class="string">"John"</span>, location:&#123;city: <span class="string">"Boston"</span>,county:<span class="string">"USA"</span>&#125; &#125;,  </span><br><span class="line">&#123; last: <span class="string">"Resig"</span>, location: &#123;state: <span class="string">"MA"</span>,county:<span class="string">"China"</span>&#125; &#125;  );</span><br><span class="line">                    </span><br><span class="line"> //合并后的结果就是:</span><br><span class="line"></span><br><span class="line"> <span class="literal">result</span>=&#123;name:<span class="string">"John"</span>,last:<span class="string">"Resig"</span>,location:&#123;state:<span class="string">"MA"</span>,county:<span class="string">"China"</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-JQuery__u7684_u94FE_u5F0F_u8C03_u7528_u662F_u4EC0_u4E48_uFF1F"><a href="#4-JQuery__u7684_u94FE_u5F0F_u8C03_u7528_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="4.JQuery 的链式调用是什么？"></a>4.JQuery 的链式调用是什么？</h3><p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#ct'</span>).on(<span class="string">'mouseenter'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).addClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;).on(<span class="string">'mouseleave'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).removeClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<ul>
+<li>节约JS代码；</li>
+<li>所返回的都是同一个对象，可以提高代码的效率.</li>
+</ul>
+<h3 id="5-JQuery_ajax__u4E2D_u7F13_u5B58_u600E_u6837_u63A7_u5236_3F"><a href="#5-JQuery_ajax__u4E2D_u7F13_u5B58_u600E_u6837_u63A7_u5236_3F" class="headerlink" title="5.JQuery ajax 中缓存怎样控制?"></a>5.JQuery ajax 中缓存怎样控制?</h3><p>ajax中缓存针对当提交方式为get的情况下，两次url地址相同，第二次就不会提交到服务器上，而是直接调用上一次的数据。控制缓存可以用<code>$.setup({cache:false})</code>，其原理是类似在请求中加时间戳，这样浏览器以为两次请求是不同的而不会去调用缓存，但时间戳并不影响数据的获取。</p>
+<h3 id="6-jquery__u4E2D_data__u51FD_u6570_u7684_u4F5C_u7528"><a href="#6-jquery__u4E2D_data__u51FD_u6570_u7684_u4F5C_u7528" class="headerlink" title="6.jquery 中 data 函数的作用"></a>6.jquery 中 data 函数的作用</h3><p> 在jQuery中data函数允许我们把一些数据绑定在DOM元素上，避免循环引用的内存泄露风险。通过data()函数存取的数据都是临时数据，一旦页面刷新，之前存放的数据都将不复存在。该函数属于jQuery对象(实例)。如果需要移除通过data()函数存放的数据，请使用 removeData() 函数</p>
+<p> 用法：<code>$(selector).data(name,value)</code></p>
+<h1 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h1><h2 id="u4E00_u3001_u5199_u51FA_u4EE5_u4E0B_u529F_u80FD_u5BF9_u5E94_u7684_Jq__u65B9_u6CD5_uFF1A"><a href="#u4E00_u3001_u5199_u51FA_u4EE5_u4E0B_u529F_u80FD_u5BF9_u5E94_u7684_Jq__u65B9_u6CD5_uFF1A" class="headerlink" title="一、写出以下功能对应的 Jq 方法："></a>一、写出以下功能对应的 Jq 方法：</h2><h3 id="1-_u7ED9_u5143_u7D20__24node__u6DFB_u52A0_class_active_uFF0C_u7ED9_u5143_u7D20__24noed__u5220_u9664_class_active"><a href="#1-_u7ED9_u5143_u7D20__24node__u6DFB_u52A0_class_active_uFF0C_u7ED9_u5143_u7D20__24noed__u5220_u9664_class_active" class="headerlink" title="1.给元素 $node 添加 class active，给元素 $noed 删除 class active"></a>1.给元素 $node 添加 class active，给元素 $noed 删除 class active</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).addClass</span>('active');</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).removeClass</span>('active')</span><br></pre></td></tr></table></figure>
+<h3 id="2-_u5C55_u793A_u5143_u7D20_24node_2C__u9690_u85CF_u5143_u7D20_24node"><a href="#2-_u5C55_u793A_u5143_u7D20_24node_2C__u9690_u85CF_u5143_u7D20_24node" class="headerlink" title="2.展示元素$node, 隐藏元素$node"></a>2.展示元素$node, 隐藏元素$node</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).show</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).hide</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).toggle</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u5143_u7D20_24node__u7684__u5C5E_u6027_3A_id_u3001src_u3001title_uFF0C__u4FEE_u6539_u4EE5_u4E0A_u5C5E_u6027"><a href="#u83B7_u53D6_u5143_u7D20_24node__u7684__u5C5E_u6027_3A_id_u3001src_u3001title_uFF0C__u4FEE_u6539_u4EE5_u4E0A_u5C5E_u6027" class="headerlink" title="获取元素$node 的 属性: id、src、title， 修改以上属性"></a>获取元素$node 的 属性: id、src、title， 修改以上属性</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//获取</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).attr</span>('id');</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).attr</span>('src');</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).attr</span>('title');</span><br><span class="line"></span><br><span class="line">//修改</span><br><span class="line">$<span class="keyword">node</span>.<span class="identifier"></span><span class="title">attr</span>('id','newNode');</span><br><span class="line">$<span class="keyword">node</span>.<span class="identifier"></span><span class="title">attr</span>('src','http://<span class="number">7</span>xt1vz.com2.z0.glb.clouddn.com/<span class="number">1</span>.jpg');</span><br><span class="line">$<span class="keyword">node</span>.<span class="identifier"></span><span class="title">attr</span>('title','img');</span><br></pre></td></tr></table></figure>
+<h3 id="u7ED9_24node__u6DFB_u52A0_u81EA_u5B9A_u4E49_u5C5E_u6027data-src"><a href="#u7ED9_24node__u6DFB_u52A0_u81EA_u5B9A_u4E49_u5C5E_u6027data-src" class="headerlink" title="给$node 添加自定义属性data-src"></a>给$node 添加自定义属性data-src</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).attr</span>('data-src','value');</span><br></pre></td></tr></table></figure>
+<h3 id="u5728_24ct__u5185_u90E8_u6700_u5F00_u5934_u6DFB_u52A0_u5143_u7D20_24node"><a href="#u5728_24ct__u5185_u90E8_u6700_u5F00_u5934_u6DFB_u52A0_u5143_u7D20_24node" class="headerlink" title="在$ct 内部最开头添加元素$node"></a>在$ct 内部最开头添加元素$node</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(ct).prepend('$<span class="keyword">node</span><span class="identifier"></span><span class="title">');</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5728_24ct__u5185_u90E8_u6700_u672B_u5C3E_u6DFB_u52A0_u5143_u7D20_24node"><a href="#u5728_24ct__u5185_u90E8_u6700_u672B_u5C3E_u6DFB_u52A0_u5143_u7D20_24node" class="headerlink" title="在$ct 内部最末尾添加元素$node"></a>在$ct 内部最末尾添加元素$node</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(ct).append('$<span class="keyword">node</span><span class="identifier"></span><span class="title">');</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5220_u9664_24node"><a href="#u5220_u9664_24node" class="headerlink" title="删除$node"></a>删除$node</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).remove</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="u628A_24ct_u91CC_u5185_u5BB9_u6E05_u7A7A"><a href="#u628A_24ct_u91CC_u5185_u5BB9_u6E05_u7A7A" class="headerlink" title="把$ct里内容清空"></a>把$ct里内容清空</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="comment">(ct)</span>.empty<span class="comment">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="u5728_24ct__u91CC_u8BBE_u7F6E_html"><a href="#u5728_24ct__u91CC_u8BBE_u7F6E_html" class="headerlink" title="在$ct 里设置 html"></a>在$ct 里设置 html <div class="btn"></div></h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(ct).html('&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"btn"</span>&gt;&lt;/<span class="keyword">div</span>&gt;');</span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u3001_u8BBE_u7F6E_24node__u7684_u5BBD_u5EA6_u3001_u9AD8_u5EA6_28_u5206_u522B_u4E0D_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u8FB9_u6846_u3001_u5305_u62EC_u5916_u8FB9_u8DDD_29"><a href="#u83B7_u53D6_u3001_u8BBE_u7F6E_24node__u7684_u5BBD_u5EA6_u3001_u9AD8_u5EA6_28_u5206_u522B_u4E0D_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u8FB9_u6846_u3001_u5305_u62EC_u5916_u8FB9_u8DDD_29" class="headerlink" title="获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)"></a>获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).width</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).width</span>(<span class="number">100</span>);   //单位默认px</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).height</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).height</span>(<span class="number">100</span>);   //width,height不包括内外边距和边框</span><br><span class="line"></span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).innerWidth</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).innerWidth</span>(<span class="number">100</span>);</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).innerHeight</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).innerHeight</span>(<span class="number">100</span>);  //innerWidth,innerHeight包括内边距</span><br><span class="line"></span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerWidth</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerWidth</span>(<span class="number">100</span>);</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerHeight</span>();</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerHeight</span>(<span class="number">100</span>);  //outerWidth,outerHeight包括内边距和边框</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerWidth</span>(<span class="literal">true</span>);</span><br><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).outerHeight</span>(<span class="literal">true</span>);   //包括内外边距和边框</span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u7A97_u53E3_u6EDA_u52A8_u6761_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB"><a href="#u83B7_u53D6_u7A97_u53E3_u6EDA_u52A8_u6761_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB" class="headerlink" title="获取窗口滚动条垂直滚动距离"></a>获取窗口滚动条垂直滚动距离</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="comment">(window)</span>.scrollTop<span class="comment">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_24node__u5230_u6839_u8282_u70B9_u6C34_u5E73_u3001_u5782_u76F4_u504F_u79FB_u8DDD_u79BB"><a href="#u83B7_u53D6_24node__u5230_u6839_u8282_u70B9_u6C34_u5E73_u3001_u5782_u76F4_u504F_u79FB_u8DDD_u79BB" class="headerlink" title="获取$node 到根节点水平、垂直偏移距离"></a>获取$node 到根节点水平、垂直偏移距离</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">node</span><span class="identifier"></span><span class="title">).offset</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="u4FEE_u6539_24node__u7684_u6837_u5F0F_uFF0C_u5B57_u4F53_u989C_u8272_u8BBE_u7F6E_u7EA2_u8272_uFF0C_u5B57_u4F53_u5927_u5C0F_u8BBE_u7F6E14px"><a href="#u4FEE_u6539_24node__u7684_u6837_u5F0F_uFF0C_u5B57_u4F53_u989C_u8272_u8BBE_u7F6E_u7EA2_u8272_uFF0C_u5B57_u4F53_u5927_u5C0F_u8BBE_u7F6E14px" class="headerlink" title="修改$node 的样式，字体颜色设置红色，字体大小设置14px"></a>修改$node 的样式，字体颜色设置红色，字体大小设置14px</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span>node).css(&#123;</span><br><span class="line">       <span class="string">'color'</span><span class="symbol">:<span class="string">'red'</span></span>,</span><br><span class="line">       <span class="string">'font-size'</span><span class="symbol">:<span class="string">'14px'</span></span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="u904D_u5386_u8282_u70B9_uFF0C_u628A_u6BCF_u4E2A_u8282_u70B9_u91CC_u9762_u7684_u6587_u672C_u5185_u5BB9_u91CD_u590D_u4E00_u904D"><a href="#u904D_u5386_u8282_u70B9_uFF0C_u628A_u6BCF_u4E2A_u8282_u70B9_u91CC_u9762_u7684_u6587_u672C_u5185_u5BB9_u91CD_u590D_u4E00_u904D" class="headerlink" title="遍历节点，把每个节点里面的文本内容重复一遍"></a>遍历节点，把每个节点里面的文本内容重复一遍</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(node).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).clone().insertAfter($(<span class="keyword">this</span>))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="u4ECE_24ct__u91CC_u67E5_u627E_class__u4E3A_-item_u7684_u5B50_u5143_u7D20"><a href="#u4ECE_24ct__u91CC_u67E5_u627E_class__u4E3A_-item_u7684_u5B50_u5143_u7D20" class="headerlink" title="从$ct 里查找 class 为 .item的子元素"></a>从$ct 里查找 class 为 .item的子元素</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(ct).<span class="function"><span class="title">find</span><span class="params">(<span class="string">'.item'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_24ct__u91CC_u9762_u7684_u6240_u6709_u5B69_u5B50"><a href="#u83B7_u53D6_24ct__u91CC_u9762_u7684_u6240_u6709_u5B69_u5B50" class="headerlink" title="获取$ct 里面的所有孩子"></a>获取$ct 里面的所有孩子</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(ct).<span class="function"><span class="title">children</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5BF9_u4E8E_24node_uFF0C_u5411_u4E0A_u627E_u5230_class__u4E3A_u2019-ct_u2019_u7684_u7236_u4EB2_uFF0C_u5728_u4ECE_u8BE5_u7236_u4EB2_u627E_u5230_u2019-panel_u2019_u7684_u5B69_u5B50"><a href="#u5BF9_u4E8E_24node_uFF0C_u5411_u4E0A_u627E_u5230_class__u4E3A_u2019-ct_u2019_u7684_u7236_u4EB2_uFF0C_u5728_u4ECE_u8BE5_u7236_u4EB2_u627E_u5230_u2019-panel_u2019_u7684_u5B69_u5B50" class="headerlink" title="对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子"></a>对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(node).<span class="function"><span class="title">parents</span><span class="params">(<span class="string">'.ct'</span>)</span></span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'.panel'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u9009_u62E9_u5143_u7D20_u7684_u6570_u91CF"><a href="#u83B7_u53D6_u9009_u62E9_u5143_u7D20_u7684_u6570_u91CF" class="headerlink" title="获取选择元素的数量"></a>获取选择元素的数量</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).<span class="property">length</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u5F53_u524D_u5143_u7D20_u5728_u5144_u5F1F_u4E2D_u7684_u6392_u884C"><a href="#u83B7_u53D6_u5F53_u524D_u5143_u7D20_u5728_u5144_u5F1F_u4E2D_u7684_u6392_u884C" class="headerlink" title="获取当前元素在兄弟中的排行"></a>获取当前元素在兄弟中的排行</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">selector</span>).<span class="keyword">index</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="u4E8C_u3001_u7B80_u5355_u5B9E_u73B0_u4EE5_u4E0B_u64CD_u4F5C"><a href="#u4E8C_u3001_u7B80_u5355_u5B9E_u73B0_u4EE5_u4E0B_u64CD_u4F5C" class="headerlink" title="二、简单实现以下操作"></a>二、简单实现以下操作</h2><h3 id="u5F53_u70B9_u51FB_24btn__u65F6_uFF0C_u8BA9__24btn__u7684_u80CC_u666F_u8272_u53D8_u4E3A_u7EA2_u8272_u518D_u53D8_u4E3A_u84DD_u8272"><a href="#u5F53_u70B9_u51FB_24btn__u65F6_uFF0C_u8BA9__24btn__u7684_u80CC_u666F_u8272_u53D8_u4E3A_u7EA2_u8272_u518D_u53D8_u4E3A_u84DD_u8272" class="headerlink" title="当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色"></a>当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</h3><p><a href="http://js.jirengu.com/veb/2/edit" target="_blank" rel="external">jsbin</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn=$(<span class="string">'.btn'</span>);</span><br><span class="line">     btn.on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         btn.fadeTo(<span class="string">"slow"</span>,<span class="number">1</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             btn.css(<span class="string">"background-color"</span>,<span class="string">"red"</span>);</span><br><span class="line">             (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">               btn.fadeTo(<span class="string">"slow"</span>,<span class="number">1</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                btn.css(<span class="string">"background-color"</span>,<span class="string">"blue"</span>);</span><br><span class="line">             &#125;)</span><br><span class="line">             &#125;)();</span><br><span class="line">         &#125;);</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u83B7_u53D6_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB"><a href="#u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u83B7_u53D6_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB" class="headerlink" title="当窗口滚动时，获取垂直滚动距离"></a>当窗口滚动时，获取垂直滚动距离</h3><p><a href="http://js.jirengu.com/gak/2/edit" target="_blank" rel="external">jsbin</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log($(<span class="string">"div"</span>).scrollTop()+<span class="string">" px"</span>);</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="u5F53_u9F20_u6807_u653E_u7F6E_u5230_24div__u4E0A_uFF0C_u628A_24div__u80CC_u666F_u8272_u6539_u4E3A_u7EA2_u8272_uFF0C_u79FB_u51FA_u9F20_u6807_u80CC_u666F_u8272_u53D8_u4E3A_u767D_u8272"><a href="#u5F53_u9F20_u6807_u653E_u7F6E_u5230_24div__u4E0A_uFF0C_u628A_24div__u80CC_u666F_u8272_u6539_u4E3A_u7EA2_u8272_uFF0C_u79FB_u51FA_u9F20_u6807_u80CC_u666F_u8272_u53D8_u4E3A_u767D_u8272" class="headerlink" title="当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色"></a>当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</h3><p><a href="http://js.jirengu.com/qiwe/2/edit" target="_blank" rel="external">jsbin</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).on(<span class="string">'mouseenter'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       $(<span class="keyword">this</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</span><br><span class="line">     &#125;)</span><br><span class="line">       $(<span class="string">'div'</span>).on(<span class="string">'mouseleave'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       $(<span class="keyword">this</span>).css(<span class="string">'background'</span>,<span class="string">'white'</span>);</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="u5F53_u9F20_u6807_u6FC0_u6D3B_input__u8F93_u5165_u6846_u65F6_u8BA9_u8F93_u5165_u6846_u8FB9_u6846_u53D8_u4E3A_u84DD_u8272_uFF0C_u5F53_u8F93_u5165_u6846_u5185_u5BB9_u6539_u53D8_u65F6_u628A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57_u5C0F_u5199_u53D8_u4E3A_u5927_u5199_uFF0C_u5F53_u8F93_u5165_u6846_u5931_u53BB_u7126_u70B9_u65F6_u53BB_u6389_u8FB9_u6846_u84DD_u8272_uFF0C_u63A7_u5236_u53F0_u5C55_u793A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57"><a href="#u5F53_u9F20_u6807_u6FC0_u6D3B_input__u8F93_u5165_u6846_u65F6_u8BA9_u8F93_u5165_u6846_u8FB9_u6846_u53D8_u4E3A_u84DD_u8272_uFF0C_u5F53_u8F93_u5165_u6846_u5185_u5BB9_u6539_u53D8_u65F6_u628A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57_u5C0F_u5199_u53D8_u4E3A_u5927_u5199_uFF0C_u5F53_u8F93_u5165_u6846_u5931_u53BB_u7126_u70B9_u65F6_u53BB_u6389_u8FB9_u6846_u84DD_u8272_uFF0C_u63A7_u5236_u53F0_u5C55_u793A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57" class="headerlink" title="当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字"></a>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</h3><p><a href="http://js.jirengu.com/qil/2/edit" target="_blank" rel="external">jsbin</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input'</span>).on(<span class="string">'focus'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $(<span class="string">'input'</span>).css(<span class="string">'border'</span>,<span class="string">'1px solid blue'</span>);</span><br><span class="line">     </span><br><span class="line">  &#125;)</span><br><span class="line"> </span><br><span class="line">$(<span class="string">'input'</span>).on(<span class="string">'keydown'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">'input'</span>).val($(<span class="keyword">this</span>).val().toUpperCase());</span><br><span class="line">     </span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  $(<span class="string">'input'</span>).on(<span class="string">'blur'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input'</span>).css(<span class="string">'border'</span>,<span class="string">''</span>);</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="string">'input'</span>).val());</span><br><span class="line">     </span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="u5F53_u9009_u62E9_select__u540E_uFF0C_u83B7_u53D6_u7528_u6237_u9009_u62E9_u7684_u5185_u5BB9"><a href="#u5F53_u9009_u62E9_select__u540E_uFF0C_u83B7_u53D6_u7528_u6237_u9009_u62E9_u7684_u5185_u5BB9" class="headerlink" title="当选择 select 后，获取用户选择的内容"></a>当选择 select 后，获取用户选择的内容</h3><p> <a href="http://js.jirengu.com/dez/2/edit" target="_blank" rel="external">jsbin</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'select'</span>).on(<span class="string">'change'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="u7528_jquery_ajax__u5B9E_u73B0_u5982_u4E0B_u6548_u679C_u3002_u5F53_u70B9_u51FB_u52A0_u8F7D_u66F4_u591A_u4F1A_u52A0_u8F7D_u6570_u636E_u5C55_u793A_u5230_u9875_u9762_u3002_u5F53_u9F20_u6807_u653E_u7F6E_u4E0A_u53BB_u4F1A_u53D8_u8272"><a href="#u7528_jquery_ajax__u5B9E_u73B0_u5982_u4E0B_u6548_u679C_u3002_u5F53_u70B9_u51FB_u52A0_u8F7D_u66F4_u591A_u4F1A_u52A0_u8F7D_u6570_u636E_u5C55_u793A_u5230_u9875_u9762_u3002_u5F53_u9F20_u6807_u653E_u7F6E_u4E0A_u53BB_u4F1A_u53D8_u8272" class="headerlink" title="用 jquery ajax 实现如下效果。当点击加载更多会加载数据展示到页面。当鼠标放置上去会变色"></a>用 jquery ajax 实现如下效果。当点击加载更多会加载数据展示到页面。当鼠标放置上去会变色</h3><p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/4.gif" alt="ajax"></p>
+<p><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E9%99%88%E9%9C%B2/task-26" target="_blank" rel="external">github代码</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/15/【学习记录】DAY25-jquery-dom事件/" rel="next" title="【学习记录】DAY25-Jquery-DOM事件">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY25-Jquery-DOM事件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/01/【学习记录】DAY29-jquery懒加载、gotop/" rel="prev" title="【学习记录】DAY29-jquery懒加载、gotop">
+                【学习记录】DAY29-jquery懒加载、gotop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/17/【学习记录】DAY26-jquery常用方法/"
+           data-title="【学习记录】DAY26-Jquery常用方法-ajax" data-url="http://chenlu.win/2016/03/17/【学习记录】DAY26-jquery常用方法/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u95EE_u7B54"><span class="nav-number">1.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Jquery__u4E2D_uFF0C__24_28document_29-ready_28_29_u662F_u4EC0_u4E48_u610F_u601D_uFF1F_u548Cwindow-onload__u7684_u533A_u522B_uFF1F__u8FD8_u6709_u5176_u4ED6_u4EC0_u4E48_u5199_u6CD5_u6216_u8005_u66FF_u4EE3_u65B9_u6CD5_uFF1F"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_24node-html_28_29_u548C_24node-text_28_29_u7684_u533A_u522B_3F"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.$node.html()和$node.text()的区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_24-extend__u7684_u4F5C_u7528_u548C_u7528_u6CD5_3F"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.$.extend 的作用和用法?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-JQuery__u7684_u94FE_u5F0F_u8C03_u7528_u662F_u4EC0_u4E48_uFF1F"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.JQuery 的链式调用是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-JQuery_ajax__u4E2D_u7F13_u5B58_u600E_u6837_u63A7_u5236_3F"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.JQuery ajax 中缓存怎样控制?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-jquery__u4E2D_data__u51FD_u6570_u7684_u4F5C_u7528"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.jquery 中 data 函数的作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E00_u3001_u5199_u51FA_u4EE5_u4E0B_u529F_u80FD_u5BF9_u5E94_u7684_Jq__u65B9_u6CD5_uFF1A"><span class="nav-number">2.1.</span> <span class="nav-text">一、写出以下功能对应的 Jq 方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u7ED9_u5143_u7D20__24node__u6DFB_u52A0_class_active_uFF0C_u7ED9_u5143_u7D20__24noed__u5220_u9664_class_active"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.给元素 $node 添加 class active，给元素 $noed 删除 class active</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_u5C55_u793A_u5143_u7D20_24node_2C__u9690_u85CF_u5143_u7D20_24node"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.展示元素$node, 隐藏元素$node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_u5143_u7D20_24node__u7684__u5C5E_u6027_3A_id_u3001src_u3001title_uFF0C__u4FEE_u6539_u4EE5_u4E0A_u5C5E_u6027"><span class="nav-number">2.1.3.</span> <span class="nav-text">获取元素$node 的 属性: id、src、title， 修改以上属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7ED9_24node__u6DFB_u52A0_u81EA_u5B9A_u4E49_u5C5E_u6027data-src"><span class="nav-number">2.1.4.</span> <span class="nav-text">给$node 添加自定义属性data-src</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_24ct__u5185_u90E8_u6700_u5F00_u5934_u6DFB_u52A0_u5143_u7D20_24node"><span class="nav-number">2.1.5.</span> <span class="nav-text">在$ct 内部最开头添加元素$node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_24ct__u5185_u90E8_u6700_u672B_u5C3E_u6DFB_u52A0_u5143_u7D20_24node"><span class="nav-number">2.1.6.</span> <span class="nav-text">在$ct 内部最末尾添加元素$node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5220_u9664_24node"><span class="nav-number">2.1.7.</span> <span class="nav-text">删除$node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u628A_24ct_u91CC_u5185_u5BB9_u6E05_u7A7A"><span class="nav-number">2.1.8.</span> <span class="nav-text">把$ct里内容清空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_24ct__u91CC_u8BBE_u7F6E_html"><span class="nav-number">2.1.9.</span> <span class="nav-text">在$ct 里设置 html </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_u3001_u8BBE_u7F6E_24node__u7684_u5BBD_u5EA6_u3001_u9AD8_u5EA6_28_u5206_u522B_u4E0D_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u5185_u8FB9_u8DDD_u3001_u5305_u62EC_u8FB9_u6846_u3001_u5305_u62EC_u5916_u8FB9_u8DDD_29"><span class="nav-number">2.1.10.</span> <span class="nav-text">获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_u7A97_u53E3_u6EDA_u52A8_u6761_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB"><span class="nav-number">2.1.11.</span> <span class="nav-text">获取窗口滚动条垂直滚动距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_24node__u5230_u6839_u8282_u70B9_u6C34_u5E73_u3001_u5782_u76F4_u504F_u79FB_u8DDD_u79BB"><span class="nav-number">2.1.12.</span> <span class="nav-text">获取$node 到根节点水平、垂直偏移距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4FEE_u6539_24node__u7684_u6837_u5F0F_uFF0C_u5B57_u4F53_u989C_u8272_u8BBE_u7F6E_u7EA2_u8272_uFF0C_u5B57_u4F53_u5927_u5C0F_u8BBE_u7F6E14px"><span class="nav-number">2.1.13.</span> <span class="nav-text">修改$node 的样式，字体颜色设置红色，字体大小设置14px</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u904D_u5386_u8282_u70B9_uFF0C_u628A_u6BCF_u4E2A_u8282_u70B9_u91CC_u9762_u7684_u6587_u672C_u5185_u5BB9_u91CD_u590D_u4E00_u904D"><span class="nav-number">2.1.14.</span> <span class="nav-text">遍历节点，把每个节点里面的文本内容重复一遍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4ECE_24ct__u91CC_u67E5_u627E_class__u4E3A_-item_u7684_u5B50_u5143_u7D20"><span class="nav-number">2.1.15.</span> <span class="nav-text">从$ct 里查找 class 为 .item的子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_24ct__u91CC_u9762_u7684_u6240_u6709_u5B69_u5B50"><span class="nav-number">2.1.16.</span> <span class="nav-text">获取$ct 里面的所有孩子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BF9_u4E8E_24node_uFF0C_u5411_u4E0A_u627E_u5230_class__u4E3A_u2019-ct_u2019_u7684_u7236_u4EB2_uFF0C_u5728_u4ECE_u8BE5_u7236_u4EB2_u627E_u5230_u2019-panel_u2019_u7684_u5B69_u5B50"><span class="nav-number">2.1.17.</span> <span class="nav-text">对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_u9009_u62E9_u5143_u7D20_u7684_u6570_u91CF"><span class="nav-number">2.1.18.</span> <span class="nav-text">获取选择元素的数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u83B7_u53D6_u5F53_u524D_u5143_u7D20_u5728_u5144_u5F1F_u4E2D_u7684_u6392_u884C"><span class="nav-number">2.1.19.</span> <span class="nav-text">获取当前元素在兄弟中的排行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E8C_u3001_u7B80_u5355_u5B9E_u73B0_u4EE5_u4E0B_u64CD_u4F5C"><span class="nav-number">2.2.</span> <span class="nav-text">二、简单实现以下操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F53_u70B9_u51FB_24btn__u65F6_uFF0C_u8BA9__24btn__u7684_u80CC_u666F_u8272_u53D8_u4E3A_u7EA2_u8272_u518D_u53D8_u4E3A_u84DD_u8272"><span class="nav-number">2.2.1.</span> <span class="nav-text">当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u83B7_u53D6_u5782_u76F4_u6EDA_u52A8_u8DDD_u79BB"><span class="nav-number">2.2.2.</span> <span class="nav-text">当窗口滚动时，获取垂直滚动距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F53_u9F20_u6807_u653E_u7F6E_u5230_24div__u4E0A_uFF0C_u628A_24div__u80CC_u666F_u8272_u6539_u4E3A_u7EA2_u8272_uFF0C_u79FB_u51FA_u9F20_u6807_u80CC_u666F_u8272_u53D8_u4E3A_u767D_u8272"><span class="nav-number">2.2.3.</span> <span class="nav-text">当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F53_u9F20_u6807_u6FC0_u6D3B_input__u8F93_u5165_u6846_u65F6_u8BA9_u8F93_u5165_u6846_u8FB9_u6846_u53D8_u4E3A_u84DD_u8272_uFF0C_u5F53_u8F93_u5165_u6846_u5185_u5BB9_u6539_u53D8_u65F6_u628A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57_u5C0F_u5199_u53D8_u4E3A_u5927_u5199_uFF0C_u5F53_u8F93_u5165_u6846_u5931_u53BB_u7126_u70B9_u65F6_u53BB_u6389_u8FB9_u6846_u84DD_u8272_uFF0C_u63A7_u5236_u53F0_u5C55_u793A_u8F93_u5165_u6846_u91CC_u7684_u6587_u5B57"><span class="nav-number">2.2.4.</span> <span class="nav-text">当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F53_u9009_u62E9_select__u540E_uFF0C_u83B7_u53D6_u7528_u6237_u9009_u62E9_u7684_u5185_u5BB9"><span class="nav-number">2.2.5.</span> <span class="nav-text">当选择 select 后，获取用户选择的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7528_jquery_ajax__u5B9E_u73B0_u5982_u4E0B_u6548_u679C_u3002_u5F53_u70B9_u51FB_u52A0_u8F7D_u66F4_u591A_u4F1A_u52A0_u8F7D_u6570_u636E_u5C55_u793A_u5230_u9875_u9762_u3002_u5F53_u9F20_u6807_u653E_u7F6E_u4E0A_u53BB_u4F1A_u53D8_u8272"><span class="nav-number">2.2.6.</span> <span class="nav-text">用 jquery ajax 实现如下效果。当点击加载更多会加载数据展示到页面。当鼠标放置上去会变色</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

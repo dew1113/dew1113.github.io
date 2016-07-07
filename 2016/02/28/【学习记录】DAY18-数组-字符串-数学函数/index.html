@@ -1,0 +1,745 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="问答【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】
+push():在数组最后一位添加元素,返回添加元素后的长度
+pop():删除数组最后一个元素，返回该元素
+shift():移除数组左边第一个元素，返回该元素
+unshift():在数组最前面添加元素，返回添加元素后的长度
+join():以参数为连接符，连接数组形成字符串
+split():以参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY18-数组-字符串-数字类型">
+<meta property="og:url" content="http://chenlu.win/2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="问答【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】
+push():在数组最后一位添加元素,返回添加元素后的长度
+pop():删除数组最后一个元素，返回该元素
+shift():移除数组左边第一个元素，返回该元素
+unshift():在数组最前面添加元素，返回添加元素后的长度
+join():以参数为连接符，连接数组形成字符串
+split():以参">
+<meta property="og:updated_time" content="2016-05-28T08:58:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY18-数组-字符串-数字类型">
+<meta name="twitter:description" content="问答【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】
+push():在数组最后一位添加元素,返回添加元素后的长度
+pop():删除数组最后一个元素，返回该元素
+shift():移除数组左边第一个元素，返回该元素
+unshift():在数组最前面添加元素，返回添加元素后的长度
+join():以参数为连接符，连接数组形成字符串
+split():以参">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY18-数组-字符串-数字类型 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY18-数组-字符串-数字类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-28T22:38:30+08:00" content="2016-02-28">
+              2016-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="u95EE_u7B54"><a href="#u95EE_u7B54" class="headerlink" title="问答"></a>问答</h1><h3 id="u3010_u6570_u7EC4_u65B9_u6CD5_u91CCpush_u3001pop_u3001shift_u3001unshift_u3001join_u3001split_u5206_u522B_u662F_u4EC0_u4E48_u4F5C_u7528_u3002_uFF08*_uFF09_u3011"><a href="#u3010_u6570_u7EC4_u65B9_u6CD5_u91CCpush_u3001pop_u3001shift_u3001unshift_u3001join_u3001split_u5206_u522B_u662F_u4EC0_u4E48_u4F5C_u7528_u3002_uFF08*_uFF09_u3011" class="headerlink" title="【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】"></a>【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】</h3><blockquote>
+<p><strong>push()</strong>:在数组最后一位添加元素,返回添加元素后的长度</p>
+<p><strong>pop()</strong>:删除数组最后一个元素，返回该元素</p>
+<p><strong>shift()</strong>:移除数组左边第一个元素，返回该元素</p>
+<p><strong>unshift()</strong>:在数组最前面添加元素，返回添加元素后的长度</p>
+<p><strong>join()</strong>:以参数为连接符，连接数组形成字符串</p>
+<p><strong>split()</strong>:以参数为分隔符，将字符串拆分为字符串数组                                                                                                                                                                 </p>
+<p><strong>splice()</strong>:<code>array.splice(start, deleteCount[, item1[, item2[, ...]]])</code>用新元素替代旧元素，以此修改数组的内容。返回由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。</p>
+</blockquote>
+  <a id="more"></a>
+<h1 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h1><h2 id="u6570_u7EC4"><a href="#u6570_u7EC4" class="headerlink" title="数组"></a>数组</h2><h3 id="u3010_u7528_splice__u5B9E_u73B0_push_u3001pop_u3001shift_u3001unshift_u65B9_u6CD5__uFF08*_uFF09_u3011"><a href="#u3010_u7528_splice__u5B9E_u73B0_push_u3001pop_u3001shift_u3001unshift_u65B9_u6CD5__uFF08*_uFF09_u3011" class="headerlink" title="【用 splice 实现 push、pop、shift、unshift方法 （*）】"></a>【用 splice 实现 push、pop、shift、unshift方法 （<em>*</em>）】</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="function">function <span class="title">push</span><span class="params">(arr,val)</span></span>&#123; </span><br><span class="line">   <span class="keyword">return</span> arr.splice(arr.length,<span class="number">0</span>,val)   </span><br><span class="line">&#125;</span><br><span class="line">push(arr,<span class="number">6</span>)          <span class="comment">//在末尾添加一个6</span></span><br><span class="line">console.<span class="built_in">log</span>(arr);    <span class="comment">//输出[1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] </span><br><span class="line"><span class="function">function <span class="title">pop</span><span class="params">(arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.splice(arr.length-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">&#125; </span><br><span class="line">pop(arr);            <span class="comment">//删除末尾数字5</span></span><br><span class="line">console.<span class="built_in">log</span>(arr);   <span class="comment">//输出[1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   var arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">   <span class="function">function <span class="title">shift</span><span class="params">(arr)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> arr.splice(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   shift(arr)           <span class="comment">//删除左边第一位元素</span></span><br><span class="line">   console.<span class="built_in">log</span>(arr);    <span class="comment">//输出[2,3,4,5]</span></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>   var arr=[1,2,3,4,5]<br>   function unshift(val){<br>       return arr.splice(0,0,val)<br>   }<br>   unshift(0)           //在数组最左边添加新元素<br>   consloe.log(arr);    //输出[0,1,2,3,4,5]<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【使用数组拼接出如下字符串 （***）】</span></span><br></pre></td></tr></table></figure></p>
+<p>var prod = {<br>    name: ‘女装’,<br>    styles: [‘短款’, ‘冬季’, ‘春装’]<br>};</p>
+<p>function getTplStr(data){<br>   var htmls=[];<br>   htmls.push(‘<dl class="product">‘)<br>   htmls.push(‘<dt>‘+data.name+’</dt>‘)<br>   for(var i=0;i&lt;data.styles.length-1;i++){<br>        htmls.push(‘<dd>‘+data.styles[i]+’</dd>‘)<br>   }<br>   htmls.push(‘</dl>‘)<br>   console.log(htmls.join(‘’))<br>};</p>
+<p>var result = getTplStr(prod);<br>console.log(result)<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【写一个find函数，实现下面的功能 （***）】</span></span><br></pre></td></tr></table></figure></p>
+<p>var arr = [ “test”, 2, 1.5, false ]<br>function find(arr,val){<br>     return arr.indexOf(val);<br>}<br>find(arr, “test”) // 0<br>find(arr, 2) // 1<br>find(arr, 0) // -1<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【写一个函数filterNumeric，实现如下功能 （****）】</span></span><br></pre></td></tr></table></figure></p>
+<p>arr = [“a”, 1, “b”, 2];<br>function filterNumeric(){<br>    var arr2=new Array();<br>    var j=0<br>    for(var i=0;i<arr.length;i++){ if(typeof="" arr[i]="=="number"){" arr2[j]="arr[i];" j++;="" }="" console.log(arr2)="" newarr="filterNumeric(arr);" [1,2]="" <figure="" class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【对象obj有个className属性，里面的值为的是空格分割的字符串(和html元素的<span class="keyword">class</span>特性类似)，写addClass、removeClass函数，有如下功能：<span class="comment">(****)</span>】</span><br></pre></td></tr></table></arr.length;i++){></p>
+<p>var obj = {<br>  className: ‘open menu’<br>}<br>function addClass(obj,val){<br>     var arr2=obj.className.split(“ “)<br>     if(arr2.indexOf(val)===-1){<br>        arr2.push(val);<br>        obj.className=arr2.join(‘ ‘);<br>        return obj.className;<br>     }<br>     arr2=obj.className;<br>     return obj.className;<br>}<br>addClass(obj, ‘new’) // obj.className=’open menu new’<br>addClass(obj, ‘open’)  // 因为open已经存在，此操作无任何办法<br>addClass(obj, ‘me’) // obj.className=’open menu new me’<br>console.log(obj.className)  // “open menu new me”</p>
+<p>function removeClass(obj,val){<br>     var arr2=obj.className.split(“ “)<br>     if(arr2.indexOf(val) !== -1){<br>        arr2.splice(arr2.indexOf(val),1);<br>        obj.className=arr2.join(‘ ‘);<br>        return obj.className;<br>     }else{<br>     arr2=obj.className;<br>     return obj.className;<br>  }<br>}<br>removeClass(obj, ‘open’) // obj.className=’menu new me’<br>removeClass(obj, ‘blabla’)  // 不变<br>console.log(obj.className)    //“menu new me”</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个camelize函数，把my-short-<span class="keyword">string</span>形式的字符串转化成myShortString形式的字符串，如 <span class="comment">(***)</span>】</span><br></pre></td></tr></table></figure>
+<p>function camelize(str){<br>     var tmp=str.split(‘-‘);<br>     for(var i=1;i<tmp.length;i++){ var="" tmp2="tmp[i].split("");" tmp2[0]="tmp2[0].toUpperCase();" tmp[i]="tmp2.join('');" }="" return="" tmp.join('')="" console.log(camelize("background-color"))="" console.log(camelize("list-style-image"))="" <figure="" class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【如下代码输出什么？为什么? <span class="comment">(***)</span>】？？？？？？？</span><br></pre></td></tr></table></tmp.length;i++){></p>
+<p>arr = [“a”, “b”];      //一开始是[‘a’,’b’]数组<br>arr.push( function() { alert(console.log(‘hello hunger valley’)) } );   //把function添加到数组末尾<br>arr<a href="/">arr.length-1</a>   //输出 hello hunger valley。相当于运行添加在数组末尾的function，所以控制台输出 hello hunger valley,alert弹出undefined 这一点不明白</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字 <span class="comment">(****)</span>】</span><br></pre></td></tr></table></figure>
+<pre><code>arr =[&apos;a&apos;,1,&apos;b&apos;,2];
+function filterNumericInPlace(array){
+    for(var i=0;i&lt;array.length;i++){
+        if(typeof array[i] !==&apos;number&apos;){
+            array.splice(i,1);
+        }
+    }
+    return array;
+}
+arr = filterNumericInPlace(arr); // [1,2] 
+console.log(arr)
+</code></pre><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【写一个ageSort函数实现如下功能 （***）】</span></span><br></pre></td></tr></table></figure>
+<p>var john = { name: “John Smith”, age: 23 }<br>var mary = { name: “Mary Key”, age: 18 }<br>var bob = { name: “Bob-small”, age: 6 }<br>var people = [ john, mary, bob ]<br>function ageSort(obj){<br>     return obj.sort(function(a,b){<br>          return a.age-b.age;<br>     })<br> }<br>ageSort(people) // [ bob, mary, john ]<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="swift">### 【写一个<span class="built_in">filter</span>(arr, <span class="func"><span class="keyword">func</span>) 函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数<span class="params">(回调函数遍历接受每一个数组元素，当函数返回<span class="literal">true</span>时保留该元素，否则删除该元素)</span></span>。实现如下功能： （****）】</span></span><br></pre></td></tr></table></figure></p>
+<p>arr = [“a”, -1, 2, “b”];<br>function filter(arr,func){<br>for (var i=0;i&lt;arr.length;i++){<br>         if(func(arr[i]) == false){<br>             arr.splice(i,1);<br>         }<br>    }<br>  return arr;<br>}<br>function isNumeric(el){<br> return typeof el ===’number’;<br>}</p>
+<p>arr = filter(arr, isNumeric) ; // arr = [-1, 2],  过滤出数字<br>arr = filter(arr, function(val) { return val &gt; 0 });  // arr = [2] 过滤出大于0的整数<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">## 字符串</span></span><br><span class="line"><span class="preprocessor">### 【写一个 ucFirst函数，返回第一个字母为大写的字符 （***）】</span></span><br></pre></td></tr></table></figure></p>
+<p>function ucFirst(str){<br>  str=str.split(‘’)<br>  for(var i=0;i&lt;str.length;i++){<br>       str[0]=str[0].toUpperCase();<br>       return str=str.join(‘’);<br>      }<br>}<br>ucFirst(“hunger”) == “Hunger”</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个函数<span class="operator"><span class="keyword">truncate</span>(<span class="keyword">str</span>, maxlength), 如果<span class="keyword">str</span>的长度大于maxlength，会把<span class="keyword">str</span>截断到maxlength长，并加上...，如 （****）】</span></span><br></pre></td></tr></table></figure>
+<p>function truncate(str,maxlength){<br>       str=str.split(‘’)<br>       if(str.length&gt;maxlength){<br>               str = str.splice(0,maxlength)    ??????<br>               return str.join(“”)+’…’<br>       }<br>       return str.join(‘’)<br>}<br>truncate(“hello, this is hunger valley,”, 10)) == “hello, thi…”;<br>truncate(“hello world”, 20)) == “hello world”<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">## 数学函数</span></span><br><span class="line"><span class="preprocessor">### 【写一个函数limit2，保留数字小数点后两位，四舍五入， 如: （**）】</span></span><br></pre></td></tr></table></figure></p>
+<p>var num1 = 3.456<br>function limit2(num){<br>        return Math.round(num*100)/100<br>}<br>limit2( num1 );  //3.46<br>limit2( 2.42 );    //2.42<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个函数，获取从<span class="built_in">min</span>到<span class="built_in">max</span>之间的随机数，包括<span class="built_in">min</span>不包括<span class="built_in">max</span> （***）】</span><br></pre></td></tr></table></figure></p>
+<p>function randomNumber(min,max){<br>    return Math.random()*(max-min)+min<br>}<br>randomNumber(1,9)<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个函数，获取从<span class="built_in">min</span>都<span class="built_in">max</span>之间的随机整数，包括<span class="built_in">min</span>包括<span class="built_in">max</span> （***）】</span><br></pre></td></tr></table></figure></p>
+<p>function randomNumber(min,max){<br>    return Math.floor(Math.random()*(max-min+1)+min)<br>}<br>randomNumber(1,9)<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 【写一个函数，获取一个随机数组，数组中元素为长度为<span class="built_in">len</span>，最小值为<span class="built_in">min</span>，最大值为<span class="built_in">max</span>(包括)的随机数 （***）】</span><br></pre></td></tr></table></figure></p>
+<p>function randomArr(min,max,len){<br>      var a=[];<br>      for(var i=0;i&lt;len;i++){<br>            a.push(Math.random()*(max-min+1)+min);<br>      }<br>      return a;<br>}<br>randomArr(2,9,5)<br>```</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/26/【学习记录】DAY17-函数/" rel="next" title="【学习记录】DAY17-函数">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY17-函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/01/【学习记录】DAY19-时间对象-引用类型/" rel="prev" title="【学习记录】DAY19-时间对象-引用类型">
+                【学习记录】DAY19-时间对象-引用类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/"
+           data-title="【学习记录】DAY18-数组-字符串-数字类型" data-url="http://chenlu.win/2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u95EE_u7B54"><span class="nav-number">1.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u3010_u6570_u7EC4_u65B9_u6CD5_u91CCpush_u3001pop_u3001shift_u3001unshift_u3001join_u3001split_u5206_u522B_u662F_u4EC0_u4E48_u4F5C_u7528_u3002_uFF08*_uFF09_u3011"><span class="nav-number">1.0.1.</span> <span class="nav-text">【数组方法里push、pop、shift、unshift、join、split分别是什么作用。（*）】</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u6570_u7EC4"><span class="nav-number">2.1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u3010_u7528_splice__u5B9E_u73B0_push_u3001pop_u3001shift_u3001unshift_u65B9_u6CD5__uFF08*_uFF09_u3011"><span class="nav-number">2.1.1.</span> <span class="nav-text">【用 splice 实现 push、pop、shift、unshift方法 （*）】</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

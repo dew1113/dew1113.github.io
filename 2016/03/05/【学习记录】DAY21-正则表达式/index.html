@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="问答\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?
+\d:查找数字
+\w: 查找单词字符（数字，字母，下划线）
+\s:查找空白字符（空格、tab、换行、回车）
+[a-zA-Z0-9]:查找0-9十个数字，a-z26个小写字母和A-Z的26个大写字母
+\b:匹配单词边界
+.: 查找单个字符，除了换行和回车符
+*: 匹配出现0次或者多次（任意多次）
++:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY21-正则表达式">
+<meta property="og:url" content="http://chenlu.win/2016/03/05/【学习记录】DAY21-正则表达式/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="问答\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?
+\d:查找数字
+\w: 查找单词字符（数字，字母，下划线）
+\s:查找空白字符（空格、tab、换行、回车）
+[a-zA-Z0-9]:查找0-9十个数字，a-z26个小写字母和A-Z的26个大写字母
+\b:匹配单词边界
+.: 查找单个字符，除了换行和回车符
+*: 匹配出现0次或者多次（任意多次）
++:">
+<meta property="og:updated_time" content="2016-05-28T09:06:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY21-正则表达式">
+<meta name="twitter:description" content="问答\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?
+\d:查找数字
+\w: 查找单词字符（数字，字母，下划线）
+\s:查找空白字符（空格、tab、换行、回车）
+[a-zA-Z0-9]:查找0-9十个数字，a-z26个小写字母和A-Z的26个大写字母
+\b:匹配单词边界
+.: 查找单个字符，除了换行和回车符
+*: 匹配出现0次或者多次（任意多次）
++:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY21-正则表达式 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY21-正则表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-05T08:16:37+08:00" content="2016-03-05">
+              2016-03-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/05/【学习记录】DAY21-正则表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/05/【学习记录】DAY21-正则表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="u95EE_u7B54"><a href="#u95EE_u7B54" class="headerlink" title="问答"></a>问答</h1><h3 id="5Cd_uFF0C_5Cw_2C_5Cs_2C_5Ba-zA-Z0-9_5D_2C_5Cb_2C-_2C*_2C+_2C_3F_2Cx_7B3_7D_2C_5E_2C_24_u5206_u522B_u662F_u4EC0_u4E48_3F"><a href="#5Cd_uFF0C_5Cw_2C_5Cs_2C_5Ba-zA-Z0-9_5D_2C_5Cb_2C-_2C*_2C+_2C_3F_2Cx_7B3_7D_2C_5E_2C_24_u5206_u522B_u662F_u4EC0_u4E48_3F" class="headerlink" title="\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?"></a><code>\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$</code>分别是什么?</h3><ul>
+<li><code>\d</code>:查找数字</li>
+<li><code>\w</code>: 查找单词字符（数字，字母，下划线）</li>
+<li><code>\s</code>:查找空白字符（空格、tab、换行、回车）</li>
+<li><code>[a-zA-Z0-9]</code>:查找0-9十个数字，a-z26个小写字母和A-Z的26个大写字母</li>
+<li><code>\b</code>:匹配单词边界</li>
+<li><code>.</code>: 查找单个字符，除了换行和回车符</li>
+<li><code>*</code>: 匹配出现0次或者多次（任意多次）</li>
+<li><code>+</code>: 匹配出现一次或多次（至少一次）</li>
+<li><code>?</code>: 匹配出现0次或者1次（至多1次）</li>
+<li><code>X{3}</code>: 匹配x出现3次</li>
+<li><code>^</code> : 匹配以什么开头</li>
+<li><code>$</code>: 匹配以什么结尾</li>
+</ul>
+<a id="more"></a>
+<h3 id="u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u6307_u4EC0_u4E48_3F"><a href="#u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u6307_u4EC0_u4E48_3F" class="headerlink" title="贪婪模式和非贪婪模式指什么?"></a>贪婪模式和非贪婪模式指什么?</h3><ul>
+<li>贪婪模式在整个表达式匹配成功的前提下，尽可能多的匹配。比如量词</li>
+<li>非贪婪模式在整个表达式匹配成功的前提下，尽可能少的匹配。比如?</li>
+</ul>
+<h1 id="u4EE3_u7801_u9898"><a href="#u4EE3_u7801_u9898" class="headerlink" title="代码题"></a>代码题</h1><h3 id="u5199_u4E00_u4E2A_u51FD_u6570trim_28str_29_uFF0C_u53BB_u9664_u5B57_u7B26_u4E32_u4E24_u8FB9_u7684_u7A7A_u767D_u5B57_u7B26"><a href="#u5199_u4E00_u4E2A_u51FD_u6570trim_28str_29_uFF0C_u53BB_u9664_u5B57_u7B26_u4E32_u4E24_u8FB9_u7684_u7A7A_u767D_u5B57_u7B26" class="headerlink" title="写一个函数trim(str)，去除字符串两边的空白字符"></a>写一个函数trim(str)，去除字符串两边的空白字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> patt=<span class="regexp">/^\s+|\s*$/g</span>;</span><br><span class="line">      <span class="keyword">return</span> str.replace(patt,<span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(trim(<span class="string">' hello world! '</span>));  <span class="comment">//输出'hello world!'</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528_u5B9E_u73B0_addClass_28el_2C_cls_29_u3001hasClass_28el_2C_cls_29_u3001removeClass_28el_2Ccls_29_uFF0C_u4F7F_u7528_u6B63_u5219"><a href="#u4F7F_u7528_u5B9E_u73B0_addClass_28el_2C_cls_29_u3001hasClass_28el_2C_cls_29_u3001removeClass_28el_2Ccls_29_uFF0C_u4F7F_u7528_u6B63_u5219" class="headerlink" title="使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则"></a>使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//提示: el为dom元素，cls为操作的class， el.className获取el元素的class</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\b'</span>+cls+<span class="string">'\\b'</span>,<span class="string">'g'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasClass</span>(<span class="params">el,cls</span>)</span>&#123; </span><br><span class="line">     <span class="keyword">return</span> el.className.match(reg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">el,cls</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(!hasClass(el,cls))&#123;  </span><br><span class="line">       <span class="keyword">return</span>  el.className +=<span class="string">''</span>+cls;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeClass</span>(<span class="params">el,cls</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hasclaaName(el,cls))&#123;</span><br><span class="line">           <span class="keyword">return</span>  el.className=el.className.repalce(cls,<span class="string">''</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u51FD_u6570isEmail_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u90AE_u7BB1"><a href="#u5199_u4E00_u4E2A_u51FD_u6570isEmail_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u90AE_u7BB1" class="headerlink" title="写一个函数isEmail(str)，判断用户输入的是不是邮箱"></a>写一个函数isEmail(str)，判断用户输入的是不是邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmail</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> patt=<span class="regexp">/\S+[@]&#123;1&#125;\S+[.]&#123;1&#125;\w+/g</span>;</span><br><span class="line">      <span class="keyword">if</span>(str.match(patt) )&#123;</span><br><span class="line">      	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">isEmail(<span class="string">'admin@gmail.com'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u51FD_u6570isPhoneNum_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u624B_u673A_u53F7"><a href="#u5199_u4E00_u4E2A_u51FD_u6570isPhoneNum_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u624B_u673A_u53F7" class="headerlink" title="写一个函数isPhoneNum(str)，判断用户输入的是不是手机号"></a>写一个函数isPhoneNum(str)，判断用户输入的是不是手机号</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPhoneNum</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> patt=<span class="regexp">/^1[34578]\d&#123;9&#125;$/g</span></span><br><span class="line">       <span class="keyword">if</span> (str.match(patt)) &#123;</span><br><span class="line">       	      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">       	    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line">isPhoneNum(<span class="string">'13966042909'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u51FD_u6570isValidUsername_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u7684_u7528_u6237_u540D_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u53EA_u80FD_u5305_u62EC_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_uFF09"><a href="#u5199_u4E00_u4E2A_u51FD_u6570isValidUsername_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u7684_u7528_u6237_u540D_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u53EA_u80FD_u5305_u62EC_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_uFF09" class="headerlink" title="写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）"></a>写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidUsername</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> patt=<span class="regexp">/^\w&#123;6,20&#125;$/g</span></span><br><span class="line">   <span class="keyword">if</span>(str.match(patt))&#123;</span><br><span class="line">   	   <span class="keyword">return</span>  <span class="literal">true</span></span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   	   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">isValidUsername(<span class="string">'RODdjsiofck34950'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u51FD_u6570isValidPassword_28str_29_2C__u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u5BC6_u7801_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u5305_u62EC_u5927_u5199_u5B57_u6BCD_u3001_u5C0F_u5199_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_u81F3_u5C11_u4E24_u79CD_uFF09"><a href="#u5199_u4E00_u4E2A_u51FD_u6570isValidPassword_28str_29_2C__u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u5BC6_u7801_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u5305_u62EC_u5927_u5199_u5B57_u6BCD_u3001_u5C0F_u5199_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_u81F3_u5C11_u4E24_u79CD_uFF09" class="headerlink" title="写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）"></a>写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function isValidPassword(<span class="built_in">str</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">str</span>.length&lt;<span class="number">6</span> || <span class="built_in">str</span>.length&gt;<span class="number">20</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">str</span>.<span class="built_in">match</span>(/[^\w]/))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">str</span>.<span class="built_in">match</span>(/(^[A-Z]+$)|(^[a-z]+$)|(^[<span class="number">0</span>-<span class="number">9</span>]+$)|(^_+$)/g))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u5F97_u5230_u5982_u4E0B_u5B57_u7B26_u4E32_u91CC_u6240_u6709_u7684_u989C_u8272_uFF08_23121212_uFF09"><a href="#u5199_u4E00_u4E2A_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u5F97_u5230_u5982_u4E0B_u5B57_u7B26_u4E32_u91CC_u6240_u6709_u7684_u989C_u8272_uFF08_23121212_uFF09" class="headerlink" title="写一个正则表达式，得到如下字符串里所有的颜色（#121212）"></a>写一个正则表达式，得到如下字符串里所有的颜色（#121212）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var re = /<span class="preprocessor">#([a-f0-<span class="number">9</span>]&#123;<span class="number">6</span>&#125;|[<span class="number">0</span>-<span class="number">9</span>a-z]&#123;<span class="number">3</span>&#125;)[^<span class="number">0</span>-<span class="number">9</span>a-f\s]/gi</span></span><br><span class="line"></span><br><span class="line">var subj = <span class="string">"color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddaaaaaee #fd2 "</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>( subj.match(re) )</span><br></pre></td></tr></table></figure>
+<h3 id="u4E0B_u9762_u4EE3_u7801_u8F93_u51FA_u4EC0_u4E48_3F__u4E3A_u4EC0_u4E48_3F__u6539_u5199_u4EE3_u7801_uFF0C_u8BA9_u5176_u8F93_u51FAhunger_2C_world"><a href="#u4E0B_u9762_u4EE3_u7801_u8F93_u51FA_u4EC0_u4E48_3F__u4E3A_u4EC0_u4E48_3F__u6539_u5199_u4EE3_u7801_uFF0C_u8BA9_u5176_u8F93_u51FAhunger_2C_world" class="headerlink" title="下面代码输出什么? 为什么? 改写代码，让其输出hunger, world."></a>下面代码输出什么? 为什么? 改写代码，让其输出hunger, world.</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var str = <span class="string">'hello  "hunger" , hello "world"'</span>;</span><br><span class="line">var pat =  /<span class="string">".*"</span>/g;</span><br><span class="line">str.match(pat);          //匹配[<span class="string">""</span>hunge<span class="string">r" , hello "</span>world<span class="string">""</span>]，因为是贪婪模式下匹配的，所以把<span class="string">""</span>之间的全匹配进去了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//修改</span><br><span class="line"></span><br><span class="line">var str = <span class="string">'hello  "hunger" , hello "world"'</span>;</span><br><span class="line">var pat =  /<span class="string">".*?"</span>/g;</span><br><span class="line">str.match(pat);</span><br></pre></td></tr></table></figure>
+<h3 id="u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u8F93_u51FA_u5B57_u7B26_u4E32_u4E2D_u7684_u6CE8_u91CA_u5185_u5BB9-__28_u53EF_u5C1D_u8BD5_u4F7F_u7528_u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u4E24_u79CD_u65B9_u6CD5_29"><a href="#u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u8F93_u51FA_u5B57_u7B26_u4E32_u4E2D_u7684_u6CE8_u91CA_u5185_u5BB9-__28_u53EF_u5C1D_u8BD5_u4F7F_u7528_u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u4E24_u79CD_u65B9_u6CD5_29" class="headerlink" title="补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)"></a>补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//贪婪模式</span><br><span class="line"></span><br><span class="line">var str = '.. <span class="comment">&lt;!-- My -- comment \n test --&gt;</span> ..  <span class="comment">&lt;!----&gt;</span> .. '</span><br><span class="line">var re = /<span class="tag">&lt;<span class="title">\!--(.|\s)*--</span>&gt;</span>/g</span><br><span class="line">str.match(re) //  '<span class="comment">&lt;!-- My -- comment \n test --&gt;</span>', '<span class="comment">&lt;!----&gt;</span>'</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//非贪婪模式</span><br><span class="line">var str = '.. <span class="comment">&lt;!-- My -- comment \n test --&gt;</span> ..  <span class="comment">&lt;!----&gt;</span> .. '</span><br><span class="line">var re = /<span class="tag">&lt;<span class="title">\!--(.|\s)*?--</span>&gt;</span>/g</span><br><span class="line">str.match(re) //  '<span class="comment">&lt;!-- My -- comment \n test --&gt;</span>', '<span class="comment">&lt;!----&gt;</span>'</span><br></pre></td></tr></table></figure>
+<h3 id="u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="补全如下正则表达式"></a>补全如下正则表达式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var re = /<span class="tag">&lt;<span class="title">[a-z].*?</span>&gt;</span>/g</span><br><span class="line">var str = '<span class="tag">&lt;&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/"</span>&gt;</span> <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">checked</span>&gt;</span> <span class="tag">&lt;<span class="title">b</span>&gt;</span>'</span><br><span class="line">str.match(re) // '<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/"</span>&gt;</span>', '<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">checked</span>&gt;</span>', '<span class="tag">&lt;<span class="title">b</span>&gt;</span>'</span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/03/【学习记录】DAY20-闭包-定时器/" rel="next" title="【学习记录】DAY20-闭包-定时器">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY20-闭包-定时器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/07/【学习记录】DAY22-DOM-事件/" rel="prev" title="【学习记录】DAY22-DOM事件">
+                【学习记录】DAY22-DOM事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/05/【学习记录】DAY21-正则表达式/"
+           data-title="【学习记录】DAY21-正则表达式" data-url="http://chenlu.win/2016/03/05/【学习记录】DAY21-正则表达式/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u95EE_u7B54"><span class="nav-number">1.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5Cd_uFF0C_5Cw_2C_5Cs_2C_5Ba-zA-Z0-9_5D_2C_5Cb_2C-_2C*_2C+_2C_3F_2Cx_7B3_7D_2C_5E_2C_24_u5206_u522B_u662F_u4EC0_u4E48_3F"><span class="nav-number">1.0.1.</span> <span class="nav-text">\d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u6307_u4EC0_u4E48_3F"><span class="nav-number">1.0.2.</span> <span class="nav-text">贪婪模式和非贪婪模式指什么?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801_u9898"><span class="nav-number">2.</span> <span class="nav-text">代码题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570trim_28str_29_uFF0C_u53BB_u9664_u5B57_u7B26_u4E32_u4E24_u8FB9_u7684_u7A7A_u767D_u5B57_u7B26"><span class="nav-number">2.0.1.</span> <span class="nav-text">写一个函数trim(str)，去除字符串两边的空白字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F7F_u7528_u5B9E_u73B0_addClass_28el_2C_cls_29_u3001hasClass_28el_2C_cls_29_u3001removeClass_28el_2Ccls_29_uFF0C_u4F7F_u7528_u6B63_u5219"><span class="nav-number">2.0.2.</span> <span class="nav-text">使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570isEmail_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u90AE_u7BB1"><span class="nav-number">2.0.3.</span> <span class="nav-text">写一个函数isEmail(str)，判断用户输入的是不是邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570isPhoneNum_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u624B_u673A_u53F7"><span class="nav-number">2.0.4.</span> <span class="nav-text">写一个函数isPhoneNum(str)，判断用户输入的是不是手机号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570isValidUsername_28str_29_uFF0C_u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u7684_u7528_u6237_u540D_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u53EA_u80FD_u5305_u62EC_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_uFF09"><span class="nav-number">2.0.5.</span> <span class="nav-text">写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570isValidPassword_28str_29_2C__u5224_u65AD_u7528_u6237_u8F93_u5165_u7684_u662F_u4E0D_u662F_u5408_u6CD5_u5BC6_u7801_uFF08_u957F_u5EA66-20_u4E2A_u5B57_u7B26_uFF0C_u5305_u62EC_u5927_u5199_u5B57_u6BCD_u3001_u5C0F_u5199_u5B57_u6BCD_u3001_u6570_u5B57_u3001_u4E0B_u5212_u7EBF_u81F3_u5C11_u4E24_u79CD_uFF09"><span class="nav-number">2.0.6.</span> <span class="nav-text">写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u5F97_u5230_u5982_u4E0B_u5B57_u7B26_u4E32_u91CC_u6240_u6709_u7684_u989C_u8272_uFF08_23121212_uFF09"><span class="nav-number">2.0.7.</span> <span class="nav-text">写一个正则表达式，得到如下字符串里所有的颜色（#121212）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E0B_u9762_u4EE3_u7801_u8F93_u51FA_u4EC0_u4E48_3F__u4E3A_u4EC0_u4E48_3F__u6539_u5199_u4EE3_u7801_uFF0C_u8BA9_u5176_u8F93_u51FAhunger_2C_world"><span class="nav-number">2.0.8.</span> <span class="nav-text">下面代码输出什么? 为什么? 改写代码，让其输出hunger, world.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F_uFF0C_u8F93_u51FA_u5B57_u7B26_u4E32_u4E2D_u7684_u6CE8_u91CA_u5185_u5BB9-__28_u53EF_u5C1D_u8BD5_u4F7F_u7528_u8D2A_u5A6A_u6A21_u5F0F_u548C_u975E_u8D2A_u5A6A_u6A21_u5F0F_u4E24_u79CD_u65B9_u6CD5_29"><span class="nav-number">2.0.9.</span> <span class="nav-text">补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8865_u5168_u5982_u4E0B_u6B63_u5219_u8868_u8FBE_u5F0F"><span class="nav-number">2.0.10.</span> <span class="nav-text">补全如下正则表达式</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

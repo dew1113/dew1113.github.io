@@ -1,0 +1,713 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="问题基础类型有哪些？复杂类型有哪些？有什么特征？
+基础类型：字符串、数字、布尔值、null、undefined。指的是保存在栈内存中的简单数据段
+复杂类型：数组，对象，函数，正则表达式。复杂值可以由很多不同类型的javascript对象组成。复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值，而不是一个特定的已知值。
+存储方式:
+栈存储
+　　因为基础类型占据空间固定，是简单的数据段，为了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY19-时间对象-引用类型">
+<meta property="og:url" content="http://chenlu.win/2016/03/01/【学习记录】DAY19-时间对象-引用类型/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="问题基础类型有哪些？复杂类型有哪些？有什么特征？
+基础类型：字符串、数字、布尔值、null、undefined。指的是保存在栈内存中的简单数据段
+复杂类型：数组，对象，函数，正则表达式。复杂值可以由很多不同类型的javascript对象组成。复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值，而不是一个特定的已知值。
+存储方式:
+栈存储
+　　因为基础类型占据空间固定，是简单的数据段，为了">
+<meta property="og:updated_time" content="2016-05-28T08:59:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY19-时间对象-引用类型">
+<meta name="twitter:description" content="问题基础类型有哪些？复杂类型有哪些？有什么特征？
+基础类型：字符串、数字、布尔值、null、undefined。指的是保存在栈内存中的简单数据段
+复杂类型：数组，对象，函数，正则表达式。复杂值可以由很多不同类型的javascript对象组成。复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值，而不是一个特定的已知值。
+存储方式:
+栈存储
+　　因为基础类型占据空间固定，是简单的数据段，为了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY19-时间对象-引用类型 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY19-时间对象-引用类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-01T22:38:30+08:00" content="2016-03-01">
+              2016-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/01/【学习记录】DAY19-时间对象-引用类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/【学习记录】DAY19-时间对象-引用类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h1><h3 id="u57FA_u7840_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u590D_u6742_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u6709_u4EC0_u4E48_u7279_u5F81_uFF1F"><a href="#u57FA_u7840_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u590D_u6742_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u6709_u4EC0_u4E48_u7279_u5F81_uFF1F" class="headerlink" title="基础类型有哪些？复杂类型有哪些？有什么特征？"></a>基础类型有哪些？复杂类型有哪些？有什么特征？</h3><blockquote>
+<p><strong>基础类型</strong>：字符串、数字、布尔值、null、undefined。指的是保存在栈内存中的简单数据段</p>
+<p><strong>复杂类型</strong>：数组，对象，函数，正则表达式。复杂值可以由很多不同类型的javascript对象组成。复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值，而不是一个特定的已知值。</p>
+<p><strong>存储方式</strong>:</p>
+<p><em>栈存储</em></p>
+<p>　　因为基础类型占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在栈(stack)中</p>
+<p><em>堆存储</em></p>
+<p>　　由于复杂类型的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此其存储在堆(heap)中，存储在变量处的值是一个指针，指向存储对象的内存处。
+　　</p>
+</blockquote>
+  <a id="more"></a>
+<h1 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h1><h3 id="u5199_u4E00_u4E2A_u51FD_u6570getIntv_uFF0C_u83B7_u53D6_u4ECE_u5F53_u524D_u65F6_u95F4_u5230_u6307_u5B9A_u65E5_u671F_u7684_u95F4_u9694_u65F6_u95F4"><a href="#u5199_u4E00_u4E2A_u51FD_u6570getIntv_uFF0C_u83B7_u53D6_u4ECE_u5F53_u524D_u65F6_u95F4_u5230_u6307_u5B9A_u65E5_u671F_u7684_u95F4_u9694_u65F6_u95F4" class="headerlink" title="写一个函数getIntv，获取从当前时间到指定日期的间隔时间"></a>写一个函数getIntv，获取从当前时间到指定日期的间隔时间</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function getIntv(<span class="keyword">date</span>)&#123;</span><br><span class="line">      var totime = Date.parse(<span class="keyword">date</span>) - Date.now();</span><br><span class="line">      var dayms = <span class="number">24</span><span class="variable">*60</span><span class="variable">*60</span><span class="variable">*1000</span>,  <span class="comment">//一天</span></span><br><span class="line">          houms = <span class="number">60</span><span class="variable">*60</span><span class="variable">*1000</span>,    <span class="comment">//一小时</span></span><br><span class="line">          minms = <span class="number">60</span><span class="variable">*1000</span>,        <span class="comment">//一分钟</span></span><br><span class="line">          secms = <span class="number">1000</span>;            <span class="comment">//一秒</span></span><br><span class="line">      var day = Math.<span class="keyword">floor</span>(totime/dayms),</span><br><span class="line">          hou = Math.<span class="keyword">floor</span>((totime<span class="variable">%dayms</span>)/houms),</span><br><span class="line">          <span class="keyword">min</span> = Math.<span class="keyword">floor</span>(((totime<span class="variable">%dayms</span>)<span class="variable">%houms</span>)/minms),</span><br><span class="line">          sec = Math.<span class="keyword">floor</span>((((totime<span class="variable">%dayms</span>)<span class="variable">%houms</span>)<span class="variable">%minms</span>)/secms);</span><br><span class="line">     <span class="keyword">return</span>  <span class="string">'距除夕还有'</span> +day+ <span class="string">'天'</span> +hou+ <span class="string">'小时'</span> +<span class="keyword">min</span>+ <span class="string">'分'</span> +sec+ <span class="string">'秒'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var str = getIntv(<span class="string">"2017-01-08"</span>);</span><br><span class="line">console.<span class="keyword">log</span>(str);  <span class="comment">// 距除夕还有 20 天 15 小时 20 分 10 秒</span></span><br></pre></td></tr></table></figure>
+<h3 id="u628A_u6570_u5B57_u65E5_u671F_u6539_u6210_u4E2D_u6587_u65E5_u671F"><a href="#u628A_u6570_u5B57_u65E5_u671F_u6539_u6210_u4E2D_u6587_u65E5_u671F" class="headerlink" title="把数字日期改成中文日期"></a>把数字日期改成中文日期</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function getChsDate(date)&#123;</span><br><span class="line">	 var dateObj = <span class="keyword">new</span> Date(date);</span><br><span class="line">     var cha = [<span class="string">'零'</span>, <span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>,<span class="string">'七'</span>,<span class="string">'八'</span>,<span class="string">'九'</span>,<span class="string">'十'</span>,<span class="string">'十一'</span>,<span class="string">'十二'</span>,<span class="string">'十三'</span>,<span class="string">'十四'</span>,<span class="string">'十五'</span>,<span class="string">'十六'</span>,<span class="string">'十七'</span>,<span class="string">'十八'</span>,<span class="string">'十九'</span>,<span class="string">'二十'</span>,<span class="string">'二十一'</span>,<span class="string">'二十二'</span>,<span class="string">'二十三'</span>,<span class="string">'二十四'</span>,<span class="string">'二十五'</span>,<span class="string">'二十六'</span>,<span class="string">'二十七'</span>,<span class="string">'二十八'</span>,<span class="string">'二十九'</span>,<span class="string">'三十'</span>,<span class="string">'三十一'</span>];</span><br><span class="line">     var <span class="built_in">year</span> = dateObj.getFullYear().toString(),</span><br><span class="line">         <span class="built_in">month</span> = dateObj.getMonth()+<span class="number">1</span>,</span><br><span class="line">         <span class="built_in">day</span> = dateObj.getDate();</span><br><span class="line">     </span><br><span class="line">      <span class="keyword">return</span> cha[<span class="built_in">year</span>[<span class="number">0</span>]]+cha[<span class="built_in">year</span>[<span class="number">1</span>]]+cha[<span class="built_in">year</span>[<span class="number">2</span>]]+cha[<span class="built_in">year</span>[<span class="number">3</span>]]+<span class="string">"年"</span>+cha[<span class="built_in">month</span>]+<span class="string">"月"</span>+cha[<span class="built_in">day</span>]+<span class="string">"日"</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var <span class="built_in">str</span> = getChsDate(<span class="string">'2015-01-08'</span>);</span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">str</span>);  <span class="comment">// 二零一五年一月八日</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u51FD_u6570_u83B7_u53D6n_u5929_u524D_u7684_u65E5_u671F"><a href="#u5199_u4E00_u4E2A_u51FD_u6570_u83B7_u53D6n_u5929_u524D_u7684_u65E5_u671F" class="headerlink" title="写一个函数获取n天前的日期"></a>写一个函数获取n天前的日期</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">getLastNDays</span><span class="params">(num)</span></span>&#123;</span><br><span class="line">     var d1 = Date.now() - num*(<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>),</span><br><span class="line">         d2 = <span class="keyword">new</span> Date(d1),</span><br><span class="line">         year = d2.getFullYear(),</span><br><span class="line">         month = d2.getMonth()+<span class="number">1</span>,</span><br><span class="line">         day = d2.getDate();</span><br><span class="line">      <span class="keyword">return</span> year +<span class="string">"-"</span> + month + <span class="string">"-"</span> +day;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var lastWeek =  getLastNDays(<span class="number">7</span>); <span class="comment">// ‘2016-3-31’</span></span><br><span class="line">var lastMonth = getLastNDays(<span class="number">30</span>); <span class="comment">//'2016-3-8'</span></span><br><span class="line">    </span><br><span class="line">console.<span class="built_in">log</span>(lastWeek);</span><br><span class="line">console.<span class="built_in">log</span>(lastMonth);</span><br></pre></td></tr></table></figure>
+<h3 id="u5B8C_u5584_u5982_u4E0B_u4EE3_u7801_uFF0C_u5982_uFF1A"><a href="#u5B8C_u5584_u5982_u4E0B_u4EE3_u7801_uFF0C_u5982_uFF1A" class="headerlink" title="完善如下代码，如："></a>完善如下代码，如：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Runtime = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> startTime,endTime,getTime;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        start: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              startTime = <span class="built_in">Date</span>.now();</span><br><span class="line">              <span class="keyword">return</span> startTime;</span><br><span class="line">        &#125;,</span><br><span class="line">        end: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             endTime = <span class="built_in">Date</span>.now();</span><br><span class="line">             <span class="keyword">return</span> endTime;</span><br><span class="line">        &#125;,</span><br><span class="line">        get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             getTime= endTime- startTime;</span><br><span class="line">             <span class="keyword">return</span> <span class="string">'运行时间为'</span>+ getTime+<span class="string">'ms'</span>;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br><span class="line">Runtime.start();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log (<span class="number">1</span>);</span><br><span class="line">&#125;                       <span class="comment">// for循环不理解,不知道是干嘛的。。。</span></span><br><span class="line">Runtime.end();</span><br><span class="line"><span class="built_in">console</span>.log(  Runtime.get() );</span><br></pre></td></tr></table></figure>
+<h3 id="u697C_u68AF_u6709200_u7EA7_uFF0C_u6BCF_u6B21_u8D701_u7EA7_u6216_u662F2_u7EA7_uFF0C_u4ECE_u5E95_u8D70_u5230_u9876_u4E00_u5171_u6709_u591A_u5C11_u79CD_u8D70_u6CD5_uFF1F_u7528_u4EE3_u7801_uFF08_u9012_u5F52_uFF09_u5B9E_u73B0"><a href="#u697C_u68AF_u6709200_u7EA7_uFF0C_u6BCF_u6B21_u8D701_u7EA7_u6216_u662F2_u7EA7_uFF0C_u4ECE_u5E95_u8D70_u5230_u9876_u4E00_u5171_u6709_u591A_u5C11_u79CD_u8D70_u6CD5_uFF1F_u7528_u4EE3_u7801_uFF08_u9012_u5F52_uFF09_u5B9E_u73B0" class="headerlink" title="楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现"></a>楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">step</span><span class="params">(n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span> || n==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (n==<span class="number">2</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> step(n-<span class="number">1</span>)+step(n-<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2Ajson_u5BF9_u8C61_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0Cjson_u5BF9_u8C61_u53EF_u4EE5_u591A_u5C42_u5D4C_u5957_uFF0C_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879"><a href="#u5199_u4E00_u4E2Ajson_u5BF9_u8C61_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0Cjson_u5BF9_u8C61_u53EF_u4EE5_u591A_u5C42_u5D4C_u5957_uFF0C_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879" class="headerlink" title="写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项"></a>写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> json1=&#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"luyoyo"</span>,</span><br><span class="line">    <span class="string">"age"</span>:<span class="string">"18"</span>,</span><br><span class="line">    <span class="string">"sex"</span>:<span class="string">"girl"</span>,</span><br><span class="line">    <span class="string">"hobby"</span>:&#123;</span><br><span class="line">        <span class="string">"food"</span>:<span class="string">"rice"</span>,</span><br><span class="line">        <span class="string">"color"</span>:<span class="string">"blue"</span>,</span><br><span class="line">        <span class="string">"pet"</span>:<span class="string">"dog"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonCopy</span><span class="params">(json)</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newJson=&#123;&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> json)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> json[key] === <span class="string">'object'</span>)&#123;</span><br><span class="line">			newJson[key]=jsonCopy(json[key]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			newJson[key]=json[key];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newJson;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u6570_u7EC4_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u6570_u7EC4_u91CC_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u4E2D_u7684_u4EFB_u610F_u9879_u76EE"><a href="#u5199_u4E00_u4E2A_u6570_u7EC4_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u6570_u7EC4_u91CC_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u4E2D_u7684_u4EFB_u610F_u9879_u76EE" class="headerlink" title="写一个数组深拷贝的方法，数组里的值可以是字符串、数字、布尔、数组中的任意项目"></a>写一个数组深拷贝的方法，数组里的值可以是字符串、数字、布尔、数组中的任意项目</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1=[<span class="string">'luyoyo'</span>,<span class="string">'18'</span>,<span class="string">'true'</span>,[<span class="string">'luyoyo'</span>,<span class="string">'18'</span>,<span class="string">'true'</span>]];</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrCopy</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newArr=[];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">			newArr[i]=arrCopy(arr[i]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			newArr[i]=arr[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr1);</span><br><span class="line"><span class="built_in">console</span>.log(arrCopy(arr1));</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u4E00_u4E2A_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u62F7_u8D1D_u5BF9_u8C61_u4EE5_u53CA_u5185_u90E8_u5D4C_u5957_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879"><a href="#u5199_u4E00_u4E2A_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u62F7_u8D1D_u5BF9_u8C61_u4EE5_u53CA_u5185_u90E8_u5D4C_u5957_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879" class="headerlink" title="写一个深拷贝的方法，拷贝对象以及内部嵌套的值可以是字符串、数字、布尔、数组、json对象中的任意项"></a>写一个深拷贝的方法，拷贝对象以及内部嵌套的值可以是字符串、数字、布尔、数组、json对象中的任意项</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object1 = &#123;</span><br><span class="line">	name:<span class="string">'luyoyo'</span>,</span><br><span class="line">	age:<span class="number">18</span>,</span><br><span class="line">	girl：<span class="literal">true</span>,</span><br><span class="line">	hobby:&#123;</span><br><span class="line">		<span class="string">"food"</span>:<span class="string">"rice"</span>,</span><br><span class="line">		<span class="string">"pet"</span>:<span class="string">"dog"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	arr[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonCopy</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newJson=&#123;&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> json)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> json[key] === <span class="string">'object'</span>)&#123;</span><br><span class="line">			newJson[key]=jsonCopy(json[key]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			newJson[key]=json[key];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newJson;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrCopy</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newArr=[];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">			newArr[i]=arrCopy(arr[i]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			newArr[i]=arr[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newArr;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">objCopy</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newObj=&#123;&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> obj[key] === <span class="string">"object"</span>)&#123;</span><br><span class="line">			newObj[key]= jsonCopy(obj[key]);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(obj[key] <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">			newObj[key]=arrCopy(obj[key]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			newObj[key]=obj[key];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/" rel="next" title="【学习记录】DAY18-数组-字符串-数字类型">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY18-数组-字符串-数字类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/03/【学习记录】DAY20-闭包-定时器/" rel="prev" title="【学习记录】DAY20-闭包-定时器">
+                【学习记录】DAY20-闭包-定时器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/01/【学习记录】DAY19-时间对象-引用类型/"
+           data-title="【学习记录】DAY19-时间对象-引用类型" data-url="http://chenlu.win/2016/03/01/【学习记录】DAY19-时间对象-引用类型/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u95EE_u9898"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u57FA_u7840_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u590D_u6742_u7C7B_u578B_u6709_u54EA_u4E9B_uFF1F_u6709_u4EC0_u4E48_u7279_u5F81_uFF1F"><span class="nav-number">1.0.1.</span> <span class="nav-text">基础类型有哪些？复杂类型有哪些？有什么特征？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570getIntv_uFF0C_u83B7_u53D6_u4ECE_u5F53_u524D_u65F6_u95F4_u5230_u6307_u5B9A_u65E5_u671F_u7684_u95F4_u9694_u65F6_u95F4"><span class="nav-number">2.0.1.</span> <span class="nav-text">写一个函数getIntv，获取从当前时间到指定日期的间隔时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u628A_u6570_u5B57_u65E5_u671F_u6539_u6210_u4E2D_u6587_u65E5_u671F"><span class="nav-number">2.0.2.</span> <span class="nav-text">把数字日期改成中文日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u51FD_u6570_u83B7_u53D6n_u5929_u524D_u7684_u65E5_u671F"><span class="nav-number">2.0.3.</span> <span class="nav-text">写一个函数获取n天前的日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B8C_u5584_u5982_u4E0B_u4EE3_u7801_uFF0C_u5982_uFF1A"><span class="nav-number">2.0.4.</span> <span class="nav-text">完善如下代码，如：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u697C_u68AF_u6709200_u7EA7_uFF0C_u6BCF_u6B21_u8D701_u7EA7_u6216_u662F2_u7EA7_uFF0C_u4ECE_u5E95_u8D70_u5230_u9876_u4E00_u5171_u6709_u591A_u5C11_u79CD_u8D70_u6CD5_uFF1F_u7528_u4EE3_u7801_uFF08_u9012_u5F52_uFF09_u5B9E_u73B0"><span class="nav-number">2.0.5.</span> <span class="nav-text">楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2Ajson_u5BF9_u8C61_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0Cjson_u5BF9_u8C61_u53EF_u4EE5_u591A_u5C42_u5D4C_u5957_uFF0C_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879"><span class="nav-number">2.0.6.</span> <span class="nav-text">写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u6570_u7EC4_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u6570_u7EC4_u91CC_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u4E2D_u7684_u4EFB_u610F_u9879_u76EE"><span class="nav-number">2.0.7.</span> <span class="nav-text">写一个数组深拷贝的方法，数组里的值可以是字符串、数字、布尔、数组中的任意项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u4E00_u4E2A_u6DF1_u62F7_u8D1D_u7684_u65B9_u6CD5_uFF0C_u62F7_u8D1D_u5BF9_u8C61_u4EE5_u53CA_u5185_u90E8_u5D4C_u5957_u7684_u503C_u53EF_u4EE5_u662F_u5B57_u7B26_u4E32_u3001_u6570_u5B57_u3001_u5E03_u5C14_u3001_u6570_u7EC4_u3001json_u5BF9_u8C61_u4E2D_u7684_u4EFB_u610F_u9879"><span class="nav-number">2.0.8.</span> <span class="nav-text">写一个深拷贝的方法，拷贝对象以及内部嵌套的值可以是字符串、数字、布尔、数组、json对象中的任意项</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

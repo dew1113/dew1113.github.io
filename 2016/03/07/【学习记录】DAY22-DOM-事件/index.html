@@ -1,0 +1,787 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="问答1.dom对象的innerText和innerHTML有什么区别？
+innerText 设置或获取位于对象起始和结束标签内的文本
+innerHTML 设置或获取位于对象起始和结束标签内的HTML
+
+123456789101112131415&amp;lt;!DOCTYPE html&amp;gt;  &amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;meta charset= &apos;utf-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY22-DOM事件">
+<meta property="og:url" content="http://chenlu.win/2016/03/07/【学习记录】DAY22-DOM-事件/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="问答1.dom对象的innerText和innerHTML有什么区别？
+innerText 设置或获取位于对象起始和结束标签内的文本
+innerHTML 设置或获取位于对象起始和结束标签内的HTML
+
+123456789101112131415&amp;lt;!DOCTYPE html&amp;gt;  &amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;meta charset= &apos;utf-">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/04141.PNG">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/041501.png">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/041801.PNG">
+<meta property="og:updated_time" content="2016-05-28T08:59:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY22-DOM事件">
+<meta name="twitter:description" content="问答1.dom对象的innerText和innerHTML有什么区别？
+innerText 设置或获取位于对象起始和结束标签内的文本
+innerHTML 设置或获取位于对象起始和结束标签内的HTML
+
+123456789101112131415&amp;lt;!DOCTYPE html&amp;gt;  &amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;meta charset= &apos;utf-">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY22-DOM事件 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY22-DOM事件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-07T22:16:37+08:00" content="2016-03-07">
+              2016-03-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/07/【学习记录】DAY22-DOM-事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/【学习记录】DAY22-DOM-事件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="u95EE_u7B54"><a href="#u95EE_u7B54" class="headerlink" title="问答"></a>问答</h1><h3 id="1-dom_u5BF9_u8C61_u7684innerText_u548CinnerHTML_u6709_u4EC0_u4E48_u533A_u522B_uFF1F"><a href="#1-dom_u5BF9_u8C61_u7684innerText_u548CinnerHTML_u6709_u4EC0_u4E48_u533A_u522B_uFF1F" class="headerlink" title="1.dom对象的innerText和innerHTML有什么区别？"></a>1.dom对象的innerText和innerHTML有什么区别？</h3><ul>
+<li>innerText 设置或获取位于对象起始和结束标签内的文本</li>
+<li>innerHTML 设置或获取位于对象起始和结束标签内的HTML</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>= '<span class="attribute">utf-8</span>'&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>innerText与innerHTML的区别<span class="tag">&lt;/<span class="title">title</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"test1"</span>&gt;</span>div文字<span class="tag">&lt;<span class="title">span</span>&gt;</span>span文字<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">  </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'innerHTML:'</span>+test1.innerHTML);     <span class="comment">//输出：div文字&lt;span&gt;span文字&lt;/span&gt;</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'innerText:'</span>+test1.innerText);    <span class="comment">//输出：div文字span文字</span></span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <a id="more"></a>
+<p> ① innerHTML获取对象起始和结束标签内的 HTML，即这里的对象是div标签，亦即这个标签里面所有的内容包含span标签也获取出来，即<br> “div文字<code>&lt;span&gt;</code>span文字<code>&lt;/span&gt;</code>”（注意HTML这个字的意思，也就是结构）   </p>
+<p> ②  innerText是获取<code>&lt;div&gt; &lt;/div&gt;</code>标签里的文本内容，去除掉了<code>&lt;div&gt;</code> ,<code>&lt;span&gt;</code>标签，只显示div,span标签里的文本内容，即 “div文字span文字”（注意Text这个字的意思，也就是文本） </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> //设置的区别</span><br><span class="line"> <span class="doctype">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>= '<span class="attribute">utf-8</span>'&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>innerText与innerHTML的区别<span class="tag">&lt;/<span class="title">title</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"test_id1"</span> <span class="attribute">onclick</span>=<span class="value">"innerHTMLDemo()"</span>&gt;</span>innerHTML效果.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>   </span><br><span class="line">　  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"test_id2"</span> <span class="attribute">onclick</span>=<span class="value">"innerTextDemo()"</span>&gt;</span>innerText效果.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>   </span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="handlebars"><span class="xml">  </span><br><span class="line">　　   function innerHTMLDemo() &#123;   </span><br><span class="line">　　           　test_id1.innerHTML="<span class="tag">&lt;<span class="title">font</span> <span class="attribute">size</span>=<span class="value">9pt</span> <span class="attribute">color</span>=<span class="value">red</span>&gt;</span><span class="tag">&lt;<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">u</span>&gt;</span>设置或获取对象及其内容的 HTML 形式.<span class="tag">&lt;/<span class="title">u</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">font</span>&gt;</span>";   </span><br><span class="line">　　&#125;   </span><br><span class="line">　　  </span><br><span class="line">　　   function innerTextDemo() &#123;   </span><br><span class="line">　　　           test_id2.innerText="<span class="tag">&lt;<span class="title">font</span> <span class="attribute">size</span>=<span class="value">9pt</span> <span class="attribute">color</span>=<span class="value">red</span>&gt;</span><span class="tag">&lt;<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">u</span>&gt;</span>设置或获取对象及其内容的 HTML 形式.<span class="tag">&lt;/<span class="title">u</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">font</span>&gt;</span>";  </span><br><span class="line">　　&#125; </span><br><span class="line">    </span></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/04141.PNG" alt="插图"></p>
+<p>如图所示，点击以后，innerHTML会把样式显示出来，而innerText只是直接把””里的样式内容显示出来了。简单地说,innerHTML在设置对象的内容时包含的HTML会被解析，而innerText则不会。     </p>
+<p>另外，innerHTML是符合W3C标准的属性，而innerText只适用于IE浏览器，因此尽量适用innerHTML,少用innerText，如果要输出不含HTML标签的内容，可以用正则表达式去除HTML标签。</p>
+<h3 id="2-elem-children_u548Celem-childNodes_u7684_u533A_u522B_uFF1F"><a href="#2-elem-children_u548Celem-childNodes_u7684_u533A_u522B_uFF1F" class="headerlink" title="2.elem.children和elem.childNodes的区别？"></a>2.elem.children和elem.childNodes的区别？</h3><ul>
+<li>children: 非标准的，它返回指定元素的子元素集合。经测试，它只返回HTML节点，甚至不返回文本节点。</li>
+<li>childNodes: 标准的，它返回指定元素的子元素集合，包括HTML节点，所有属性，文本。可以通过nodeType来判断是哪种类型的节点，只有当nodeType==1时才是元素节点，2是属性节点，3是文本节点。  </li>
+</ul>
+<h3 id="3-_u67E5_u8BE2_u5143_u7D20_u6709_u51E0_u79CD_u5E38_u89C1_u7684_u65B9_u6CD5_uFF1F"><a href="#3-_u67E5_u8BE2_u5143_u7D20_u6709_u51E0_u79CD_u5E38_u89C1_u7684_u65B9_u6CD5_uFF1F" class="headerlink" title="3.查询元素有几种常见的方法？"></a>3.查询元素有几种常见的方法？</h3><ul>
+<li><code>document.querySlector()</code> 返回匹配指定的CSS选择器的 元素节点 。如果有多个节点满足匹配条件，则返回第一个匹配的节点。如果没有发现匹配的节点，则返回null。</li>
+<li><code>document.querySelectorAll()</code> 返回匹配指定的CSS选择器的 所有节点 ，返回的是NodeList类型的对象；NodeList对象不是动态集合，所以元素节点的变化无法实时反映在返回结果中。</li>
+<li><code>document.getElementById()</code>返回指定的ID属性的子元素节点，找不到匹配则返回null，对大小写敏感；</li>
+<li><code>document.getElementsByClassName()</code> 该方法返回一个类数组对象，包括了所有class名字符合指定条件的元素（搜索范围包括本身），元素的变化实时反映在返回结果中。这个方法不仅可以在document对象上调用，也可以在任何元素节点上调用。</li>
+<li><code>document.getElementsByTagName()</code> 返回带有指定标签名的对象的集合，返回元素的顺序是它们在文档中的顺序，对大小写不敏感，搜索结果是一个动态集合，任何元素的变化都会实时反映在返回的集合中.</li>
+<li><code>document.getElementByName()</code>  返回带有指定名称的对象的集合（一个NodeList格式的对象），该方法与 getElementById() 方法相似，但是它查询元素的name 属性，而不是 id 属性。另外，因为一个文档中的 name 属性可能不唯一（如 HTML 表单中的单选按钮通常具有相同的 name 属性），所有返回的是元素的 数组，而不是一个元素，不会实时反映元素的变化</li>
+</ul>
+<h3 id="4-_u5982_u4F55_u521B_u5EFA_u4E00_u4E2A_u5143_u7D20_uFF1F_u5982_u4F55_u7ED9_u5143_u7D20_u8BBE_u7F6E_u5C5E_u6027_uFF1F"><a href="#4-_u5982_u4F55_u521B_u5EFA_u4E00_u4E2A_u5143_u7D20_uFF1F_u5982_u4F55_u7ED9_u5143_u7D20_u8BBE_u7F6E_u5C5E_u6027_uFF1F" class="headerlink" title="4.如何创建一个元素？如何给元素设置属性？"></a>4.如何创建一个元素？如何给元素设置属性？</h3><ul>
+<li><code>document.createElement(tagname)</code>————创建标签名为tagname的元素</li>
+<li><code>document.createDocumentFragment()</code>————创建文档碎片节点</li>
+<li><code>document.createTextNode(text)</code>————创建包含文本text的文本节点</li>
+<li><code>&lt;element&gt;.getAttribute(name)</code>————  获取name元素的属性</li>
+<li><code>&lt;element&gt;.setAttribute(name,value)</code>————  设置name元素的值</li>
+</ul>
+<h3 id="5-_u5143_u7D20_u7684_u6DFB_u52A0_u3001_u5220_u9664_uFF1F"><a href="#5-_u5143_u7D20_u7684_u6DFB_u52A0_u3001_u5220_u9664_uFF1F" class="headerlink" title="5.元素的添加、删除？"></a>5.元素的添加、删除？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">createElement(),createTextNode(),appendChild()</span><br><span class="line">//元素的添加</span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createMessage</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">         <span class="keyword">var</span> oP=<span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">         <span class="keyword">var</span> oText=<span class="built_in">document</span>.createTextNode(<span class="string">'hello world!'</span>);</span><br><span class="line">         oP.appendChild(oText);</span><br><span class="line">         <span class="built_in">document</span>.body.appendChild(oP);  </span><br><span class="line">    &#125;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>  <span class="attribute">onload</span>=<span class="value">'createMessage()'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">removeChild(),replaceChild(),insertBefore()</span><br><span class="line">//元素的删除</span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">removeMessage</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">         <span class="keyword">var</span> oP=<span class="built_in">document</span>.body.getElementsByTagName(<span class="string">'p'</span>)[<span class="number">0</span>];</span><br><span class="line">         oP.parentNode.removeChild(oP);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span> <span class="attribute">onload</span>=<span class="value">'removeMessage()'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-DOM0_u4E8B_u4EF6_u4E0EDOM2_u7EA7_u5728_u4E8B_u4EF6_u76D1_u542C_u4F7F_u7528_u65B9_u5F0F_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F"><a href="#6-DOM0_u4E8B_u4EF6_u4E0EDOM2_u7EA7_u5728_u4E8B_u4EF6_u76D1_u542C_u4F7F_u7528_u65B9_u5F0F_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F" class="headerlink" title="6.DOM0事件与DOM2级在事件监听使用方式上有什么区别？"></a>6.DOM0事件与DOM2级在事件监听使用方式上有什么区别？</h3><ul>
+<li>DOM0级方法指定的事件监听被认为是元素的方法，因此是在元素的作用域中运行，换句话说程序中的this引用当前元素。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById(<span class="string">'mybtn'</span>);   <span class="comment">//获取该按钮</span></span><br><span class="line">btn.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'this.id'</span>);     <span class="comment">//mybtn</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以在事件监听中通过this访问元素的任何属性和方法，以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。可以删除通过DOM0级方法指定的事件处理程序，只要将事件处理程序属性的值设为null即可。 <code>btn.onclick=null; //删除事件处理程序</code></p>
+</blockquote>
+<ul>
+<li>DOM2级：定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListener()和removeEventListener()。所有DOM节点中都包含这两个方法，并且它们都接受三个参数:要处理的事件名、作为事件处理程序的函数和布尔值。最后这个布尔值如果是true，表示在捕获阶段调用事件处理程序；如果是false,表示在冒泡阶段调用事件处理程序。与DOM0级方法一样，DOM2级方法添加的事件处理程序也是在其依附的元素的作用域中进行的。使用DOM2级方法添加事件的好处是可以添加多个事件处理程序，例如:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.id);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>,functiong()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'hello world!'</span>);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里为按钮多添加了两个事件处理程序，这两个事件处理程序会按照添加它们的顺序出发，因此会先显示元素ID，再显式’hello world!’。通过addEventListener()添加的事件处理程序只能用removeEventListener()来移除；移除是传入的参数与添加处理程序时使用的参数相同。这也意味着通过addEventListener()添加的匿名函数无法移除：例如</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById(<span class="string">'mybtn'</span>);</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.id);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br><span class="line">btn.removeEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.id);</span><br><span class="line">&#125;,<span class="literal">false</span>);                 <span class="comment">//无法移除</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById(<span class="string">'mybtn'</span>);</span><br><span class="line"><span class="keyword">var</span> handler= = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="keyword">this</span>.id);</span><br><span class="line">&#125;;</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>,handler,<span class="literal">false</span>);</span><br><span class="line">btn.removeEventListener(<span class="string">'click'</span>,handler,<span class="literal">false</span>);     <span class="comment">//成功移除</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-attachEvent_u548CaddEventListener_u7684_u533A_u522B"><a href="#7-attachEvent_u548CaddEventListener_u7684_u533A_u522B" class="headerlink" title="7.attachEvent和addEventListener的区别"></a>7.attachEvent和addEventListener的区别</h3><ul>
+<li><p>一、适应的浏览器版本不同<br>  attachEvent是IE私有的，不符合W3C规范，而且在IE下，只能使用它来绑定事件，addEventListener是无效的。所以，要想绑定事件，必须处理兼容性问题。addEventListener是符合W3C规范的事件绑定方法，FireFox、Chrome、Safari都是用它来绑定事件。</p>
+</li>
+<li><p>二、针对的事件不同<br> attachEvent中的事件带on，而addEventListener中的事件不带on</p>
+</li>
+<li><p>三、参数的个数不同<br>   attachEvent方法两个参数：第一个参数为事件名称，第二个参数为接收事件处理的函数； addEventListener 有三个参数：第一个参数表示事件名称（不含 on，如 “click”）；第二个参数表示要接收事件处理的函数；第三个参数是一个bool值，一般为false。第三个参数叫做useCapture，是一个boolean值，如果输出true的话就是瀏览器会使用Capture方式，false的话是Bubbling，只有在特定状况下才会有影响，通常建议是false，而会有影响的情形是目标元素(target element)有祖先元素(ancestor element)，而且也有同样的事件对应函数，看图会比较清楚。<br>   <img src="http://7xt1vz.com2.z0.glb.clouddn.com/041501.png" alt="插图"><br>   如图，这有两层div元素，而且都设定有click事件，一般来说，如果我在内层蓝色的元素上click不只会触发蓝色元素的click事件，还会同时触发红色元素的click事件，而useCapture这个参数就是在控制这时候两个click事件的先后顺序。如果是false，那就会使用bubbling，他是从内而外的流程，所以会先执行蓝色元素的click事件再执行红色元素的click事件，如果是true，那就是capture，和bubbling相反是由外而内，会先执行红色元素的click事件才执行蓝色元素的click事件。capture和bubbling，两个档案只有差在此一参数不同，可以发现事件的发生顺序不一样了。那如果不同层的元素使用的useCapture不同呢？就是会先从最外层元素往目标元素寻找设定为capture的事件，到达目标元素执行目标元素的事件后，再寻原路往外寻找设定为bubbling的事件。</p>
+</li>
+<li><p>四、执行事件的优先级不同</p>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick= method1; </span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick= method2; </span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick= method3; <span class="comment">//如果这样写,只执行method3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">varbtn1Obj = document.getElementById(<span class="string">"btn1"</span>);</span><br><span class="line">btn1Obj.attachEvent(<span class="string">"onclick"</span>,method1); </span><br><span class="line">btn1Obj.attachEvent(<span class="string">"onclick"</span>,method2); </span><br><span class="line">btn1Obj.attachEvent(<span class="string">"onclick"</span>,method3);        <span class="regexp">//</span>执行顺序为method3-&gt;method2-&gt;method1</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn1Obj =<span class="built_in">document</span>.getElementById(<span class="string">"btn1"</span>); </span><br><span class="line">btn1Obj.addEventListener(<span class="string">"click"</span>,method1,<span class="keyword">false</span>); </span><br><span class="line">btn1Obj.addEventListener(<span class="string">"click"</span>,method2,<span class="keyword">false</span>); </span><br><span class="line">btn1Obj.addEventListener(<span class="string">"click"</span>,method3,<span class="keyword">false</span>);         <span class="comment">//执行顺序为method1-&gt;method2-&gt;method3</span></span><br></pre></td></tr></table></figure>
+<p>根据 info 的显示来确定触发的顺序，有三个 addEventListener，而 useCapture 可选值为 true 和 false，所以 2<em>2</em>2，可以得出 8 段不同的程序。<br>全为 false 时，触发顺序为：inDiv、middleDiv、outDiv；<br>全为 true3ed 时，触发顺序为：outDiv、middleDiv、inDiv；<br>outDiv 为 true，其他为 false 时，触发顺序为：outDiv、inDiv、middleDiv；<br>middleDiv 为 true，其他为 false 时，触发顺序为：middleDiv、inDiv、outDiv；<br>……<br>最终得出如下结论：<br>true 的触发顺序总是在 false 之前；<br>如果多个均为 true，则外层的触发先于内层；<br>如果多个均为 false，则内层的触发先于外层。</p>
+<h3 id="8-_u89E3_u91CAIE_u4E8B_u4EF6_u5192_u6CE1_u548CDOM2_u4E8B_u4EF6_u4F20_u64AD_u673A_u5236_uFF1F"><a href="#8-_u89E3_u91CAIE_u4E8B_u4EF6_u5192_u6CE1_u548CDOM2_u4E8B_u4EF6_u4F20_u64AD_u673A_u5236_uFF1F" class="headerlink" title="8.解释IE事件冒泡和DOM2事件传播机制？"></a>8.解释IE事件冒泡和DOM2事件传播机制？</h3><ul>
+<li>DOM2级事件传播包含三个阶段：<br> 1.捕捉阶段（capturing），事件从顶级文档树节点一级一级向下遍历，直到到达该事件的目标节点。<br> 2.到达事件的目标节点，执行目标节点的时间处理程序。<br> 3.事件冒泡（bubbling），事件从目标节点一级一级向上上溯，直到顶级文档树节点<br> <img src="http://7xt1vz.com2.z0.glb.clouddn.com/041801.PNG" alt="插图"></li>
+<li>IE只支持事件冒泡，不支持事件捕获。而且不支持addEventListener()，仅支持attachEvent.</li>
+</ul>
+<h3 id="9-_u5982_u4F55_u963B_u6B62_u4E8B_u4EF6_u5192_u6CE1_uFF1F__u5982_u4F55_u963B_u6B62_u9ED8_u8BA4_u4E8B_u4EF6_uFF1F"><a href="#9-_u5982_u4F55_u963B_u6B62_u4E8B_u4EF6_u5192_u6CE1_uFF1F__u5982_u4F55_u963B_u6B62_u9ED8_u8BA4_u4E8B_u4EF6_uFF1F" class="headerlink" title="9.如何阻止事件冒泡？ 如何阻止默认事件？"></a>9.如何阻止事件冒泡？ 如何阻止默认事件？</h3><ul>
+<li><p>事件兼容<br><code>function myfn(e){var evt= e ? e :window.event;}</code></p>
+</li>
+<li><p>JS停止冒泡<br><code>window.event? window.event.cancelBubble =true : evt.stopPropagation();</code></p>
+</li>
+<li><p>JS阻止默认事件<br>  <code>window.event? widow.event.returnValue=false :evt.preventDefault();</code></p>
+</li>
+</ul>
+<blockquote>
+<p>防止冒泡   </p>
+</blockquote>
+<p>w3c的方法是<code>e.stopPropagation()</code>，IE则是使用<code>e.cancelBubble = true</code>; </p>
+<p><code>stopPropagation</code>也是事件对象的一个方法，作用是阻止目标元素的冒泡事件，但是不会阻止默认行为。</p>
+<blockquote>
+<p>阻止默认行为     </p>
+</blockquote>
+<p> w3c的方法是<code>e.preventDefault()</code>，IE则是使用<code>e.returnValue = false</code>;</p>
+<p><code>preventDefault</code>它是事件对象(Event)的一个方法，作用是取消一个目标元素的默认行为。既然是说默认行为，当然是元素必须有默认行为才能被取消，如果元素本身就没有默认行为，调用当然就无效了。什么元素有默认行为呢？如链接<code>&lt;a&gt;</code>，提交按钮<code>&lt;input type=”submit”&gt;</code>等。当Event 对象的 <code>cancelable</code>为false时，表示没有默认行为，这时即使有默认行为，调用<code>preventDefault</code>也是不会起作用的。</p>
+<h1 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h1><h3 id="1-_u6709_u5982_u4E0B_u4EE3_u7801_uFF0C_u8981_u6C42_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002_u4E0D_u8003_u8651_u517C_u5BB9"><a href="#1-_u6709_u5982_u4E0B_u4EE3_u7801_uFF0C_u8981_u6C42_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002_u4E0D_u8003_u8651_u517C_u5BB9" class="headerlink" title="1.有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容"></a>1.有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容</h3><p><a href="http://jsbin.com/rizaci/4/edit?html,console,output" target="_blank" rel="external">JSbin 演示</a></p>
+<h3 id="2-_u5F53_u70B9_u51FB_u6309_u94AE_u5F00_u5934_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u8FD9_u91CC_u662F_26lt_3B/li_26gt_3B_u5143_u7D20_u524D_u6DFB_u52A0_u4E00_u4E2A_u65B0_u5143_u7D20_uFF0C_u5185_u5BB9_u4E3A_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32_uFF1B_u5F53_u70B9_u51FB_u7ED3_u5C3E_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u524D_u7AEF6_u73ED_26lt_3B/li_26gt_3B_u540E_u6DFB_u52A0_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32-_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002"><a href="#2-_u5F53_u70B9_u51FB_u6309_u94AE_u5F00_u5934_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u8FD9_u91CC_u662F_26lt_3B/li_26gt_3B_u5143_u7D20_u524D_u6DFB_u52A0_u4E00_u4E2A_u65B0_u5143_u7D20_uFF0C_u5185_u5BB9_u4E3A_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32_uFF1B_u5F53_u70B9_u51FB_u7ED3_u5C3E_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u524D_u7AEF6_u73ED_26lt_3B/li_26gt_3B_u540E_u6DFB_u52A0_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32-_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002" class="headerlink" title="2.当点击按钮开头添加时在&lt;li&gt;这里是&lt;/li&gt;元素前添加一个新元素，内容为用户输入的非空字符串；当点击结尾添加时在&lt;li&gt;前端6班&lt;/li&gt;后添加用户输入的非空字符串.当点击每一个元素li时控制台展示该元素的文本内容。"></a>2.当点击按钮开头添加时在<code>&lt;li&gt;</code>这里是<code>&lt;/li&gt;</code>元素前添加一个新元素，内容为用户输入的非空字符串；当点击结尾添加时在<code>&lt;li&gt;</code>前端6班<code>&lt;/li&gt;</code>后添加用户输入的非空字符串.当点击每一个元素li时控制台展示该元素的文本内容。</h3><p><a href="http://jsbin.com/rizaci/3/edit?html,output" target="_blank" rel="external">JSbin 演示</a></p>
+<h3 id="3-_u8865_u5168_u4EE3_u7801_uFF0C_u8981_u6C42_uFF1A_u5F53_u9F20_u6807_u653E_u7F6E_u5728li_u5143_u7D20_u4E0A_uFF0C_u4F1A_u5728img-preview_u91CC_u5C55_u793A_u5F53_u524Dli_u5143_u7D20_u7684data-img_u5BF9_u5E94_u7684_u56FE_u7247_u3002"><a href="#3-_u8865_u5168_u4EE3_u7801_uFF0C_u8981_u6C42_uFF1A_u5F53_u9F20_u6807_u653E_u7F6E_u5728li_u5143_u7D20_u4E0A_uFF0C_u4F1A_u5728img-preview_u91CC_u5C55_u793A_u5F53_u524Dli_u5143_u7D20_u7684data-img_u5BF9_u5E94_u7684_u56FE_u7247_u3002" class="headerlink" title="3.补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。"></a>3.补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。</h3><p><a href="http://jsbin.com/caxuka/1/edit?html,output" target="_blank" rel="external">JSbin演示</a></p>
+<h3 id="4-_u5B9E_u73B0_u5982_u4E0B_u56FETab_u5207_u6362_u7684_u529F_u80FD"><a href="#4-_u5B9E_u73B0_u5982_u4E0B_u56FETab_u5207_u6362_u7684_u529F_u80FD" class="headerlink" title="4.实现如下图Tab切换的功能"></a>4.实现如下图Tab切换的功能</h3><p><a href="http://jsbin.com/receci/6/edit?js,output" target="_blank" rel="external">JSbin演示</a></p>
+<h3 id="5-_u5B9E_u73B0_u4E0B_u56FE_u7684_u6A21_u6001_u6846_u529F_u80FD"><a href="#5-_u5B9E_u73B0_u4E0B_u56FE_u7684_u6A21_u6001_u6846_u529F_u80FD" class="headerlink" title="5.实现下图的模态框功能"></a>5.实现下图的模态框功能</h3><p><a href="http://jsbin.com/diziju/edit?html,css,js,output" target="_blank" rel="external">JSbin演示</a></p>
+<h1 id="github_u4EE3_u7801"><a href="#github_u4EE3_u7801" class="headerlink" title="github代码"></a><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E9%99%88%E9%9C%B2/task-22" target="_blank" rel="external">github代码</a></h1></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/05/【学习记录】DAY21-正则表达式/" rel="next" title="【学习记录】DAY21-正则表达式">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY21-正则表达式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/09/【学习记录】DAY23-熟悉后端/" rel="prev" title="【学习记录】DAY23-熟悉后端">
+                【学习记录】DAY23-熟悉后端 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/07/【学习记录】DAY22-DOM-事件/"
+           data-title="【学习记录】DAY22-DOM事件" data-url="http://chenlu.win/2016/03/07/【学习记录】DAY22-DOM-事件/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u95EE_u7B54"><span class="nav-number">1.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-dom_u5BF9_u8C61_u7684innerText_u548CinnerHTML_u6709_u4EC0_u4E48_u533A_u522B_uFF1F"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.dom对象的innerText和innerHTML有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-elem-children_u548Celem-childNodes_u7684_u533A_u522B_uFF1F"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.elem.children和elem.childNodes的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_u67E5_u8BE2_u5143_u7D20_u6709_u51E0_u79CD_u5E38_u89C1_u7684_u65B9_u6CD5_uFF1F"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.查询元素有几种常见的方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_u5982_u4F55_u521B_u5EFA_u4E00_u4E2A_u5143_u7D20_uFF1F_u5982_u4F55_u7ED9_u5143_u7D20_u8BBE_u7F6E_u5C5E_u6027_uFF1F"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.如何创建一个元素？如何给元素设置属性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_u5143_u7D20_u7684_u6DFB_u52A0_u3001_u5220_u9664_uFF1F"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.元素的添加、删除？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-DOM0_u4E8B_u4EF6_u4E0EDOM2_u7EA7_u5728_u4E8B_u4EF6_u76D1_u542C_u4F7F_u7528_u65B9_u5F0F_u4E0A_u6709_u4EC0_u4E48_u533A_u522B_uFF1F"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.DOM0事件与DOM2级在事件监听使用方式上有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-attachEvent_u548CaddEventListener_u7684_u533A_u522B"><span class="nav-number">1.0.7.</span> <span class="nav-text">7.attachEvent和addEventListener的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-_u89E3_u91CAIE_u4E8B_u4EF6_u5192_u6CE1_u548CDOM2_u4E8B_u4EF6_u4F20_u64AD_u673A_u5236_uFF1F"><span class="nav-number">1.0.8.</span> <span class="nav-text">8.解释IE事件冒泡和DOM2事件传播机制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-_u5982_u4F55_u963B_u6B62_u4E8B_u4EF6_u5192_u6CE1_uFF1F__u5982_u4F55_u963B_u6B62_u9ED8_u8BA4_u4E8B_u4EF6_uFF1F"><span class="nav-number">1.0.9.</span> <span class="nav-text">9.如何阻止事件冒泡？ 如何阻止默认事件？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u6709_u5982_u4E0B_u4EE3_u7801_uFF0C_u8981_u6C42_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002_u4E0D_u8003_u8651_u517C_u5BB9"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_u5F53_u70B9_u51FB_u6309_u94AE_u5F00_u5934_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u8FD9_u91CC_u662F_26lt_3B/li_26gt_3B_u5143_u7D20_u524D_u6DFB_u52A0_u4E00_u4E2A_u65B0_u5143_u7D20_uFF0C_u5185_u5BB9_u4E3A_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32_uFF1B_u5F53_u70B9_u51FB_u7ED3_u5C3E_u6DFB_u52A0_u65F6_u5728_26lt_3Bli_26gt_3B_u524D_u7AEF6_u73ED_26lt_3B/li_26gt_3B_u540E_u6DFB_u52A0_u7528_u6237_u8F93_u5165_u7684_u975E_u7A7A_u5B57_u7B26_u4E32-_u5F53_u70B9_u51FB_u6BCF_u4E00_u4E2A_u5143_u7D20li_u65F6_u63A7_u5236_u53F0_u5C55_u793A_u8BE5_u5143_u7D20_u7684_u6587_u672C_u5185_u5BB9_u3002"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.当点击按钮开头添加时在<li>这里是</li>元素前添加一个新元素，内容为用户输入的非空字符串；当点击结尾添加时在<li>前端6班</li>后添加用户输入的非空字符串.当点击每一个元素li时控制台展示该元素的文本内容。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_u8865_u5168_u4EE3_u7801_uFF0C_u8981_u6C42_uFF1A_u5F53_u9F20_u6807_u653E_u7F6E_u5728li_u5143_u7D20_u4E0A_uFF0C_u4F1A_u5728img-preview_u91CC_u5C55_u793A_u5F53_u524Dli_u5143_u7D20_u7684data-img_u5BF9_u5E94_u7684_u56FE_u7247_u3002"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_u5B9E_u73B0_u5982_u4E0B_u56FETab_u5207_u6362_u7684_u529F_u80FD"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.实现如下图Tab切换的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_u5B9E_u73B0_u4E0B_u56FE_u7684_u6A21_u6001_u6846_u529F_u80FD"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.实现下图的模态框功能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github_u4EE3_u7801"><span class="nav-number">3.</span> <span class="nav-text">github代码</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

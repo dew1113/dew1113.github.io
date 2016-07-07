@@ -1,0 +1,792 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="【1.函数声明和函数表达式有什么区别？】
+函数声明：使用function关键字声明一个函数，再指定一个函数名，叫函数声明。
+
+1function foo()&amp;#123;&amp;#125;
+
+函数表达式：使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY17-函数">
+<meta property="og:url" content="http://chenlu.win/2016/02/26/【学习记录】DAY17-函数/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="【1.函数声明和函数表达式有什么区别？】
+函数声明：使用function关键字声明一个函数，再指定一个函数名，叫函数声明。
+
+1function foo()&amp;#123;&amp;#125;
+
+函数表达式：使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。">
+<meta property="og:updated_time" content="2016-05-28T08:54:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY17-函数">
+<meta name="twitter:description" content="【1.函数声明和函数表达式有什么区别？】
+函数声明：使用function关键字声明一个函数，再指定一个函数名，叫函数声明。
+
+1function foo()&amp;#123;&amp;#125;
+
+函数表达式：使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY17-函数 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY17-函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-26T23:30:30+08:00" content="2016-02-26">
+              2016-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/26/【学习记录】DAY17-函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/26/【学习记录】DAY17-函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="u30101-_u51FD_u6570_u58F0_u660E_u548C_u51FD_u6570_u8868_u8FBE_u5F0F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011"><a href="#u30101-_u51FD_u6570_u58F0_u660E_u548C_u51FD_u6570_u8868_u8FBE_u5F0F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011" class="headerlink" title="【1.函数声明和函数表达式有什么区别？】"></a>【1.函数声明和函数表达式有什么区别？】</h3><ul>
+<li>函数声明：使用function关键字声明一个函数，再指定一个函数名，叫函数声明。</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数表达式：使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。 <a id="more"></a>
+</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这两种方法都创建了名为<code>foo</code>的函数，但是还是有区别的。JavaScript解释器中存在一种变量声明被提升的机制，也就是说变量（函数）的声明会被提升到作用域的最前面，及时写代码的时候是写在后面，也还是会被提升至最前面。<br>        <!--more--><br>例如下面代码:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert(foo); // <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">alert(bar); // undefined</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">var bar = <span class="function"><span class="keyword">function</span> <span class="title">bar_fn</span><span class="params">()</span></span> &#123;&#125;;</span><br><span class="line">alert(foo); // <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">alert(bar); // <span class="function"><span class="keyword">function</span> <span class="title">bar_fn</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果分别是<code>function foo(){}</code>、<code>undefined</code>、<code>function foo(){}</code>和<code>function bar_fn({})</code>。  </p>
+<p>  可以看到<code>foo</code>的声明是写在 <code>alert</code> 之后，仍然可以被正确调用，因为 JavaScript 解释器会将其提升到 <code>alert</code> 前面，而以函数表达式创建的函数 <code>bar</code> 则不享受此待遇。</p>
+<p>那么<code>bar</code> 究竟有没有被提升呢，其实用 <code>var</code> 声明的变量都会被提升，只不过是被先赋值为 <code>undefined</code>罢了，所以第二个 <code>alert</code> 弹出了 <code>undefined</code>。</p>
+<p>所以，JavaScript 引擎执行以上代码的顺序可能是这样的：</p>
+<p>1.创建变量 <code>foo</code> 和 <code>bar</code>，并将它们都赋值为 <code>undefined</code>。<br>2.创建函数 <code>foo</code> 的函数体，并将其赋值给变量 <code>foo</code>。<br>3.执行前面的两个 <code>alert</code>。<br>4.创建函数 <code>bar_fn</code>，并将其赋值给<code>bar</code>。<br>5.执行后面的两个 <code>alert</code>。</p>
+<h3 id="u30102-_u4EC0_u4E48_u662F_u53D8_u91CF_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u4EC0_u4E48_u662F_u51FD_u6570_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u3011"><a href="#u30102-_u4EC0_u4E48_u662F_u53D8_u91CF_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u4EC0_u4E48_u662F_u51FD_u6570_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u3011" class="headerlink" title="【2.什么是变量的声明前置？什么是函数的声明前置？】"></a>【2.什么是变量的声明前置？什么是函数的声明前置？】</h3><ul>
+<li>变量的声明前置<br>JS的函数作用域是指在函数内声明的所有变量在函数体内始终是可见的，这就意味着变量在声明之前甚至已经可用，即JS函数里声明的所有变量（但不涉及赋值）都被提前至函数体的顶部。例如：  </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a=<span class="number">3</span>;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(a);   <span class="comment">//undefined</span></span><br><span class="line">         <span class="keyword">var</span> a=<span class="number">4</span>;</span><br><span class="line">         consloe.log(a);   <span class="comment">//4</span></span><br><span class="line">    &#125;)()</span><br><span class="line">    <span class="built_in">console</span>.log(a)      <span class="comment">//3</span></span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line">  </span><br><span class="line"> * 函数的声明前置</span><br><span class="line">   和变量的声明会前置一样，函数声明同样会前置，如果我们使用函数表达式那么规则和变量一样.</span></span><br></pre></td></tr></table></figure>
+<p>   console.log(fn);   //undefined<br>   var fn = function(){}<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">3.</span>arguments是什么】</span></span><br><span class="line">  arguments是一个类数组对象，代表传给function的参数列表。arguments对象是函数内部的本地变量；arguments已经不再是函数的属性了。可以在函数内部通过使用arguments对象来获取函数的所有参数。这个对象为传递给函数的每个参数建立一个条目，条目的索引号从<span class="number">0</span>开始。例如，如果一个函数有三个参数，你可以通过以下方式获取参数：</span><br><span class="line"></span><br><span class="line">&gt;  <span class="number">1</span> | arguments[<span class="number">0</span>]   </span><br><span class="line">&gt;  <span class="number">2</span> | arguments[<span class="number">1</span>]  </span><br><span class="line">&gt;  <span class="number">3</span> | arguments[<span class="number">2</span>]   </span><br><span class="line">  </span><br><span class="line">  参数也可以被重新赋值：</span><br><span class="line">&gt;  <span class="number">1</span> | arguments[<span class="number">1</span>]=<span class="string">"new value"</span>;</span><br><span class="line"></span><br><span class="line"> arguments对象并不是一个真正的`Arrey`。它类似于数组，但没有数组所特有的属性和方法，除了`length`。`arguments`对象仅在函数内部有效，在函数外部调用arguments对象会出现一个错误。如果你调用一个函数，当这个函数的参数数量比它显式声明的参数数量更多的时候，你就可以使用`arguments`对象。当这个技术对于参数数量是一个可变量的函数来说比较有用。你可以用`arguments.length`来得到参数的数量，然后可以用arguments object来对每个参数进行处理。  </span><br><span class="line"> </span><br><span class="line"><span class="preprocessor">### 【<span class="number">4.</span>函数的重载】 </span></span><br><span class="line">  从语言角度来说，javascript不支持函数重载，不能够定义同样的函数然后通过编译器去根据不同的参数执行不同的函数。</span><br><span class="line"></span><br><span class="line">但是javascript却可以通过自身属性去模拟函数重载。下面是比较常见的一段多个参数的加法运算：</span><br></pre></td></tr></table></figure></p>
+<p>  function sum(){<br>     var s=0;<br>     for(var i=0;i<arguments.length;i++){ 1="" 3="" 6="" s+="arguments[i];" }="" console.log(s);="" sum(1);="" sunm(1,2);="" sunm(1,2,3);="" <figure="" class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">### 【5.立刻执行函数表达式是什么？有什么作用】</span></span><br><span class="line">  立刻执行函数表达式  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">*</span><span class="keyword">*</span>方式一<span class="keyword">*</span><span class="keyword">*</span>：</span><br></pre></td></tr></table></arguments.length;i++){></p>
+<pre><code>(function(){  
+   console.log(&apos;test&apos;);
+})();
+</code></pre><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span>方式二<span class="keyword">*</span><span class="keyword">*</span>：</span><br></pre></td></tr></table></figure>
+<pre><code>(function(){ 
+console.log(&apos;test&apos;);
+}());
+</code></pre><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span>作用：<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span> 模拟块作用域 众所周知，JavaScript没有C或Java中的块作用域（block），只有函数作用域，在同时调用多个库的情况下，很容易造成对象或者变量的覆盖，比如：</span><br></pre></td></tr></table></figure>
+<p>liba.js</p>
+<p>var num = 1;<br>// code….<br>libb.js</p>
+<p>var num = 2;<br>// code….<br>如果在页面中同时引用liba.js和liba.js两个库，必然导致num变量被覆盖，为了解决这个问题，可以通过IIFE来解决：</p>
+<p>liba.js</p>
+<p>(function(){<br>    var num = 1;<br>    // code….<br>})();<br>libb.js</p>
+<p>(function(){<br>    var num = 2;<br>    // code….<br>})();<br>经过改造之后，两个库的代码就完全独立，并不会互相影响。<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">* </span>解决闭包冲突   </span><br><span class="line"><span class="code">  闭包（closure）是JavaScript的一个语言特性，简单来说就是在函数内部所定义的函数可以持有外层函数的执行环境，即使在外层函数已经执行完毕的情况下，在这里就不详细介绍了，感兴趣的可以自行Google。我们这里只举一个由闭包引起的最常见的问题：</span></span><br></pre></td></tr></table></figure></p>
+<p>var f1 = function() {<br>    var res = [];<br>    var fun = null;<br>    for(var i = 0; i &lt; 10; i++) {<br>        fun = function() { console.log(i);};//产生闭包<br>        res.push(fun);<br>    }</p>
+<pre><code>return res;
+</code></pre><p>}</p>
+<p>// 会输出10个10，而不是预期的0 1 2 3 4 5 6 7 8 9<br>var res = f1();<br>for(var i = 0; i &lt; res.length; i++) {<br>    res<a href="/">i</a>;<br>}<br>修改成：</p>
+<p>var f1 = function() {<br>    var res = [];<br>    for(var i = 0; i &lt; 10; i++) {<br>        // 添加一个IIFE<br>        (function(index) {<br>            fun = function() {console.log(index);};<br>            res.push(fun);<br>        })(i);<br>    }</p>
+<pre><code>return res;
+</code></pre><p>}</p>
+<p>// 输出结果为0 1 2 3 4 5 6 7 8 9<br>var res = f1();<br>for(var i = 0; i &lt; res.length; i++) {<br>    res<a href="/">i</a>;<br>}<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【6.什么是函数的作用域链】</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 代码</span></span><br><span class="line"><span class="preprocessor">### 【1.以下代码输出什么？】</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>function getInfo(name, age, sex){
+    console.log(&apos;name:&apos;,name);
+    console.log(&apos;age:&apos;, age);
+    console.log(&apos;sex:&apos;, sex);
+    console.log(arguments);
+    arguments[0] = &apos;valley&apos;;
+    console.log(&apos;name&apos;, name);
+}
+
+getInfo(&apos;hunger&apos;, 28, &apos;男&apos;); //name:hunger  age:28  sex:男  [&apos;hunger&apos;,28,&apos;男&apos;]   name:valley
+
+getInfo(&apos;hunger&apos;, 28);   //name:hunger age:28 sex:undefined [&apos;hunger&apos;,&apos;男&apos;]  name:valley
+
+getInfo(&apos;男&apos;);   //name:男  age:undefined  sex:undefined  [&apos;男&apos;] name:valley
+</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">2.</span>写一个函数，返回参数的平方和？如】</span></span><br></pre></td></tr></table></figure>
+<p> function sumOfSquares(){<br>     var s=0;<br>     for(var i=0;i<arguments.length;i++){ 10="" 29="" s+="arguments[i]*arguments[i];" }="" document.write(s)="" sumofsquares(2,3,4);="" sumofsquares(1,3);="" <figure="" class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">3.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></arguments.length;i++){></p>
+<p>console.log(a);  //undefined<br>var a = 1;<br>console.log(b);   //Uncaught ReferenceError: b is not defined</p>
+<p>//因为变量提升，这段代码实际运行顺序是<br>var a;                   //定义变量,未赋值<br>console.long(a);         //undefined<br>a=1;<br>console.log(b);          //未定义未赋值，报错</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">4.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure>
+<pre><code>sayName(&apos;world&apos;);    // helloworld
+sayAge(10);          //Uncaught TypeError: sayAge is not a function
+function sayName(name){
+    console.log(&apos;hello &apos;, name);
+}
+var sayAge = function(age){
+    console.log(age);
+};
+
+
+同上一题因为变量提升，
+</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">5.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure>
+<pre><code>function fn(){}
+var fn = 3;
+console.log(fn);   //3
+</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">6.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure>
+<p>  function fn(fn2){<br>       console.log(fn2);<br>       var fn2 = 3;<br>       console.log(fn2);<br>       console.log(fn);<br>       function fn2(){<br>            console.log(‘fnnn2’);<br>        }<br>     }<br>    fn(10);      </p>
+<p>   输出结果为：<br>   function fn2(){<br>            console.log(‘fnnn2’);<br>        }</p>
+<hr>
+<pre><code>3
+</code></pre><hr>
+<p>   function  fn(fn2){<br>       console.log(fn2);<br>       var fn2 = 3;<br>       console.log(fn2);<br>       console.log(fn);<br>       function fn2(){<br>            console.log(‘fnnn2’);<br>        }<br>     }</p>
+<p>  实际执行顺序是：<br>    function fn(fn2){<br>       var  fn2;                        //变量提升<br>       function fn2(){<br>            console.log(‘fnnn2’);       //函数提升<br>        }<br>       console.log(fn2);               // 输出函数fn2<br>       fn2 = 3;                        //fn2赋值为3<br>       console.log(fn2);               //  输出3<br>       console.log(fn);                // 输出函数fn<br>     }<br>    fn(10);<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">7.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>var fn = 1;
+function fn(fn){
+     console.log(fn);
+}
+console.log(fn(fn));   //Uncaught TypeError: fn is not a function
+</code></pre><p>//  给变量fn赋值为1后，fn即number类型。不再是函数，1（1）自然会报错。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">8.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure>
+<p>//作用域<br>    console.log(j);      //undefined<br>    console.log(i);      //undefined<br>    for(var i=0; i&lt;10; i++){<br>        var j = 100;<br>    }<br>    console.log(i);      // 10<br>    console.log(j);      //100</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">### 【<span class="number">9.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure>
+<p> fn();<br>    var i = 10;<br>    var fn = 20;<br>    console.log(i);<br>    function fn(){<br>        console.log(i);<br>        var i = 99;<br>        fn2();<br>        console.log(i);<br>        function fn2(){<br>            i = 100;<br>        }<br>    }<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 【<span class="number">10.</span>如下代码的输出？为什么】</span></span><br></pre></td></tr></table></figure></p>
+<p> var say = 0;<br>    (function say(n){<br>        console.log(n);<br>        if(n&lt;3) return;<br>        say(n-1);<br>    }( 10 ));<br>    console.log(say);<br>```</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/24/【学习记录】DAY16-JS语法/" rel="next" title="【学习记录】DAY16-JS语法">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY16-JS语法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/28/【学习记录】DAY18-数组-字符串-数学函数/" rel="prev" title="【学习记录】DAY18-数组-字符串-数字类型">
+                【学习记录】DAY18-数组-字符串-数字类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/26/【学习记录】DAY17-函数/"
+           data-title="【学习记录】DAY17-函数" data-url="http://chenlu.win/2016/02/26/【学习记录】DAY17-函数/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u30101-_u51FD_u6570_u58F0_u660E_u548C_u51FD_u6570_u8868_u8FBE_u5F0F_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u3011"><span class="nav-number">1.</span> <span class="nav-text">【1.函数声明和函数表达式有什么区别？】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u30102-_u4EC0_u4E48_u662F_u53D8_u91CF_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u4EC0_u4E48_u662F_u51FD_u6570_u7684_u58F0_u660E_u524D_u7F6E_uFF1F_u3011"><span class="nav-number">2.</span> <span class="nav-text">【2.什么是变量的声明前置？什么是函数的声明前置？】</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

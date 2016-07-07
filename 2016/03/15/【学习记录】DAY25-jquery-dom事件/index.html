@@ -1,0 +1,763 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="1.说说库和框架的区别？库的概念和意义是用来提供一些方法的集合，避免定义重复功能的函数并具有一定的模式兼容性。类似于一个工具箱，里面有很多的工具，比如jQuery，就封装了很多js代码，让你使用起来更加方便快捷。 
+框架更应该是规范开发者按照框架的设计去做一些事情，并非简单的工具集的概念，框架可以提供相应的库或者基于库来实现，但是库一般不具备框架的规范性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】DAY25-Jquery-DOM事件">
+<meta property="og:url" content="http://chenlu.win/2016/03/15/【学习记录】DAY25-jquery-dom事件/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="1.说说库和框架的区别？库的概念和意义是用来提供一些方法的集合，避免定义重复功能的函数并具有一定的模式兼容性。类似于一个工具箱，里面有很多的工具，比如jQuery，就封装了很多js代码，让你使用起来更加方便快捷。 
+框架更应该是规范开发者按照框架的设计去做一些事情，并非简单的工具集的概念，框架可以提供相应的库或者基于库来实现，但是库一般不具备框架的规范性。">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050901.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050902.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050903.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050904.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050905.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050906.gif">
+<meta property="og:image" content="http://7xt1vz.com2.z0.glb.clouddn.com/050907.gif">
+<meta property="og:updated_time" content="2016-05-28T09:00:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】DAY25-Jquery-DOM事件">
+<meta name="twitter:description" content="1.说说库和框架的区别？库的概念和意义是用来提供一些方法的集合，避免定义重复功能的函数并具有一定的模式兼容性。类似于一个工具箱，里面有很多的工具，比如jQuery，就封装了很多js代码，让你使用起来更加方便快捷。 
+框架更应该是规范开发者按照框架的设计去做一些事情，并非简单的工具集的概念，框架可以提供相应的库或者基于库来实现，但是库一般不具备框架的规范性。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】DAY25-Jquery-DOM事件 | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】DAY25-Jquery-DOM事件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-15T19:16:37+08:00" content="2016-03-15">
+              2016-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/15/【学习记录】DAY25-jquery-dom事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/【学习记录】DAY25-jquery-dom事件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="1-_u8BF4_u8BF4_u5E93_u548C_u6846_u67B6_u7684_u533A_u522B_uFF1F"><a href="#1-_u8BF4_u8BF4_u5E93_u548C_u6846_u67B6_u7684_u533A_u522B_uFF1F" class="headerlink" title="1.说说库和框架的区别？"></a>1.说说库和框架的区别？</h3><p>库的概念和意义是用来提供一些方法的集合，避免定义重复功能的函数并具有一定的模式兼容性。类似于一个工具箱，里面有很多的工具，比如jQuery，就封装了很多js代码，让你使用起来更加方便快捷。 </p>
+<p>框架更应该是规范开发者按照框架的设计去做一些事情，并非简单的工具集的概念，框架可以提供相应的库或者基于库来实现，但是库一般不具备框架的规范性。<br><a id="more"></a></p>
+<h3 id="2-jquery__u80FD_u505A_u4EC0_u4E48_uFF1F"><a href="#2-jquery__u80FD_u505A_u4EC0_u4E48_uFF1F" class="headerlink" title="2.jquery 能做什么？"></a>2.jquery 能做什么？</h3><p>jQuery库为Web脚本编程提供了通用的抽象层，使得它几乎适用于任何脚本编程的情形。由 于它容易扩展而且不断有新插件面世增强它的功能，所以一本书根本无法涵盖它所有可能的用途 和功能。抛开这些不谈，仅就其核心特性而言，jQuery能够满足下列需求。 </p>
+<ul>
+<li><p>取得文档中的元素。如果不使用JavaScript库，遍历DOM（Document Object Model，文档 对象模型）树，以及查找HTML文档结构中某个特殊的部分，必须编写很多行代码。jQuery 为准确地获取需要检查或操纵的文档元素，提供了可靠而富有效率的选择符机制。<br><code>$(&#39;div.content&#39;).find(&#39;p&#39;);</code></p>
+</li>
+<li><p>修改页面的外观。CSS虽然为影响文档呈现的方式提供了一种强大的手段，但当所有浏览器不完全支持相同的标准时，单纯使用CSS就会显得力不从心。jQuery可以弥补这一不足， 它提供了跨浏览器的标准解决方案。而且，即使在页面已经呈现之后，jQuery仍然能够改 变文档中某个部分的类或者个别的样式属性。<br><code>$(&#39;ul &gt; li:first&#39;).addClass(&#39;active&#39;);</code></p>
+</li>
+<li><p>改变文档的内容。jQuery能够影响的范围并不局限于简单的外观变化，使用少量的代码， jQuery就能改变文档的内容。可以改变文本、插入或翻转图像、列表重新排序，甚至对 HTML文档的整个结构都能重写和扩充——所有这些只需一个简单易用的API。<br><code>$(&#39;#container&#39;).append(&#39;&lt;a href=&quot;more.html&quot;&gt;more&lt;/a&gt;&#39;);</code></p>
+</li>
+<li><p>响应用户的交互操作。即使是最强大和最精心设计的行为，如果我们无法控制它何时发生，那它也毫无用处。jQuery提供了截获形形色色的页面事件（比如用户单击某个链接） 的适当方式，而不需要使用事件处理程序拆散HTML代码。此外，它的事件处理API也消 除了经常困扰Web开发人员浏览器的不一致性。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button.show-details'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'div.details'</span>).show(); </span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>为页面添加动态效果。为了实现某种交互式行为，设计者也必须向用户提供视觉上的反 馈。jQuery中内置的一批淡入、擦除之类的效果，以及制作新效果的工具包，为此提供了便利。</li>
+</ul>
+<p><code>$(&#39;div.details&#39;).slideDown();</code></p>
+<ul>
+<li><p>无需刷新页面从服务器获取信息。 这种编程模式就是众所周知的Ajax（Asynchronous<br>JavaScript and XML，异步JavaScript和XML），它是一系列在客户端和服务器之间传输数 据的强大技术。jQuery通过消除这一过程中的浏览器特定的复杂性，使开发人员得以专注 于服务器端的功能设计，从而得以创建出反应灵敏、功能丰富的网站。<br><code>$(&#39;div.details&#39;).load(&#39;more.html #content&#39;);</code></p>
+</li>
+<li><p>简化常见的JavaScript任务。除了这些完全针对文档的特性之外，jQuery也改进了对基本的JavaScript数据结构的操作（例如迭代和数组操作等）。</p>
+</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">each</span>(obj, <span class="function"><span class="keyword">function</span><span class="params">(key, value)</span> </span>&#123;</span><br><span class="line">   total += value;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-jquery__u5BF9_u8C61_u548C_DOM__u539F_u751F_u5BF9_u8C61_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5982_u4F55_u8F6C_u5316_uFF1F"><a href="#3-jquery__u5BF9_u8C61_u548C_DOM__u539F_u751F_u5BF9_u8C61_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5982_u4F55_u8F6C_u5316_uFF1F" class="headerlink" title="3.jquery 对象和 DOM 原生对象有什么区别？如何转化？"></a>3.jquery 对象和 DOM 原生对象有什么区别？如何转化？</h3><ul>
+<li><p>区别：<br>1、jquery选择器得到的jquery对象和标准的javascript中的document.getElementById()取得的dom对象是两种不同的对象类型，两者不等价；<br>2、jQuery无法使用DOM对象的任何方法，同理DOM对象也不能使用jQuery里的方法. 乱使用会报错。</p>
+</li>
+<li><p>转换：普通的dom对象一般可以通过$()转换成jquery对象。如：<br><code>$(document.getElementById(&quot;msg&quot;))</code>则为jquery对象，可以使用jquery的方法。<br>由于jquery对象本身是一个集合。所以如果jquery对象要转换为dom对象则必须取出其中的某一项，一般可通过索引取出。如：<br><code>$(&quot;#msg&quot;)[0]，$(&quot;div&quot;).eq(1)[0]，$(&quot;div&quot;).get()[1]，$(&quot;td&quot;)[5]</code></p>
+</li>
+</ul>
+<p>这些都是dom对象，可以使用dom中的方法，但不能再使用Jquery的方法。<br>以下几种写法都是正确的：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">"#msg"</span>).html();</span><br><span class="line"><span class="variable">$(</span><span class="string">"#msg"</span>)[<span class="number">0</span>].innerHTML;</span><br><span class="line"><span class="variable">$(</span><span class="string">"#msg"</span>).e<span class="string">q(0)</span>[<span class="number">0</span>].innerHTML;</span><br><span class="line"><span class="variable">$(</span><span class="string">"#msg"</span>).get(<span class="number">0</span>).innerHTML;</span><br></pre></td></tr></table></figure>
+<h3 id="4-jquery_u4E2D_u5982_u4F55_u7ED1_u5B9A_u4E8B_u4EF6_uFF1Fbind_u3001unbind_u3001delegate_u3001live_u3001on_u3001off_u90FD_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u63A8_u8350_u4F7F_u7528_u54EA_u79CD_uFF1F_u4F7F_u7528on_u7ED1_u5B9A_u4E8B_u4EF6_u4F7F_u7528_u4E8B_u4EF6_u4EE3_u7406_u7684_u5199_u6CD5_uFF1F"><a href="#4-jquery_u4E2D_u5982_u4F55_u7ED1_u5B9A_u4E8B_u4EF6_uFF1Fbind_u3001unbind_u3001delegate_u3001live_u3001on_u3001off_u90FD_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u63A8_u8350_u4F7F_u7528_u54EA_u79CD_uFF1F_u4F7F_u7528on_u7ED1_u5B9A_u4E8B_u4EF6_u4F7F_u7528_u4E8B_u4EF6_u4EE3_u7406_u7684_u5199_u6CD5_uFF1F" class="headerlink" title="4.jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"></a>4.jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</h3><ul>
+<li>.bind：对于早期 jQuery版本（1.7以前），.bind()方法用于直接将事件绑定在选中的元素上，所以.bind()在绑定事件的时候被选的元素必须存在；使用一次.bind()选择器匹配的元素会附加一个事件处理函数，而以后再添加的元素则不会有。为此需要再使用一次 .bind() 才行；</li>
+<li>.unbind：.bind()逆向操作，从每一个匹配的元素中删除绑定的事件，如果没有参数，则删除所有绑定的事件，.bind(type)删除指定类型事件；</li>
+<li>.live：（1.9版本已废弃,不建议使用，老版本建议使用）：将函数绑定到document(DOM的根节点)，类似事件代理，但是父容器被定死在了document上；</li>
+<li>.delegate:默认使用了事件代理，没有将事件直接绑定在该元素上，而是绑定在document元素上（DOM树的根节点）。</li>
+<li>.on，在她出现之后，在1.7版本以后取代了前面的那些，提供绑定事件处理的所有功能，不仅可以添加代理的，还可以监听单个位置的；</li>
+<li>.off, 移除用.on()绑定的事件处理程序。</li>
+</ul>
+<p>Jquery对on绑定事件的官方描述：</p>
+<blockquote>
+<p>Attach an event handler function for one or more events to the selected elements.</p>
+</blockquote>
+<p>有点返璞归真的感觉，就是往选中的元素绑定某个事件处理程序。在1.7里，on提供了所有有关于事件绑定的功能，这个方法接受四个参数：</p>
+<ol>
+<li>events，要绑定的事件，可以多个，用空格隔开。</li>
+<li>selector，可选，过滤选择器，只有匹配这个选择器的元素才执行事件处理程序。如果没有提供则认为是绑定在选中的元素上。</li>
+<li>data，可选，同bind的eventData。</li>
+<li>handler，同bind。<br>on比较有趣的是selector这个参数。如果没有，则跟bind一样是绑定在某个特定的元素上。如果有，则跟delegate类似，是一个事件代理，把selector匹配的元素的事件处理程序代理到选中的元素上。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举例：从代码任务三里掏出来的例子。。。</span></span><br><span class="line"></span><br><span class="line">	$(<span class="string">'.prod-ct'</span>).on(<span class="string">'mouseenter'</span>,<span class="string">'.prod'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="keyword">this</span>).addClass(<span class="string">'hover'</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="5-jquery__u5982_u4F55_u5C55_u793A/_u9690_u85CF_u5143_u7D20_uFF1F"><a href="#5-jquery__u5982_u4F55_u5C55_u793A/_u9690_u85CF_u5143_u7D20_uFF1F" class="headerlink" title="5.jquery 如何展示/隐藏元素？"></a>5.jquery 如何展示/隐藏元素？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 语法：</span><br><span class="line">$(selector).hide(speed,callback);      <span class="comment">//隐藏</span></span><br><span class="line">$(selector).show(speed,callback);      <span class="comment">//显示</span></span><br><span class="line">$(selector).toggle(speed,callback);    <span class="comment">//显示的隐藏，隐藏的显示</span></span><br><span class="line"> --&gt;</span><br><span class="line"> </span><br><span class="line">$(.hide).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     $(<span class="string">"p"</span>).hide();            </span><br><span class="line">&#125;)</span><br><span class="line">$(.hide).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     $(<span class="string">"p"</span>).show();        </span><br><span class="line">&#125;)</span><br><span class="line">$(.hide).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     $(<span class="string">"p"</span>).toggle();        </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050901.gif" alt="展示隐藏"></p>
+<h3 id="6-jquery__u52A8_u753B_u5982_u4F55_u4F7F_u7528_uFF1F"><a href="#6-jquery__u52A8_u753B_u5982_u4F55_u4F7F_u7528_uFF1F" class="headerlink" title="6.jquery 动画如何使用？"></a>6.jquery 动画如何使用？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 语法：</span><br><span class="line">$(selector).animate(&#123;params&#125;,speed,callback);</span><br><span class="line"></span><br><span class="line">必须的params参数定义形成动画的CSS属性；</span><br><span class="line">可选的speed参数规定效果的时长。取值可以为slow,fast或毫秒；</span><br><span class="line">可选的callback参数是动画完成后所执行的函数名称。</span><br><span class="line"></span><br><span class="line"> --&gt;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'button'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     $(<span class="string">'div'</span>).aminate(&#123;width:<span class="string">'200px'</span>,</span><br><span class="line">                       height:<span class="string">'150px'</span>         <span class="comment">//可以操作多个属性</span></span><br><span class="line">                       &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="string">'button'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     $(<span class="string">'div'</span>).aminate(&#123;width:<span class="string">'200px'</span>&#125;,<span class="string">'slow'</span>);</span><br><span class="line">      $(<span class="string">'div'</span>).aminate(&#123;height:<span class="string">'200px'</span>&#125;,<span class="string">'slow'</span>);</span><br><span class="line">       $(<span class="string">'div'</span>).aminate(&#123;width:<span class="string">'100px'</span>&#125;,<span class="string">'slow'</span>);</span><br><span class="line">        $(<span class="string">'div'</span>).aminate(&#123;height:<span class="string">'100px'</span>&#125;,<span class="string">'slow'</span>);</span><br><span class="line"> &#125;);                                                 <span class="comment">// 使用队列功能</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">举例：</span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> <span class="tag">&lt;<span class="title">button</span>&gt;</span>翻滚吧！小球<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line"></span><br><span class="line">	$(<span class="string">'button'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">'div'</span>).animate(&#123;left:<span class="string">'200px'</span>&#125;,<span class="number">1000</span>)</span><br><span class="line">		$(<span class="string">'div'</span>).animate(&#123;top:<span class="string">'200px'</span>&#125;,<span class="number">1000</span>)</span><br><span class="line">		$(<span class="string">'div'</span>).animate(&#123;left:<span class="string">'0px'</span>,top:<span class="string">'0px'</span>&#125;,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">	&#125;);</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050902.gif" alt="简单动画"></p>
+<h3 id="7-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_HTML__u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_u6587_u672C_uFF1F"><a href="#7-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_HTML__u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_u6587_u672C_uFF1F" class="headerlink" title="7.如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>7.如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//示例代码：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>猪肉羊肉牛肉<span class="tag">&lt;<span class="title">b</span>&gt;</span>鸡肉<span class="tag">&lt;/<span class="title">b</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn1"</span>&gt;</span>获取p标签的html<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn2"</span>&gt;</span>获取p标签的文本<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn3"</span>&gt;</span>设置html内容<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn4"</span>&gt;</span>设置文本内容<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="string">'.btn1'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pHtml=$(<span class="string">'p'</span>).html();</span><br><span class="line">	alert(<span class="string">'p标签里的html内容是：'</span>+pHtml);</span><br><span class="line">&#125;)</span><br><span class="line">		</span><br><span class="line">$(<span class="string">'.btn2'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pTxt=$(<span class="string">'p'</span>).text();</span><br><span class="line">	alert(<span class="string">'p标签里的text内容是：'</span>+pTxt);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'.btn3'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'p'</span>).html(<span class="string">'哈哈哈&lt;i&gt;哈哈哈哈哈哈&lt;/i&gt;'</span>);</span><br><span class="line">	</span><br><span class="line">&#125;)	</span><br><span class="line"></span><br><span class="line">$(<span class="string">'.btn4'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'p'</span>).text(<span class="string">'哈哈哈&lt;i&gt;哈哈哈哈哈哈&lt;/i&gt;'</span>);</span><br><span class="line">	</span><br><span class="line">&#125;)	</span><br><span class="line"></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050903.gif" alt="获取设置"></p>
+<h3 id="8-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u8868_u5355_u7528_u6237_u8F93_u5165_u6216_u8005_u9009_u62E9_u7684_u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5C5E_u6027_uFF1F"><a href="#8-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u8868_u5355_u7528_u6237_u8F93_u5165_u6216_u8005_u9009_u62E9_u7684_u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5C5E_u6027_uFF1F" class="headerlink" title="8.如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>8.如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.baidu.com"</span>&gt;</span>百度<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"name"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">placeholder</span>=<span class="value">"输入你的名字"</span> <span class="attribute">value</span>=<span class="value">''</span>&gt;</span>  <span class="tag">&lt;<span class="title">br</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn1"</span>&gt;</span>获取姓名<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn2"</span>&gt;</span>修改链接href属性<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="string">'.btn1'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">'你输入的名字是：'</span>+$(<span class="string">'.name'</span>).val());</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'.btn2'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">'a'</span>).attr(<span class="string">'href'</span>,<span class="string">'http://www.google.com'</span>)</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050904.gif" alt="元素属性"></p>
+<h1 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h1><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050905.gif" alt="导航"></p>
+<h3 id="2-_u70B9_u5962_u4F88_u54C12_u7684_u65F6_u5019_u9875_u9762_u8DF3_u5230_u4E86_u9876_u90E8_uFF0C_u53EF_u80FD_u662F_u4EC0_u4E48_u539F_u56E0_uFF1F_u5982_u4F55_u89E3_u51B3_uFF1F"><a href="#2-_u70B9_u5962_u4F88_u54C12_u7684_u65F6_u5019_u9875_u9762_u8DF3_u5230_u4E86_u9876_u90E8_uFF0C_u53EF_u80FD_u662F_u4EC0_u4E48_u539F_u56E0_uFF1F_u5982_u4F55_u89E3_u51B3_uFF1F" class="headerlink" title="2.点奢侈品2的时候页面跳到了顶部，可能是什么原因？如何解决？"></a>2.点奢侈品2的时候页面跳到了顶部，可能是什么原因？如何解决？</h3><p>应该是由于a链接上href=’#’造成的向顶部跳转，我想到的解决方法有两个：</p>
+<ol>
+<li>将a链接的href 设置为javascript:void(0)。之前做静态页面时一直用，但是具体为什么能阻止，我也不是很明白。。。</li>
+<li>使用e.preventDefault(),阻止a标签的默认行为，就不会跳转了。</li>
+</ol>
+<p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050906.gif" alt="切换"></p>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/050907.gif" alt="添加"></p>
+<p><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E9%99%88%E9%9C%B2/task-25" target="_blank" rel="external">github具体代码</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/14/【学习记录】DAY24-AJAX/" rel="next" title="【学习记录】DAY24-AJAX">
+                <i class="fa fa-chevron-left"></i> 【学习记录】DAY24-AJAX
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/17/【学习记录】DAY26-jquery常用方法/" rel="prev" title="【学习记录】DAY26-Jquery常用方法-ajax">
+                【学习记录】DAY26-Jquery常用方法-ajax <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/15/【学习记录】DAY25-jquery-dom事件/"
+           data-title="【学习记录】DAY25-Jquery-DOM事件" data-url="http://chenlu.win/2016/03/15/【学习记录】DAY25-jquery-dom事件/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u8BF4_u8BF4_u5E93_u548C_u6846_u67B6_u7684_u533A_u522B_uFF1F"><span class="nav-number">1.</span> <span class="nav-text">1.说说库和框架的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-jquery__u80FD_u505A_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">2.jquery 能做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-jquery__u5BF9_u8C61_u548C_DOM__u539F_u751F_u5BF9_u8C61_u6709_u4EC0_u4E48_u533A_u522B_uFF1F_u5982_u4F55_u8F6C_u5316_uFF1F"><span class="nav-number">3.</span> <span class="nav-text">3.jquery 对象和 DOM 原生对象有什么区别？如何转化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-jquery_u4E2D_u5982_u4F55_u7ED1_u5B9A_u4E8B_u4EF6_uFF1Fbind_u3001unbind_u3001delegate_u3001live_u3001on_u3001off_u90FD_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u63A8_u8350_u4F7F_u7528_u54EA_u79CD_uFF1F_u4F7F_u7528on_u7ED1_u5B9A_u4E8B_u4EF6_u4F7F_u7528_u4E8B_u4EF6_u4EE3_u7406_u7684_u5199_u6CD5_uFF1F"><span class="nav-number">4.</span> <span class="nav-text">4.jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-jquery__u5982_u4F55_u5C55_u793A/_u9690_u85CF_u5143_u7D20_uFF1F"><span class="nav-number">5.</span> <span class="nav-text">5.jquery 如何展示/隐藏元素？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-jquery__u52A8_u753B_u5982_u4F55_u4F7F_u7528_uFF1F"><span class="nav-number">6.</span> <span class="nav-text">6.jquery 动画如何使用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_HTML__u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5185_u90E8_u6587_u672C_uFF1F"><span class="nav-number">7.</span> <span class="nav-text">7.如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u8868_u5355_u7528_u6237_u8F93_u5165_u6216_u8005_u9009_u62E9_u7684_u5185_u5BB9_uFF1F_u5982_u4F55_u8BBE_u7F6E_u548C_u83B7_u53D6_u5143_u7D20_u5C5E_u6027_uFF1F"><span class="nav-number">8.</span> <span class="nav-text">8.如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EE3_u7801"><span class="nav-number"></span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_u70B9_u5962_u4F88_u54C12_u7684_u65F6_u5019_u9875_u9762_u8DF3_u5230_u4E86_u9876_u90E8_uFF0C_u53EF_u80FD_u662F_u4EC0_u4E48_u539F_u56E0_uFF1F_u5982_u4F55_u89E3_u51B3_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">2.点奢侈品2的时候页面跳到了顶部，可能是什么原因？如何解决？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3.</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
