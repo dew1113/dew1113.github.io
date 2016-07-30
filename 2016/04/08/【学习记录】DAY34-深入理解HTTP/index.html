@@ -1,0 +1,787 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="原理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="1.OSI 七层模型指什么OSI参考模模型是国际标准化组织制定的一个用于计算机或通信系统间互联的标准体系。它是一个七层的、抽象的模型体，不仅包括一系列抽象的术语2或概念，也包括具体的协议。
+
+应用层 (Application)：是最靠近用户的OSI层。这一层为用户的应用程序(例如电子邮件、文件传输和终端仿真)提供网络服务。
+
+表示层（Presentation Layer）：可确保一个系统的应用层所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【学习记录】深入理解HTTP">
+<meta property="og:url" content="http://chenlu.win/2016/04/08/【学习记录】DAY34-深入理解HTTP/index.html">
+<meta property="og:site_name" content="Miss Chen's Secret Garden">
+<meta property="og:description" content="1.OSI 七层模型指什么OSI参考模模型是国际标准化组织制定的一个用于计算机或通信系统间互联的标准体系。它是一个七层的、抽象的模型体，不仅包括一系列抽象的术语2或概念，也包括具体的协议。
+
+应用层 (Application)：是最靠近用户的OSI层。这一层为用户的应用程序(例如电子邮件、文件传输和终端仿真)提供网络服务。
+
+表示层（Presentation Layer）：可确保一个系统的应用层所">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070401.jpg">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070403.PNG">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070402.jpg">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070404.gif">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070502.PNG">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070501.png">
+<meta property="og:image" content="http://7xt1vz.com1.z0.glb.clouddn.com/070406.png">
+<meta property="og:updated_time" content="2016-07-30T01:40:42.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【学习记录】深入理解HTTP">
+<meta name="twitter:description" content="1.OSI 七层模型指什么OSI参考模模型是国际标准化组织制定的一个用于计算机或通信系统间互联的标准体系。它是一个七层的、抽象的模型体，不仅包括一系列抽象的术语2或概念，也包括具体的协议。
+
+应用层 (Application)：是最靠近用户的OSI层。这一层为用户的应用程序(例如电子邮件、文件传输和终端仿真)提供网络服务。
+
+表示层（Presentation Layer）：可确保一个系统的应用层所">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 【学习记录】深入理解HTTP | Miss Chen's Secret Garden </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?10cebea6c74325bcaca74b3679e98c37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miss Chen's Secret Garden</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP HUNGRY KEEP FOOLISH</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【学习记录】深入理解HTTP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-08T11:24:37+08:00" content="2016-04-08">
+              2016-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/08/【学习记录】DAY34-深入理解HTTP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/【学习记录】DAY34-深入理解HTTP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="1-OSI__u4E03_u5C42_u6A21_u578B_u6307_u4EC0_u4E48"><a href="#1-OSI__u4E03_u5C42_u6A21_u578B_u6307_u4EC0_u4E48" class="headerlink" title="1.OSI 七层模型指什么"></a>1.OSI 七层模型指什么</h3><p>OSI参考模模型是国际标准化组织制定的一个用于计算机或通信系统间互联的标准体系。它是一个七层的、抽象的模型体，不仅包括一系列抽象的术语2或概念，也包括具体的协议。</p>
+<ul>
+<li><p>应用层 (Application)：是最靠近用户的OSI层。这一层为用户的应用程序(例如电子邮件、文件传输和终端仿真)提供网络服务。</p>
+</li>
+<li><p>表示层（Presentation Layer）：可确保一个系统的应用层所发送的信息可以被另一个系统的应用层读取。例如，PC程序与另一台计算机进行通信，其中一台计算机使用扩展二一十进制交换码(EBCDIC)，而另一台则使用美国信息交换标准码（ASCII）来表示相同的字符。如有必要，表示层会通过使用一种通格式来实现多种数据格式之间的转换。</p>
+</li>
+<li><p>会话层（Session Layer）：通过传输层(端口号：传输端口与接收端口)建立数据传输的通路。主要在你的系统之间发起会话或者接受会话请求(设备之间需要互相认识可以是IP也可以是MAC或者是主机名)。</p>
+</li>
+<li><p>传输层 (Transport)：定义了一些传输数据的协议和端口号(WWW端口80等)，如：TCP(传输控制协议，传输效率低，可靠性强，用于传输可靠性要求高，数据量大的数据)，UDP(用户数据报协议，与TCP特性恰恰相反，用于传输可靠性要求不高，数据量小的数据，如QQ聊天数据就是通过这种方式传输的）。 主要是将从下层接收的数据进行分段和传输，到达目的地址后再进行重组。常常把这一层数据叫做段。</p>
+</li>
+<li><p>网络层 (Network)：在位于不同地理位置的网络中的两个主机系统之间提供连接和路径选择。Internet的发展使得从世界各站点访问信息的用户数大大增加，而网络层正是管理这种连接的层。</p>
+</li>
+<li><p>数据链路层 (Link)：定义了如何让格式化数据以进行传输，以及如何让控制对物理介质的访问。这一层通常还提供错误检测和纠正，以确保数据的可靠传输。</p>
+</li>
+<li><p>物理层（Physical Layer）：主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流(就是由1、0转化为电流强弱来进行传输，到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换)。这一层的数据叫做比特。</p>
+</li>
+</ul>
+<p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070401.jpg" alt="七层模型"></p>
+<a id="more"></a>
+<h3 id="2-HTTP__u7684_u5DE5_u4F5C_u539F_u7406_u662F_u4EC0_u4E48_uFF1F"><a href="#2-HTTP__u7684_u5DE5_u4F5C_u539F_u7406_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="2.HTTP 的工作原理是什么？"></a>2.HTTP 的工作原理是什么？</h3><p>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。下图表明了这种请求/响应模型。</p>
+<p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070403.PNG" alt="http工作原理"></p>
+<p>以下是HTTP请求/响应的步骤：</p>
+<ol>
+<li><p>客户端连接到Web服务器<br>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="http://www.baidu.com。" target="_blank" rel="external">http://www.baidu.com。</a></p>
+</li>
+<li><p>发送HTTP请求<br>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p>
+</li>
+<li><p>服务器接受请求并返回HTTP响应<br>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
+</li>
+<li><p>释放连接TCP连接<br>Web服务器主动关闭TCP套接字，释放TCP连接；客户端被动关闭TCP套接字，释放TCP连接。</p>
+</li>
+<li><p>客户端浏览器解析HTML内容<br>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
+</li>
+</ol>
+<h3 id="3-URI__u7684_u683C_u5F0F_u662F_u4EC0_u4E48_uFF1F_u5E38_u89C1_u7684_u534F_u8BAE_u6709_u54EA_u4E9B"><a href="#3-URI__u7684_u683C_u5F0F_u662F_u4EC0_u4E48_uFF1F_u5E38_u89C1_u7684_u534F_u8BAE_u6709_u54EA_u4E9B" class="headerlink" title="3.URI 的格式是什么？常见的协议有哪些"></a>3.URI 的格式是什么？常见的协议有哪些</h3><p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070402.jpg" alt="URI格式"></p>
+<ul>
+<li>协议方案名：使用http:或https:等协议方案名获取访问资源时要指定协议类型。不许分字母大小写，最后附一个冒号。也可以使用data:或JavaScript：这类指定数据或脚本程序的方案名。</li>
+<li>登录信息：指定用户名和密码作为从服务器端获取资源时必要的登录信息（身份认证）。此项可选。</li>
+<li>服务器地址：使用绝对URI必须指定待访问的服务器地址。地址可以使类似hackr.jp这种DNS可解析的名称，或是192.168.1.1这类IPv4地址名，还可以是[0:0:0:0:0:0:0:1]这样的IPv6地址名。</li>
+<li>服务器端口号:指定服务器连接的网络端口号。此项可选，若用户省略则自动使用默认端口号。</li>
+<li>带层次的文件路径：指定服务器上的文件路径来定位特指的资源。</li>
+<li>查询字符串：针对已指定的文件路径内的资源，可以使用查询字符串传入任意参数，此项可选。</li>
+<li>片段标识符：使用片段标识符通常可以标记出已获取资源中的子资源（文档内的某个位置），但是在RFC中并没有明确规定其使用方法。</li>
+</ul>
+<p>常见的协议有ftp、http、ldap、mailto、news、tel、telnet、urn.</p>
+<h3 id="4-HTTP__u534F_u8BAE_u6709_u51E0_u79CD_u548C_u670D_u52A1_u5668_u4EA4_u4E92_u7684_u65B9_u6CD5"><a href="#4-HTTP__u534F_u8BAE_u6709_u51E0_u79CD_u548C_u670D_u52A1_u5668_u4EA4_u4E92_u7684_u65B9_u6CD5" class="headerlink" title="4.HTTP 协议有几种和服务器交互的方法"></a>4.HTTP 协议有几种和服务器交互的方法</h3><ul>
+<li><p>OPTIONS<br>返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。</p>
+</li>
+<li><p>HEAD<br>向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。</p>
+</li>
+<li><p>GET<br>向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中，例如在Web Application中。其中一个原因是GET可能会被网络蜘蛛等随意访问。</p>
+</li>
+<li><p>POST<br>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</p>
+</li>
+<li><p>PUT<br>向指定资源位置上传其最新内容。</p>
+</li>
+<li><p>DELETE<br>请求服务器删除Request-URI所标识的资源。</p>
+</li>
+<li><p>TRACE<br>回显服务器收到的请求，主要用于测试或诊断。</p>
+</li>
+<li><p>CONNECT<br>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
+</li>
+</ul>
+<h3 id="5-_u72B6_u6001_u7801200_uFF0C301_uFF0C_304_uFF0C403_2C404_2C500_uFF0C503_u5206_u522B_u4EE3_u8868_u4EC0_u4E48_u610F_u601D"><a href="#5-_u72B6_u6001_u7801200_uFF0C301_uFF0C_304_uFF0C403_2C404_2C500_uFF0C503_u5206_u522B_u4EE3_u8868_u4EC0_u4E48_u610F_u601D" class="headerlink" title="5.状态码200，301， 304，403,404,500，503分别代表什么意思"></a>5.状态码200，301， 304，403,404,500，503分别代表什么意思</h3><ul>
+<li>200：表示从客户端发来的请求在服务器端被正常处理了。</li>
+<li>301：永久性重定向。表示请求的资源已经被分配了新的URI，以后应使用资源现在所指的URI。</li>
+<li>304：该状态码表示客户端发送附带条件的请求时（采用GET方法的请求报文中包含If-Match,If-Modified-Since,If-None-Match,If-Range,If-Unmodified-Since中任一首部。），服务器端允许请求访问资源，但因发生请求未满足条件的情况后，直接返回304 Not Modified(服务器端资源未改变，可直接使用客户端未过期的缓存。)304状态码返回时，不包含任何响应的主体部分。304虽然被划分在3XX类别中，但是和重定向没有关系。</li>
+<li>403：表明对请求资源的访问被服务器拒绝了。服务器没有必要给出拒绝的详细理由。但是如果想说明的话，可以在实体的主体部分对原因进行描述，这样就能让用户看到了。为获得文件系统的访问授权，访问权限出现某些问题（从未授权的发送源IP地址试图访问）等列举的情况都可能是发生403的原因。</li>
+<li>404：表明服务器上无法找到请求的资源。</li>
+<li>500：表明服务器端在执行请求时发生了错误，也可能是应用存在的bug或某些临时的故障。</li>
+<li>503：表明服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。</li>
+</ul>
+<h3 id="6-_u62A5_u6587_u6709_u54EA_u51E0_u90E8_u5206_u7EC4_u6210_uFF1F"><a href="#6-_u62A5_u6587_u6709_u54EA_u51E0_u90E8_u5206_u7EC4_u6210_uFF1F" class="headerlink" title="6.报文有哪几部分组成？"></a>6.报文有哪几部分组成？</h3><p>HTTP报文大致可以分成报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有报文主体。</p>
+<p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070404.gif" alt="报文结构"></p>
+<h3 id="7-_u4E3B_u4F53_u7684_u4F5C_u7528_u662F_u4EC0_u4E48_uFF1F_u7ED9_u4E2A_u8303_u4F8B"><a href="#7-_u4E3B_u4F53_u7684_u4F5C_u7528_u662F_u4EC0_u4E48_uFF1F_u7ED9_u4E2A_u8303_u4F8B" class="headerlink" title="7.主体的作用是什么？给个范例"></a>7.主体的作用是什么？给个范例</h3><p>HTTP报文的主体用于传输请求或响应的实体主体。报文是HTTP通信中的基本单位，由八位组字节流组成，通过HTTP通信传输。实体作为请求或响应的有效载荷数据被传输，其内容由实体首部和实体主体组成。通常，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。<br><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070502.PNG" alt="主体"></p>
+<h3 id="8-_u7B80_u8FF0_u6D4F_u89C8_u5668_u7F13_u5B58_u662F_u5982_u4F55_u63A7_u5236_u7684"><a href="#8-_u7B80_u8FF0_u6D4F_u89C8_u5668_u7F13_u5B58_u662F_u5982_u4F55_u63A7_u5236_u7684" class="headerlink" title="8.简述浏览器缓存是如何控制的"></a>8.简述浏览器缓存是如何控制的</h3><ul>
+<li>先根据（cache-control/Expires）查看浏览器缓存是否过期</li>
+<li>如果没有过期，直接调用浏览器缓存</li>
+<li>过期了，再次向服务器发送请求，服务器根据If-Modified-Since和If-None-Match判断是否返回304，让浏览器从缓存中调取还是返回200，发送响应请求。</li>
+<li>最后浏览器呈现页面</li>
+</ul>
+<p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070501.png" alt="浏览器控制缓存"></p>
+<p><code>Cache-control</code>:HTTP 响应头是 HTTP 1.1 协议新增的指令，每个资源都可以通过设定 Cache-Control 来建立缓存策略。通常，可为它指定一个<code>max-age</code>，表示缓存的最长时间，单位为秒。例如，若设定<code>Cache-Control: max-age=60480</code>0，则表示这个资源的有效时间为 7 天。浏览器第一次获取这个资源后，7 天之内若再次请求，通常都不会与服务器进行任何通信，而是直接使用本地副本。</p>
+<p><code>Expires</code>:同样是用来控制缓存，Expires响应头从另一个角度——指明缓存的具体过期日期，来控制资源何时过期。在过期时间以内，若再次发起请求，通常浏览器都不会与服务器进行任何通信，而是直接使用本地副本。Apache 服务器允许以多种方式，例如基于该资源的访问时间或上次修改时间来设定 Expires 的值。注意，这里的时间一律使用格林威治时间（Greenwich Mean Time, GMT），而非本地时间。</p>
+<p>当 Expires 和 Cache-Control 同时出现时，通常后者会覆盖前者的设定。由于 Expires 对用户的系统时间有所依赖，因此通常认为使用 Cache-Control 是更好的选择（基本上所有的浏览器都支持 Cache-Control 指令）。</p>
+<p><code>Last-Modified/Etag</code>:<br>服务器可 HTTP返回头中包含<code>Last-Modified</code>字段或者<code>ETag</code>字段。<code>Last-Modified</code> 表示被请求资源在服务器端的上次修改时间，而<code>ETag</code> 则是一个唯一文件标识符，每次文件修改后都会生成一个新的 <code>ETag</code>。服务器通过向浏览器发送这两个字段，来告知浏览器其获得的资源的版本。<br>无论通过 <code>Cache-Control</code>还是<code>Expires</code> 设置缓存，在过期时间以内，当用户点击浏览器刷新按钮时，为了确保用户所加载的资源是最新的，大部分浏览器不会再直接使用缓存中的数据，而是发出一个条件请求（<code>Conditional GET Request</code>）。对于这类请求，浏览器会在请求头中包含<code>If-Modified-Since</code>或<code>If-None-Match</code>字段。前者即浏览器当初得到的<code>Last-Modified</code>;后者即浏览器当初得到的 <code>ETag</code>。当服务器发现资源的更新时间晚于 <code>If-Modified-Since</code> 所提供的时间，或者资源在服务器端当前的 <code>ETag</code> 和 <code>If-None-Match</code>提供的不符时，会响应整个资源，否则只会响应一个<code>304 Not Modified</code> 状态码（因此浏览器将不需要重新下载整个资源）。这种机制可以最大程度上减少数据下载量。此外，如果缓存的资源已过期，浏览器通常有两种选择：重新下载这个资源，或发出一个条件请求。很多浏览器都会采取后者，以节约资源。</p>
+<p>由于 <code>Last-Modified</code>和<code>ETag</code>的作用是相同的（均为向服务器验证资源是否最新），因此只使用一个即可。通常认为<code>Last-Modified</code>更好（它和<code>Expires</code>不同，由服务器生成，不依赖浏览器端时间）。</p>
+<h3 id="9-_u4E0B_u56FE_u5404_u4E2A_u53C2_u6570_u662F_u4EC0_u4E48_u610F_u601D"><a href="#9-_u4E0B_u56FE_u5404_u4E2A_u53C2_u6570_u662F_u4EC0_u4E48_u610F_u601D" class="headerlink" title="9.下图各个参数是什么意思"></a>9.下图各个参数是什么意思</h3><p><img src="http://7xt1vz.com1.z0.glb.clouddn.com/070406.png" alt="参数"></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原理/" rel="tag">#原理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/07/【学习记录】DAY33-难点之闭包、this的理解/" rel="next" title="【学习记录】难点之闭包、this的理解">
+                <i class="fa fa-chevron-left"></i> 【学习记录】难点之闭包、this的理解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/10/【学习记录】DAY36-对象、原型、原型链之我见/" rel="prev" title="【学习记录】对象、原型、原型链之我见">
+                【学习记录】对象、原型、原型链之我见 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/08/【学习记录】DAY34-深入理解HTTP/"
+           data-title="【学习记录】深入理解HTTP" data-url="http://chenlu.win/2016/04/08/【学习记录】DAY34-深入理解HTTP/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://www.4493.top/uploads/20141203/53311417617695.jpg" alt="Chen Lu" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Chen Lu</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-OSI__u4E03_u5C42_u6A21_u578B_u6307_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">1.OSI 七层模型指什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HTTP__u7684_u5DE5_u4F5C_u539F_u7406_u662F_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">2.HTTP 的工作原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-URI__u7684_u683C_u5F0F_u662F_u4EC0_u4E48_uFF1F_u5E38_u89C1_u7684_u534F_u8BAE_u6709_u54EA_u4E9B"><span class="nav-number">3.</span> <span class="nav-text">3.URI 的格式是什么？常见的协议有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-HTTP__u534F_u8BAE_u6709_u51E0_u79CD_u548C_u670D_u52A1_u5668_u4EA4_u4E92_u7684_u65B9_u6CD5"><span class="nav-number">4.</span> <span class="nav-text">4.HTTP 协议有几种和服务器交互的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_u72B6_u6001_u7801200_uFF0C301_uFF0C_304_uFF0C403_2C404_2C500_uFF0C503_u5206_u522B_u4EE3_u8868_u4EC0_u4E48_u610F_u601D"><span class="nav-number">5.</span> <span class="nav-text">5.状态码200，301， 304，403,404,500，503分别代表什么意思</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_u62A5_u6587_u6709_u54EA_u51E0_u90E8_u5206_u7EC4_u6210_uFF1F"><span class="nav-number">6.</span> <span class="nav-text">6.报文有哪几部分组成？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_u4E3B_u4F53_u7684_u4F5C_u7528_u662F_u4EC0_u4E48_uFF1F_u7ED9_u4E2A_u8303_u4F8B"><span class="nav-number">7.</span> <span class="nav-text">7.主体的作用是什么？给个范例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-_u7B80_u8FF0_u6D4F_u89C8_u5668_u7F13_u5B58_u662F_u5982_u4F55_u63A7_u5236_u7684"><span class="nav-number">8.</span> <span class="nav-text">8.简述浏览器缓存是如何控制的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-_u4E0B_u56FE_u5404_u4E2A_u53C2_u6570_u662F_u4EC0_u4E48_u610F_u601D"><span class="nav-number">9.</span> <span class="nav-text">9.下图各个参数是什么意思</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Lu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dew1113"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
