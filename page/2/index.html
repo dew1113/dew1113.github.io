@@ -197,11 +197,116 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/09/【学习记录】DAY23-熟悉后端/" itemprop="url">
+                  【学习记录】DAY23-熟悉后端
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-09T14:44:37+08:00" content="2016-03-09">
+              2016-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/09/【学习记录】DAY23-熟悉后端/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/【学习记录】DAY23-熟悉后端/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
       
 
       
-    
+        
+          <h3 id="1-_u7B80_u5355_u63CF_u8FF0_u4E0Bweb__u670D_u52A1_u5668_u3001PHP_u3001_u6570_u636E_u5E93_u3001_u6D4F_u89C8_u5668_u662F_u5982_u4F55_u5B9E_u73B0_u52A8_u6001_u7F51_u7AD9_u7684_3F"><a href="#1-_u7B80_u5355_u63CF_u8FF0_u4E0Bweb__u670D_u52A1_u5668_u3001PHP_u3001_u6570_u636E_u5E93_u3001_u6D4F_u89C8_u5668_u662F_u5982_u4F55_u5B9E_u73B0_u52A8_u6001_u7F51_u7AD9_u7684_3F" class="headerlink" title="1.简单描述下web 服务器、PHP、数据库、浏览器是如何实现动态网站的?"></a>1.简单描述下web 服务器、PHP、数据库、浏览器是如何实现动态网站的?</h3><p><img src="http://7xt1vz.com2.z0.glb.clouddn.com/%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99%E6%B5%81%E7%A8%8B.jpg" alt="动态网站实现"></p>
+<ol>
+<li>通过本机配置好的DNS域名服务器地址寻找DNS服务器，将网站URL中的WEB主机域名解析为Web服务器所在的Linux操作系统（Apache通常与Linux操作系统组合使用）中对应的IP地址。</li>
+<li>通过HTTP协议去连接上述IP地址的服务器系统，通过默认80端口请求Apache服务器上相应目录下的html文件，php文件等</li>
+<li>Apache接收到访问请求后打开相应的html文件，将内容响应给用户；由于Apache本身不能处理php动态语言脚本文件，就寻找并委托PHP应用服务器来处理（服务器端实现得安装PHP应用），Apache服务器将用户请求访问的php文件交给php应用服务器，php应用服务器接收php文件，打开并解释php文件，最终翻译成html静态代码，再将html静态码交还给Apache服务器，Apache服务器将接收到的html静态代码输出到客户端浏览器；</li>
+<li>如果用户需要对MYSQL数据库，那么久需要在服务器端安装数据库管理软件MYSQL服务器，用来存储和管理网站数据。由于Apache服务器是无法连接和操作MYSQL服务器，所以还需要安装php应用服务器，php应用服务器打开php文件，在php文件中通过对数据库连接的代码来连接本机或者网络上其他机器上的MYSQL数据库，并在php程序中通过执行标准的SQL查询语句来获取数据库中的数据，再通过PHP应用服务器将数据生成html静态代码。</li>
+<li>浏览器接收到Web服务器的响应后，接收并下载服务器端的html静态代码，然后浏览器解读代码，最终将页面呈现出来。</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/09/【学习记录】DAY23-熟悉后端/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1186,112 +1291,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/05/【学习记录】DAY11-inline-block、BFC/" itemprop="url">
-                  【学习记录】DAY11-inline-block、BFC
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-05T14:44:37+08:00" content="2016-02-05">
-              2016-02-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/05/【学习记录】DAY11-inline-block、BFC/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/05/【学习记录】DAY11-inline-block、BFC/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="u30101-_u5728_u4EC0_u4E48_u573A_u666F_u4E0B_u4F1A_u51FA_u73B0_u5916_u8FB9_u8DDD_u5408_u5E76_uFF1F_u5982_u4F55_u5408_u5E76_uFF1F_u5982_u4F55_u4E0D_u8BA9_u76F8_u90BB_u5143_u7D20_u5916_u8FB9_u8DDD_u5408_u5E76_uFF1F_u3011"><a href="#u30101-_u5728_u4EC0_u4E48_u573A_u666F_u4E0B_u4F1A_u51FA_u73B0_u5916_u8FB9_u8DDD_u5408_u5E76_uFF1F_u5982_u4F55_u5408_u5E76_uFF1F_u5982_u4F55_u4E0D_u8BA9_u76F8_u90BB_u5143_u7D20_u5916_u8FB9_u8DDD_u5408_u5E76_uFF1F_u3011" class="headerlink" title="【1.在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？】"></a>【1.在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？】</h3><ul>
-<li>合并场景：相邻块盒子的垂直外边距合并只有他们是在同一BFC，且没有<code>padding</code>与<code>border</code>将外边距隔开才会发生；</li>
-<li>合并形式：垂直相邻元素，子元素和父元素会发生合并，合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</li>
-<li><p>不合并：创建另外一个BFC，让不想发生外边距合并的元素处于不同的BFC。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/05/【学习记录】DAY11-inline-block、BFC/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1338,7 +1337,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
