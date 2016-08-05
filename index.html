@@ -337,141 +337,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/23/【学习记录】DAY37-继承/" itemprop="url">
-                  【学习记录】深入学习继承
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-23T22:44:37+08:00" content="2016-04-23">
-              2016-04-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/23/【学习记录】DAY37-继承/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/【学习记录】DAY37-继承/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>学完原型之后，课程多了起来，导致间隔了蛮久才继续学习继承的知识，知识都有些连接不上了~~，学习真的是一天也不能荒废啊。。下面总结了一些继承的知识点，还待完善。</p>
-<h3 id="1-_u7EE7_u627F_u6709_u4EC0_u4E48_u4F5C_u7528_3F"><a href="#1-_u7EE7_u627F_u6709_u4EC0_u4E48_u4F5C_u7528_3F" class="headerlink" title="1.继承有什么作用?"></a>1.继承有什么作用?</h3><p>继承是基于原型链的，可以减少重复的代码，提高页面性能。不过原型链虽然好用，但是本身有局限性的，比如一个函数的属性是私有的，但是它原型上的方法是共用的。如果一个函数是另一个函数的原型，那么它的私有属性也会成为那个函数的共用方法，该函数的实例可以随意更改这些属性而影响全局，这种情况就需要继承来解决。</p>
-<h3 id="2-_u6709_u51E0_u79CD_u5E38_u89C1_u521B_u5EFA_u5BF9_u8C61_u7684_u65B9_u5F0F_3F__u4E3E_u4F8B_u8BF4_u660E_3F"><a href="#2-_u6709_u51E0_u79CD_u5E38_u89C1_u521B_u5EFA_u5BF9_u8C61_u7684_u65B9_u5F0F_3F__u4E3E_u4F8B_u8BF4_u660E_3F" class="headerlink" title="2.有几种常见创建对象的方式? 举例说明?"></a>2.有几种常见创建对象的方式? 举例说明?</h3><ul>
-<li>通过对象字面量,不能传递参数。 <code>var person={name:&#39;luyoyo&#39;,age:18}</code></li>
-<li>通过函数生成对象</li>
-</ul>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">person</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj= &#123;</span><br><span class="line">       name:name,</span><br><span class="line">       age:age</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> p1= person(<span class="string">'luyoyo'</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>通过构造函数</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.name=name;</span><br><span class="line">   <span class="keyword">this</span>.age=age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> person(<span class="string">'luyoyo'</span>,<span class="number">18</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>构造函数加原型</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name;</span><br><span class="line">  <span class="keyword">this</span>.age=age</span><br><span class="line">&#125;</span><br><span class="line">person,prototype.sayName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'my name is'</span>+<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> person(<span class="string">'luyoyo'</span>,<span class="number">18</span>);</span><br><span class="line">p1.sayName();</span><br></pre></td></tr></table></figure>
-<h3 id="3-_u4E0B_u9762_u4E24_u79CD_u5199_u6CD5_u6709_u4EC0_u4E48_u533A_u522B_uFF1F"><a href="#3-_u4E0B_u9762_u4E24_u79CD_u5199_u6CD5_u6709_u4EC0_u4E48_u533A_u522B_uFF1F" class="headerlink" title="3.下面两种写法有什么区别？"></a>3.下面两种写法有什么区别？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name, sex</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    <span class="keyword">this</span>.printName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> People(<span class="string">'饥人谷'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, sex</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.printName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'若愚'</span>, <span class="number">27</span>);</span><br></pre></td></tr></table></figure>
-<p>方法一将printName直接写入构造函数里，这样每次都需要去创建这个函数，浪费空间损耗性能；方法二是讲printName卸载函数的原型对象里，这样所有的实例都可以共享这个方法，并且只需要创建一次就可以了，实例通过原型链去寻找调用方法。</p>
-<h3 id="5-Object-create__u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u517C_u5BB9_u6027_u5982_u4F55_uFF1F_u5982_u4F55_u4F7F_u7528_uFF1F"><a href="#5-Object-create__u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F_u517C_u5BB9_u6027_u5982_u4F55_uFF1F_u5982_u4F55_u4F7F_u7528_uFF1F" class="headerlink" title="5.Object.create 有什么作用？兼容性如何？如何使用？"></a>5.<code>Object.create</code> 有什么作用？兼容性如何？如何使用？</h3><p>Object.create()方法创建一个拥有制定原型和若干个指定属性的对象。即深度拷贝一个对象的属性和原型链。兼容性IE浏览器要求IE9以上，其他现代浏览器都兼容。<br>语法：</p>
-<blockquote>
-<p>Object.create(proto, [ propertiesObject ])</p>
-</blockquote>
-<p><code>proto</code>:一个对象，作为新创建对象的原型<br><code>ptopertiesObject</code>:可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符（这些属性描述符的结构与Object.defineProperties()的第二个参数一样）。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。</p>
-<h3 id="5-hasOwnProperty_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F__u5982_u4F55_u4F7F_u7528_uFF1F"><a href="#5-hasOwnProperty_u6709_u4EC0_u4E48_u4F5C_u7528_uFF1F__u5982_u4F55_u4F7F_u7528_uFF1F" class="headerlink" title="5.hasOwnProperty有什么作用？ 如何使用？"></a>5.<code>hasOwnProperty</code>有什么作用？ 如何使用？</h3><p><code>hasOwnProperty()</code>函数用于指示一个对象自身（不包括原型链）是否具有指定名称的属性。如果有返回<code>true</code>,否则返回<code>false</code>。<br>改方法属于<code>Object</code>对象，由于所有对象都继承了<code>Object</code>的对象实例，因此几乎所有的实例对象都可以使用该方法。<br>语法：</p>
-<blockquote>
-<p>Object.hasOwnProperty(propertyName)</p>
-</blockquote>
-<p><code>hasOwnProperty()</code>函数返回值为<code>Boolean</code>类型。如果对象<code>object</code>具有名称为<code>propertyName</code>的属性，则返回<code>true</code>,否则返回<code>false</code>。此方法不会检查对象的原型链中是否存在该属性，该属性只有是对象本身的一个成员才会返回<code>true</code>.</p>
-<h3 id="6-_u5B9E_u73B0Object-create_u7684_polyfill_uFF0C_u5982_uFF1A_uFF08ps_3A__u5199_u4E2A_u51FD_u6570create_uFF0C_u5B9E_u73B0_Object-create__u7684_u529F_u80FD_uFF09_5B_u4EC0_u4E48_u662F_polyfill_uFF1F_5D"><a href="#6-_u5B9E_u73B0Object-create_u7684_polyfill_uFF0C_u5982_uFF1A_uFF08ps_3A__u5199_u4E2A_u51FD_u6570create_uFF0C_u5B9E_u73B0_Object-create__u7684_u529F_u80FD_uFF09_5B_u4EC0_u4E48_u662F_polyfill_uFF1F_5D" class="headerlink" title="6.实现Object.create的 polyfill，如：（ps: 写个函数create，实现 Object.create 的功能）[什么是 polyfill？]"></a>6.实现Object.create的 polyfill，如：（ps: 写个函数create，实现 Object.create 的功能）[什么是 polyfill？]</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>)&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">'object prototype may only ba an Object or null'</span>)</span><br><span class="line">&#125;</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">tObj</span>(<span class="params"></span>)</span>&#123;&#125;;   <span class="comment">//建一个空构造函数</span></span><br><span class="line">   tObj.prototype= proto;</span><br><span class="line">   <span class="keyword">var</span> newObj= <span class="keyword">new</span> tObj();</span><br><span class="line">   tObj.prototype=<span class="literal">null</span>;</span><br><span class="line">   <span class="keyword">if</span>(<span class="built_in">arguments</span>.length&gt;<span class="number">1</span>)&#123;   <span class="comment">//参数大于1，有附加属性</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> <span class="built_in">arguments</span>[<span class="number">1</span>])&#123;</span><br><span class="line">        <span class="keyword">if</span> (proto.hasOwnProperty(prop))&#123;</span><br><span class="line">           newObj[prop]=<span class="built_in">arguments</span>[<span class="number">1</span>][prop];</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> newObj();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj=&#123; a:<span class="number">1</span>;b:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2= create(obj);</span><br><span class="line"><span class="built_in">console</span>.log(obj2.a);</span><br></pre></td></tr></table></figure>
-<h3 id="7-_u5982_u4E0B_u4EE3_u7801_u4E2Dcall_u7684_u4F5C_u7528_u662F_u4EC0_u4E48_uFF1F"><a href="#7-_u5982_u4E0B_u4EE3_u7801_u4E2Dcall_u7684_u4F5C_u7528_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="7.如下代码中call的作用是什么？"></a>7.如下代码中call的作用是什么？</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, sex)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Male</span><span class="params">(name, sex, age)</span></span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name, sex);    <span class="comment">//这里的 call 有什么作用</span></span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>call指定了函数执行时this的值，上面代码将Person的执行环境this改变为Male的调用者，如果Male为构造函数，new出一个实例对象，那么此处person的this就会指向这个实例。</p>
-<h3 id="8-_u8865_u5168_u4EE3_u7801_uFF0C_u5B9E_u73B0_u7EE7_u627F"><a href="#8-_u8865_u5168_u4EE3_u7801_uFF0C_u5B9E_u73B0_u7EE7_u627F" class="headerlink" title="8.补全代码，实现继承"></a>8.补全代码，实现继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,sex</span>)</span>&#123;</span><br><span class="line">    rhis.name=name;</span><br><span class="line">    <span class="keyword">this</span>.sex=sex;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Male</span>(<span class="params">name, sex, age</span>)</span>&#123;</span><br><span class="line">   Person.call(<span class="keyword">this</span>,name,sex);</span><br><span class="line">   <span class="keyword">this</span>.age=age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Male.prototype =<span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line"></span><br><span class="line">Male.prototype.printName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.getName())</span><br><span class="line">&#125;</span><br><span class="line">Male.prototype.getAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ruoyu = <span class="keyword">new</span> Male(<span class="string">'luyoyo'</span>, <span class="string">'girl'</span>, <span class="number">18</span>);</span><br><span class="line">ruoyu.printName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://book.jirengu.com/jirengu-inc/jrg-tehui2/homework/%E9%99%88%E9%9C%B2/task-37.html" target="_blank" rel="external">dialog演示</a><br><a href="https://github.com/jirengu-inc/jrg-tehui2/blob/master/homework/%E9%99%88%E9%9C%B2/task-37.html" target="_blank" rel="external">dialog源码</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/10/【学习记录】DAY36-对象、原型、原型链之我见/" itemprop="url">
                   【学习记录】对象、原型、原型链之我见
                 </a>
@@ -978,6 +843,116 @@
 </ol>
 <p><a href="http://book.jirengu.com/jirengu-inc/jrg-tehui2/homework/%E9%99%88%E9%9C%B2/task-30.html" target="_blank" rel="external">效果展示</a></p>
 <p><a href="https://github.com/jirengu-inc/jrg-tehui2/blob/master/homework/%E9%99%88%E9%9C%B2/task-30.html" target="_blank" rel="external">github代码</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/27/【学习记录】DAY29-jquery懒加载、gotop/" itemprop="url">
+                  【学习记录】DAY29-jquery懒加载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-27T09:44:37+08:00" content="2016-03-27">
+              2016-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/27/【学习记录】DAY29-jquery懒加载、gotop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/【学习记录】DAY29-jquery懒加载、gotop/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h3 id="1-_u5982_u4F55_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u5426_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_uFF08_u6D4F_u89C8_u5668_u7684_u4E0A_u8FB9_u7F18_u548C_u4E0B_u8FB9_u7F18_u4E4B_u95F4_uFF0C_u8089_u773C_u53EF_u89C6_uFF09_u3002_u5199_u4E00_u4E2A_u51FD_u6570_isVisible_u5B9E_u73B0"><a href="#1-_u5982_u4F55_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u5426_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_uFF08_u6D4F_u89C8_u5668_u7684_u4E0A_u8FB9_u7F18_u548C_u4E0B_u8FB9_u7F18_u4E4B_u95F4_uFF0C_u8089_u773C_u53EF_u89C6_uFF09_u3002_u5199_u4E00_u4E2A_u51FD_u6570_isVisible_u5B9E_u73B0" class="headerlink" title="1.如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现"></a>1.如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现</h3> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVisible</span>(<span class="params">$node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> winH=$(<span class="built_in">window</span>).height(),</span><br><span class="line">        scrollTop =$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">        offsetTop=$node.offset().top;</span><br><span class="line">   <span class="keyword">if</span>(scrollTop+winH &gt;= offsetTop )&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-_u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u4E0D_u662F_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_u3002_u6BCF_u6B21_u51FA_u73B0_u90FD_u5728_u63A7_u5236_u53F0_u6253_u5370_true__u3002_u7528_u4EE3_u7801_u5B9E_u73B0"><a href="#2-_u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u4E0D_u662F_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_u3002_u6BCF_u6B21_u51FA_u73B0_u90FD_u5728_u63A7_u5236_u53F0_u6253_u5370_true__u3002_u7528_u4EE3_u7801_u5B9E_u73B0" class="headerlink" title="2.当窗口滚动时，判断一个元素是不是出现在窗口可视范围。每次出现都在控制台打印 true 。用代码实现"></a>2.当窗口滚动时，判断一个元素是不是出现在窗口可视范围。每次出现都在控制台打印 true 。用代码实现</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> isVisible(<span class="variable">$node</span>)&#123;</span><br><span class="line">     var winH=$(window).height(),</span><br><span class="line">         scrollTop =$(window).scrollTop(),</span><br><span class="line">         offsetTop=<span class="variable">$node</span>.offset().top;</span><br><span class="line">    if(scrollTop+winH &gt;= offsetTop )&#123;</span><br><span class="line">          return true;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">         return false; </span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> $(<span class="keyword">window</span>).on(<span class="string">'scroll'</span>,<span class="keyword">function</span>()&#123;</span><br><span class="line">      if(isVisible(<span class="variable">$node</span>))&#123;</span><br><span class="line">           console.log(true);</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-_u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u4E0D_u662F_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_u3002_u5728_u5143_u7D20_u7B2C_u4E00_u6B21_u51FA_u73B0_u65F6_u5728_u63A7_u5236_u53F0_u6253_u5370_true_uFF0C_u4EE5_u540E_u518D_u6B21_u51FA_u73B0_u4E0D_u505A_u4EFB_u4F55_u5904_u7406_u3002_u7528_u4EE3_u7801_u5B9E_u73B0"><a href="#3-_u5F53_u7A97_u53E3_u6EDA_u52A8_u65F6_uFF0C_u5224_u65AD_u4E00_u4E2A_u5143_u7D20_u662F_u4E0D_u662F_u51FA_u73B0_u5728_u7A97_u53E3_u53EF_u89C6_u8303_u56F4_u3002_u5728_u5143_u7D20_u7B2C_u4E00_u6B21_u51FA_u73B0_u65F6_u5728_u63A7_u5236_u53F0_u6253_u5370_true_uFF0C_u4EE5_u540E_u518D_u6B21_u51FA_u73B0_u4E0D_u505A_u4EFB_u4F55_u5904_u7406_u3002_u7528_u4EE3_u7801_u5B9E_u73B0" class="headerlink" title="3.当窗口滚动时，判断一个元素是不是出现在窗口可视范围。在元素第一次出现时在控制台打印 true，以后再次出现不做任何处理。用代码实现"></a>3.当窗口滚动时，判断一个元素是不是出现在窗口可视范围。在元素第一次出现时在控制台打印 true，以后再次出现不做任何处理。用代码实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isShow=<span class="literal">false</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVisible</span>(<span class="params">$node</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> winH=$(<span class="built_in">window</span>).height(),</span><br><span class="line">         scrollTop =$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">         offsetTop=$node.offset().top;</span><br><span class="line">    <span class="keyword">if</span>(scrollTop+winH &gt;= offsetTop )&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> $(<span class="built_in">window</span>).on(<span class="string">'scroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(isShow) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">if</span>(isVisible($node))&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="literal">true</span>);</span><br><span class="line">           isShow=<span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="4-_u56FE_u7247_u61D2_u52A0_u8F7D_u7684_u539F_u7406_u662F_u4EC0_u4E48_uFF1F"><a href="#4-_u56FE_u7247_u61D2_u52A0_u8F7D_u7684_u539F_u7406_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="4.图片懒加载的原理是什么？"></a>4.图片懒加载的原理是什么？</h3><p>对于图片过多的页面，为了加速页面的加载速度，所有很多时候我们需要将页面内未出现在可视区域内的图片先不做加载，等到滚动到可视区域后再去加载。这样子可以提高页面的加载性能，也提高了用户体验。<br>实现思路：其实原理上很简单，在页面载入的时候将页面上的img标签的src指向一个小图片，比如一个转圈的图或者空白图，如果src里没有的话，开始就会出现一个X号。然后把真实地址存放在一个自定义属性中，常用data-src来存放，如下。<br><code>&lt;img src=&quot;loading.gif&quot; data-src=&quot;http://xxx.ooo.com&quot; /&gt;</code><br>然后将页面img标签获取并保存，开启一个定时器，遍历保存的img标签，判断其位置是否出现在了可视区域内。如果出现在可视区域了那么就把真实的src地址给赋值上。并且从数组中删除，避免重复判断。 </p>
+<p><a href="http://book.jirengu.com/jirengu-inc/jrg-tehui2/homework/%E9%99%88%E9%9C%B2/task-29/task29-1.html" target="_blank" rel="external">回到顶部效果</a></p>
+<p><a href="http://book.jirengu.com/jirengu-inc/jrg-tehui2/homework/%E9%99%88%E9%9C%B2/task-29/task29-2.html" target="_blank" rel="external">图片懒加载</a></p>
+<p>无缝滚动<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/0b3562fd-c981-4c55-8c9d-ac8cc3cdc49a.gif" alt="0_1463930620587_05221.gif"></p>
+<p><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E9%99%88%E9%9C%B2/task-29" target="_blank" rel="external">github具体代码</a></p>
 
             
           </span>
