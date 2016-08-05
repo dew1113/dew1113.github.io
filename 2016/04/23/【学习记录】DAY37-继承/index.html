@@ -59,7 +59,7 @@
 <meta property="og:site_name" content="Miss Chen's Secret Garden">
 <meta property="og:description" content="学完原型之后，课程多了起来，导致间隔了蛮久才继续学习继承的知识，知识都有些连接不上了~~，学习真的是一天也不能荒废啊。。下面总结了一些继承的知识点，还待完善。
 1.继承有什么作用?继承是基于原型链的，可以减少重复的代码，提高页面性能。不过原型链虽然好用，但是本身有局限性的，比如一个函数的属性是私有的，但是它原型上的方法是共用的。如果一个函数是另一个函数的原型，那么它的私有属性也会成为那个函数的共用">
-<meta property="og:updated_time" content="2016-08-05T15:31:33.962Z">
+<meta property="og:updated_time" content="2016-08-05T15:35:47.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【学习记录】深入学习继承">
 <meta name="twitter:description" content="学完原型之后，课程多了起来，导致间隔了蛮久才继续学习继承的知识，知识都有些连接不上了~~，学习真的是一天也不能荒废啊。。下面总结了一些继承的知识点，还待完善。
@@ -272,7 +272,7 @@
       
         <span itemprop="articleBody"><p>学完原型之后，课程多了起来，导致间隔了蛮久才继续学习继承的知识，知识都有些连接不上了~~，学习真的是一天也不能荒废啊。。下面总结了一些继承的知识点，还待完善。</p>
 <h3 id="1-_u7EE7_u627F_u6709_u4EC0_u4E48_u4F5C_u7528_3F"><a href="#1-_u7EE7_u627F_u6709_u4EC0_u4E48_u4F5C_u7528_3F" class="headerlink" title="1.继承有什么作用?"></a>1.继承有什么作用?</h3><p>继承是基于原型链的，可以减少重复的代码，提高页面性能。不过原型链虽然好用，但是本身有局限性的，比如一个函数的属性是私有的，但是它原型上的方法是共用的。如果一个函数是另一个函数的原型，那么它的私有属性也会成为那个函数的共用方法，该函数的实例可以随意更改这些属性而影响全局，这种情况就需要继承来解决。</p>
-<a id="more"></a>
+  <a id="more"></a>
 <h3 id="2-_u6709_u51E0_u79CD_u5E38_u89C1_u521B_u5EFA_u5BF9_u8C61_u7684_u65B9_u5F0F_3F__u4E3E_u4F8B_u8BF4_u660E_3F"><a href="#2-_u6709_u51E0_u79CD_u5E38_u89C1_u521B_u5EFA_u5BF9_u8C61_u7684_u65B9_u5F0F_3F__u4E3E_u4F8B_u8BF4_u660E_3F" class="headerlink" title="2.有几种常见创建对象的方式? 举例说明?"></a>2.有几种常见创建对象的方式? 举例说明?</h3><ul>
 <li>通过对象字面量,不能传递参数。 <code>var person={name:&#39;luyoyo&#39;,age:18}</code></li>
 <li>通过函数生成对象</li>
